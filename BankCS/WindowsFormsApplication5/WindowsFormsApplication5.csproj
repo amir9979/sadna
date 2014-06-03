@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55FBDA14-FE1C-402B-8A94-75A553E9C44A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication5</RootNamespace>
+    <AssemblyName>WindowsFormsApplication5</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="begin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="begin.Designer.cs">
+      <DependentUpon>begin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentForumState.cs" />
+    <Compile Include="ManagerPresentation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerPresentation.Designer.cs">
+      <DependentUpon>ManagerPresentation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network\BadResponseException.cs" />
+    <Compile Include="Network\ForumConnection.cs" />
+    <Compile Include="Network\ForumConnectionImpl.cs" />
+    <Compile Include="Observer\Observable.cs" />
+    <Compile Include="Observer\Observer.cs" />
+    <Compile Include="TheNewCommetWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TheNewCommetWindow.Designer.cs">
+      <DependentUpon>TheNewCommetWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userPreNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="userPreNew.Designer.cs">
+      <DependentUpon>userPreNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerLogin.Designer.cs">
+      <DependentUpon>ManagerLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reg.Designer.cs">
+      <DependentUpon>reg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loginWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loginWindow.Designer.cs">
+      <DependentUpon>loginWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="begin.resx">
+      <DependentUpon>begin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerPresentation.resx">
+      <DependentUpon>ManagerPresentation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TheNewCommetWindow.resx">
+      <DependentUpon>TheNewCommetWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userPreNew.resx">
+      <DependentUpon>userPreNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loginWindow.resx">
+      <DependentUpon>loginWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerLogin.resx">
+      <DependentUpon>ManagerLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="reg.resx">
+      <DependentUpon>reg.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTypes\DataTypes.csproj">
+      <Project>{6cb6aeea-bb46-4717-bb28-e2f867476721}</Project>
+      <Name>DataTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="ConsoleApplication1" 
+                   namespace="ConsoleApplication1">
+
+
+<class name="Forum">
+    <id name="Id">
+      <column name="ForumID" />
+      <generator class="guid" />
+    </id>
+	
+	<list name="SubForum" table="SubForums" cascade="all" lazy="false">
+            <key column ="ForumID"  />
+			<index column="sub"/>
+            <many-to-many class="SubForum" column="SubForumID" />
+        </list>
+	
+	<list name="Members" table="Members" cascade="all" lazy="false">
+            <key column ="ForumID" />
+			<index column="mem"/>
+            <many-to-many class="Member" column="MemberID" />
+        </list>
+	
+	<many-to-one cascade="all" name="policy" column="policy_id" lazy="false"/>
+	
+    <property name="name" />
+	
+	<list name="OnlineMember" table="Members" cascade="all" lazy="false">
+            <key column ="ForumID" />
+						<index column="mem" />
+            <many-to-many class="Member" column="MemberID" />
+
+    </list>
+		
+	   <list name="AllTypesKind" table="AllTypesKind">
+       <key column="ForumID" />
+	   			<index column="typo"/>
+       <element column="ChapterCode" type="string" />
+   </list>
+
+
+  </class> 
+  
+</hibernate-mapping>

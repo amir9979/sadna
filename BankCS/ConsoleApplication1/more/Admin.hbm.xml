@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="ConsoleApplication1" 
+                   namespace="ConsoleApplication1">
+
+<class name="Admin">
+<id name="Id">
+      <column name="AdminID" />
+      <generator class="guid" />
+    </id>
+		<many-to-one  cascade="all" name="forum" column="forumID"/>
+	</class>
+  
+</hibernate-mapping>

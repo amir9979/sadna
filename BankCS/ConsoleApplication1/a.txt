@@ -1,0 +1,8 @@
+cfg.AddFile("ls"); 
+cfg.AddFile("complaint.hbm.xml"); 
+cfg.AddFile("Forum.hbm.xml"); 
+cfg.AddFile("MemberState.hbm.xml"); 
+cfg.AddFile("PolicyInterface.hbm.xml"); 
+cfg.AddFile("Post.hbm.xml"); 
+cfg.AddFile("SubForum.hbm.xml"); 
+cfg.AddFile("User.hbm.xml"); 

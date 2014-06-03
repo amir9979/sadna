@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="ConsoleApplication1" 
+                   namespace="ConsoleApplication1">
+
+
+<class name="User">
+    <id name="Id" column="USERID">
+        <generator class="guid"/>
+    </id>
+<many-to-one cascade="all"  name="forum" column="forum_id"/>
+
+    <joined-subclass name="Guest">
+	<key column="GUESTID"/>
+    </joined-subclass>
+    <joined-subclass name="Member">
+        <key column="MEMBERID"/>
+		<many-to-one cascade="all"  name="state" column="state_id" lazy="false"/>
+
+		<list name="MemberPosts" table="MemberPosts" cascade="all" lazy="false">
+            <key column ="PostID"  />
+						<index column="poss"/>
+            <many-to-many class="Post" column="MEMBERID" />
+        </list>
+		
+		<list name="Friends" table="Friends" cascade="all" lazy="false">
+            <key column = "FriendID" />
+						<index column="friend"/>
+            <many-to-many class="Member" column="MEMBERID" />
+        </list>
+
+		<property name="username" />
+		<property name="password" />
+		<property name="fullname" />
+		<property name="mail" />
+		<property name="type" />
+		
+	</joined-subclass>
+</class>
+  
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="ConsoleApplication1" 
+                   namespace="ConsoleApplication1">
+
+<class name="Complaint">
+    <id name="Id">
+      <column name="ComplaintID" />
+      <generator class="guid" />
+    </id>
+	
+	<many-to-one cascade="all"  name="TheComplainer" column="TheComplainerID"/>
+	
+    <property name="complaint" />
+
+	</class> 
+</hibernate-mapping>

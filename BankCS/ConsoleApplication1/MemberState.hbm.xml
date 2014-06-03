@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   assembly="ConsoleApplication1" 
+                   namespace="ConsoleApplication1">
+
+
+<class name="MemberState" table="MemberStates">
+
+    <id name="Id">
+      <column name="MemberStateID" />
+      <generator class="guid" />
+    </id>
+
+     <joined-subclass name="Normal" table="Normals">
+          <key column="Normal_Id" />
+    </joined-subclass>
+	
+	
+	
+    <joined-subclass name="Moderator" table="Moders">
+	          <key column="Moderator_Id" />
+
+		<many-to-one cascade="all"  name="subForum" column="subForum_id"/>
+
+		<list name="complaint" table="complaintsOfModer" cascade="all" lazy="false">
+            <key column = "ComplaintID"/>
+			<index column="comp"/>
+            <many-to-many class="Complaint" column= "ModeratorID"/>
+        </list>
+	</joined-subclass> 
+	
+	
+	 <joined-subclass name="Admin" table="Admins">
+	          <key column="Admin_Id" />
+
+	 <many-to-one cascade="all"   name="forum" column="forumID"/>
+    </joined-subclass> 
+	
+	
+</class>
+  
+</hibernate-mapping>
