@@ -192,9 +192,9 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(547, 54);
+            this.button8.Location = new System.Drawing.Point(57, 154);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(139, 54);
+            this.button8.Size = new System.Drawing.Size(114, 54);
             this.button8.TabIndex = 12;
             this.button8.Text = "התחבר";
             this.button8.UseVisualStyleBackColor = true;
