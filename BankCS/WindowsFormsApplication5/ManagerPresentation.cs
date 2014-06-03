@@ -60,10 +60,10 @@ namespace WindowsFormsApplication5
 
         private void button5_Click(object sender, EventArgs e)
         {
-            List<ForumInfo> AllForums= myConnection.WatchAllForums();
-            for (int i = 0; i<AllForums.Count(); i++)
+            CurrentState.allForum = myConnection.WatchAllForums();
+            for (int i = 0; i < CurrentState.allForum.Count(); i++)
             {
-                listBox1.Items.Add(AllForums.ElementAt(i).name);
+                listBox1.Items.Add(CurrentState.allForum.ElementAt(i).name);
             }
         }
 

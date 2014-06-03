@@ -177,7 +177,7 @@ namespace WindowsFormsApplication5
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-
+            myConnection.AddNewSubForum(textBox1.Text, null);
         }
 
         private void button8_Click(object sender, EventArgs e)

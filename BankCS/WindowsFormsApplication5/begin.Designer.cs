@@ -32,7 +32,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.הבא = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,10 +45,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +86,35 @@
             this.panel1.Visible = false;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(57, 154);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(114, 54);
+            this.button8.TabIndex = 12;
+            this.button8.Text = "התחבר";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(12, 54);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(99, 56);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "הוסף תת פורום";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(52, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(142, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "הכנס שם לתת פורום החדש";
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -94,6 +123,14 @@
             this.listBox1.Size = new System.Drawing.Size(230, 264);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(129, 54);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(107, 54);
+            this.textBox1.TabIndex = 10;
             // 
             // button4
             // 
@@ -162,43 +199,6 @@
             this.button3.Text = "כניסה כמנהל על";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(12, 52);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(99, 56);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "הוסף תת פורום";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(129, 54);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(107, 54);
-            this.textBox1.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "הכנס שם לתת פורום החדש";
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(57, 154);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(114, 54);
-            this.button8.TabIndex = 12;
-            this.button8.Text = "התחבר";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
