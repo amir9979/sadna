@@ -17,8 +17,6 @@ namespace BridgeForum
 		
 		
 		
-		
-		
         public Boolean init(string super_name, string pass, String mail, String fullname, string DBpath)
         {
             this.OurSystem = new ForumSystemImpl(super_name, pass, mail, fullname, DBpath);
