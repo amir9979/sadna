@@ -12,12 +12,6 @@ namespace debugP
         static void Main(string[] args)
         {
 
-            
-			
-			
-			
-			
-			
 
 
 
