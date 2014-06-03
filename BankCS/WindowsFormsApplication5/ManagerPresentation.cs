@@ -28,6 +28,12 @@ namespace WindowsFormsApplication5
             myConnection.BuildForum(textBox1.Text);
             textBox1.Clear();
             listBox1.Items.Clear();
+
+            CurrentState.allForum = myConnection.WatchAllForums();
+            for (int i = 0; i < CurrentState.allForum.Count(); i++)
+            {
+                listBox1.Items.Add(CurrentState.allForum.ElementAt(i).name);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,6 +44,7 @@ namespace WindowsFormsApplication5
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.myConnection.loggout();
             this.Close();
         }
 

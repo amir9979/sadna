@@ -43,6 +43,8 @@ namespace WindowsFormsApplication5
             Int64 regConf = this.myConnection.Registration(forum, userName, passWord, mail, nickName);
             if (regConf != -1)
                 MessageBox.Show("the Registration succ");
+            else
+                MessageBox.Show("the Registration fail");
         }
 
         private void button1_Click(object sender, EventArgs e)

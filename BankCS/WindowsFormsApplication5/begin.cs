@@ -65,10 +65,11 @@ namespace WindowsFormsApplication5
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.CurrentState.allSubForum = myConnection.WatchAllSubForum();
             listBox1.Items.Clear();
-            List<SubForumInfo> SubForumList = myConnection.WatchAllSubForum();
-            for (int i=0;i<SubForumList.Count;i++)
-                listBox1.Items.Add(SubForumList.ElementAt(i).Name);
+         //   List<SubForumInfo> SubForumList = myConnection.WatchAllSubForum();
+            for (int i = 0; i < this.CurrentState.allSubForum.Count; i++)
+                listBox1.Items.Add(this.CurrentState.allSubForum.ElementAt(i).Name);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -178,6 +179,12 @@ namespace WindowsFormsApplication5
         private void button5_Click_1(object sender, EventArgs e)
         {
             myConnection.AddNewSubForum(textBox1.Text, null);
+            this.CurrentState.allSubForum = this.myConnection.WatchAllSubForum();
+            textBox1.Clear();     listBox1.Items.Clear();
+
+            for (int i = 0; i < this.CurrentState.allSubForum.Count; i++)
+                listBox1.Items.Add(this.CurrentState.allSubForum.ElementAt(i).Name);
+
         }
 
         private void button8_Click(object sender, EventArgs e)

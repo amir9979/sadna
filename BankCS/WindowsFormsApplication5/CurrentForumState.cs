@@ -22,5 +22,7 @@ namespace WindowsFormsApplication5
         public SubForumInfo currentSubForumInfo { get; set; }
         public PostInfo currentPostInfo { get; set; }
 		public List<ForumInfo> allForum { get; set; }
+        public List<SubForumInfo> allSubForum { get; set; }
+
     }
 }

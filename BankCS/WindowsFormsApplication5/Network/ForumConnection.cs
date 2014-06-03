@@ -84,7 +84,8 @@ namespace client.Network
 
         abstract public bool SPlogin(string superusername, string superpass);  //use case need to implements must call this function first  for make super mannager operations
 
-        abstract public List<ForumInfo> WatchAllForums();
+        abstract public List<ForumInfo> 
+            ;
 
         abstract public bool BuildForum(string name);  //made changes
 
