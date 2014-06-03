@@ -33,6 +33,7 @@ namespace WindowsFormsApplication5
             {
                 MessageBox.Show(""+userName +"welcome to the forum");
                 userPresentat.Show();
+                this.Close();
 
                 
             }

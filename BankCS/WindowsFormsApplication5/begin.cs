@@ -175,6 +175,17 @@ namespace WindowsFormsApplication5
 
         }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            loginWindow loginWindowForMember = new loginWindow(myConnection, CurrentState);
+            loginWindowForMember.Show();
+        }
+
 
 
 

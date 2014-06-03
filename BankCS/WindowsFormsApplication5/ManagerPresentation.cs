@@ -43,8 +43,19 @@ namespace WindowsFormsApplication5
 
         private void button4_Click(object sender, EventArgs e)
         {
-            myConnection.addNewType(listBox1.Text);
+            for (int i = 0; i < this.listBox1.Items.Count; i++)
+            {
+                if (listBox1.GetSelected(i))
+                {
+                    this.myConnection.CancelForum(CurrentState.allForum.ElementAt(i));
+                }
+            }
             listBox1.Items.Clear();
+            this.CurrentState.allForum = myConnection.WatchAllForums();
+            for (int i = 0; i < CurrentState.allForum.Count(); i++)
+            {
+                listBox1.Items.Add(CurrentState.allForum.ElementAt(i).name);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
