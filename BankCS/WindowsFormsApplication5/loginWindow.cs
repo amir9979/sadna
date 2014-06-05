@@ -25,14 +25,14 @@ namespace WindowsFormsApplication5
 
         private void button6_Click(object sender, EventArgs e)
         {
-            userPreNew userPresentat = new userPreNew(myConnection,CurrentState);
+            //userPreNew userPresentat = new userPreNew(myConnection,CurrentState);
             
             string userName = this.userName.Text;
             string passWord = this.passWord.Text;
             if (myConnection.login(userName, passWord))
             {
-                MessageBox.Show(""+userName +"welcome to the forum");
-                userPresentat.Show();
+                MessageBox.Show(""+userName +"  welcome to "+ CurrentState.myForum.name);
+         //       userPresentat.Show();
                 this.Close();
 
                 

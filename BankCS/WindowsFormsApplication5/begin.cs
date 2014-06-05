@@ -193,6 +193,12 @@ namespace WindowsFormsApplication5
             loginWindowForMember.Show();
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            myConnection.loggout();
+            MessageBox.Show("logout succ");
+        }
+
 
 
 

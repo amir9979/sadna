@@ -148,24 +148,25 @@ namespace ConsoleApplication1
             if (u is Guest)
             {
                 User tmp = ((Guest)u).loggin(u.forum, username, pass);
-                rep.Add<User>(tmp);
-                rep.Update<Forum>(u.forum);
+                
                 if (tmp != null)
                 {
+                    rep.Add<User>(tmp);
+                    rep.Update<Forum>(u.forum);
                     File.AppendAllText(@"Logger.txt","the user " + tmp.Id.ToString() + "loggin at "+ DateTime.Now.ToString()+ "\n");
                     return tmp;
                 }
                 else
                 {
                     System.Console.Write("cannot login to forum :" + u.forum.getname() + "cause incorrect pass / username");
-                    return u;
+                    return null;
                 }
             }
 
             else
             {
                 System.Console.Write("cannot login to forum :" + u.forum.getname() + "cause its not  guest");
-                return u;
+                return null;
             }
 
         }
