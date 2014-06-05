@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using System.IO;
 
 namespace ConsoleApplication1
 {
@@ -93,7 +94,9 @@ namespace ConsoleApplication1
             for (int t = 0; t < username.Length; t++)
                 acc = acc + System.Convert.ToInt64(username.ElementAt(t));
 
-            Members.Add(new Member(username, pass, mail, fullname, this, "Confirmed"));
+            Member tmp = new Member(username, pass, mail, fullname, this, "Confirmed");
+            Members.Add(tmp);
+            File.AppendAllText(@"Logger.txt", "the user " + tmp.Id.ToString() + "want to register to forum Id: " + this.Id.ToString()+ " at " + DateTime.Now.ToString() + "\n");
             return acc;
         }
 
