@@ -33,7 +33,7 @@
 	 <joined-subclass name="Admin" table="Admins">
 	          <key column="Admin_Id" />
 
-	 <many-to-one cascade="all"   name="forum" column="forumID"/>
+	 <many-to-one cascade="all"   name="forum" column="forumID" not-null="false"/>
     </joined-subclass> 
 	
 	

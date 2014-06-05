@@ -16,7 +16,7 @@
             <many-to-many class="SubForum" column="SubForumID" />
         </list>
 	
-	<list name="Members" table="Members" cascade="all" lazy="false">
+	<list name="Members" table="ForumMembers" cascade="all" lazy="false">
             <key column ="ForumID" />
 			<index column="mem"/>
             <many-to-many class="Member" column="MemberID" />
@@ -26,7 +26,7 @@
 	
     <property name="name" />
 	
-	<list name="OnlineMember" table="Members" cascade="all" lazy="false">
+	<list name="OnlineMember" table="OnlineMembers" cascade="all" lazy="false">
             <key column ="ForumID" />
 						<index column="mem" />
             <many-to-many class="Member" column="MemberID" />

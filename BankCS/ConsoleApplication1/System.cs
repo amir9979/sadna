@@ -147,7 +147,7 @@ namespace ConsoleApplication1
             if (u is Guest)
             {
                 User tmp = ((Guest)u).loggin(u.forum, username, pass);
-                rep.Add<User>(tmp);
+                //rep.Add<User>(tmp);
                 rep.Update<Forum>(u.forum);
                 if (tmp != null)
                     return tmp;
@@ -393,45 +393,7 @@ namespace ConsoleApplication1
         {
             if ((superManager == this.SuperManager))
             {
-                int i = 0;
-                List<MemberState> lst = new List<MemberState>();
-                for (; i < f.Members.Count; i++)
-                {
-                    Member m = f.Members.ElementAt<Member>(i);
-                    MemberState ms = m.state;
-                    if (ms is Admin)
-                    {
-                        Admin a = (Admin)ms;
-                        a.forum = null;
-                    }
-                    m.Friends = null;
-                    lst.Add(ms);
-                    m.state = null;
-                    rep.Update<User>(m);
-                }
-                
-                i = 0;
-                for (; i < f.Members.Count; i++)
-                {
-                    Member m = f.Members.ElementAt<Member>(i);
-                    //rep.Remove<MemberState>(ms);
-                    rep.Remove<User>(m);
-                }
-                f.Members = null;
-                rep.Update<Forum>(f);
-                i = 0;
-                for (; i < lst.Count; i++)
-                {
-                    rep.Remove<MemberState>(lst.ElementAt(i));
-                }
-                      i = 0;
-                      for (; i < f.SubForum.Count; i++)
-                      {
-                          SubForum m = f.SubForum.ElementAt<SubForum>(i);
-                          rep.Remove<SubForum>(m);
-                      }
-                      f.Cancel();
-                    rep.Remove<Forum>(f);
+            rep.Remove<Forum>(f);
             }
         }
 

@@ -325,7 +325,7 @@ public void CancelForumTest()
     Assert.AreEqual(forum.forumList().Count, 1, "one Forum");
     forum.CancelForum("Ferguson", "scottishAccent", "Manchester United");
     Assert.AreEqual(forum.forumList().Count, 0, "Forum delete");
-    giggsDis(forum);
+    //giggsDis(forum);
 }
 
 private void ManU(bridgeForum forum)

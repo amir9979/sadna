@@ -15,7 +15,7 @@
     </joined-subclass>
     <joined-subclass name="Member">
         <key column="MEMBERID"/>
-		<many-to-one cascade="all"  name="state" column="state_id" lazy="false"/>
+		<many-to-one cascade="all"  name="state" column="state_id" lazy="false" not-null="false"/>
 
 		<list name="MemberPosts" table="MemberPosts" cascade="all" lazy="false">
             <key column ="PostID"  />
