@@ -134,6 +134,7 @@ namespace ConsoleApplication1
             if (f != null)
             {
                 Int64 ans= f.Register(name, pass, mail, fullname);
+                // send txt to logger wrote by f.Register(name,pass,mail,fullname)
                 rep.Update<Forum>(f);
                 return ans;
             }
@@ -153,7 +154,7 @@ namespace ConsoleApplication1
                 {
                     rep.Add<User>(tmp);
                     rep.Update<Forum>(u.forum);
-                    File.AppendAllText(@"Logger.txt","the user " + tmp.Id.ToString() + "loggin at "+ DateTime.Now.ToString()+ "\n");
+                    File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + tmp.Id.ToString() + "loggin at " + DateTime.Now.ToString() + "\n");
                     return tmp;
                 }
                 else
@@ -179,7 +180,7 @@ namespace ConsoleApplication1
                 //u.forum.
                 rep.Update<Forum>(u.forum);
               //  rep.Remove<User>(u);
-                File.AppendAllText(@"Logger.txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
+                File.AppendAllText(@"Logger"+u.Id.ToString()+".txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
                 return new Guest(u.forum);
             }
             System.Console.Write("cannot loggout to forum :" + u.forum.getname() + "cause its not  logged in");
@@ -219,7 +220,7 @@ namespace ConsoleApplication1
                 s.AddNewThread(p);
                 rep.Update<SubForum>(s);
                 rep.Update<User>(u);
-                File.AppendAllText(@"Logger.txt", "the user " + u.Id + "publish new thread id: "+p.Id.ToString() + DateTime.Now.ToString() + "\n");
+                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id + "publish new thread id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
             else
@@ -237,7 +238,7 @@ namespace ConsoleApplication1
                 ((Member)u).AddNewPost(comm,p);
                 rep.Update<User>(u);
                 rep.Update<Post>(p);
-                File.AppendAllText(@"Logger.txt", "the user " + u.Id.ToString() + "publish new comment id : "+comm.Id.ToString() +" to thread/comment id: "+p.Id.ToString()  + DateTime.Now.ToString() + "\n");
+                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
             else
@@ -296,6 +297,7 @@ namespace ConsoleApplication1
             if (u is Member && ((Member)u).state is Admin && u.forum.SubForumList().Contains(s) && u.forum.Members.Contains(moder))
             {
                 res = u.forum.promoteMemberToModerate(moder, s);
+                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "premote to Moderate at SubForum :" + s.Id.ToString() + DateTime.Now.ToString() + "\n");
                 rep.Update<User>(moder);
                 rep.Update<Forum>(u.forum);
                 rep.Update<SubForum>(s);
