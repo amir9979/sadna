@@ -8,6 +8,7 @@ using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NHibernate.Criterion;
 using DataTypes;
+using System.IO;
 
 namespace ConsoleApplication1
 {
@@ -150,7 +151,10 @@ namespace ConsoleApplication1
                 rep.Add<User>(tmp);
                 rep.Update<Forum>(u.forum);
                 if (tmp != null)
+                {
+                    File.AppendAllText(@"Logger.txt","the user " + tmp.Id.ToString() + "loggin at "+ DateTime.Now.ToString()+ "\n");
                     return tmp;
+                }
                 else
                 {
                     System.Console.Write("cannot login to forum :" + u.forum.getname() + "cause incorrect pass / username");
@@ -174,6 +178,7 @@ namespace ConsoleApplication1
                 //u.forum.
                 rep.Update<Forum>(u.forum);
               //  rep.Remove<User>(u);
+                File.AppendAllText(@"Logger.txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
                 return new Guest(u.forum);
             }
             System.Console.Write("cannot loggout to forum :" + u.forum.getname() + "cause its not  logged in");
@@ -213,6 +218,7 @@ namespace ConsoleApplication1
                 s.AddNewThread(p);
                 rep.Update<SubForum>(s);
                 rep.Update<User>(u);
+                File.AppendAllText(@"Logger.txt", "the user " + u.Id + "publish new thread id: "+p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
             else
@@ -230,6 +236,7 @@ namespace ConsoleApplication1
                 ((Member)u).AddNewPost(comm,p);
                 rep.Update<User>(u);
                 rep.Update<Post>(p);
+                File.AppendAllText(@"Logger.txt", "the user " + u.Id.ToString() + "publish new comment id : "+comm.Id.ToString() +" to thread/comment id: "+p.Id.ToString()  + DateTime.Now.ToString() + "\n");
                 return true;
             }
             else
