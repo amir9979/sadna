@@ -63,6 +63,7 @@
     <Compile Include="ForumSystem.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="Password.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UserHandler.cs" />

@@ -9,6 +9,7 @@ using NHibernate.Tool.hbm2ddl;
 using NHibernate.Criterion;
 using DataTypes;
 using System.IO;
+using System.Net.Mail;
 
 namespace ConsoleApplication1
 {
@@ -136,6 +137,7 @@ namespace ConsoleApplication1
                 Int64 ans= f.Register(name, pass, mail, fullname);
                 // send txt to logger wrote by f.Register(name,pass,mail,fullname)
                 rep.Update<Forum>(f);
+                sendVerificationEmail(mail, ans);
                 return ans;
             }
             return -1;
@@ -616,6 +618,21 @@ namespace ConsoleApplication1
             return new  MemberInfo { username = m.username, id = Guid2Int(m.Id), fullname = m.fullname, mail = m.mail, type = m.type };
         }
 
+        public void sendVerificationEmail(string email, Int64 randomNumber)
+                {
+                        SmtpClient client = new SmtpClient ();
+                        client.Port = 587;
+                        client.Host = "smtp.gmail.com";
+                        client.EnableSsl = true;
+                        client.Timeout = 10000;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new System.Net.NetworkCredential ("workshopforumsystem@gmail.com", "azzam1234");
+                        MailMessage mm = new MailMessage("workshopforumsystem@gmail.com",email,"registration code","Wellcome to the forum system. please enter this verification code to complete your registraion :"+randomNumber.ToString());
+                        mm.BodyEncoding = UTF8Encoding.UTF8;
+                        mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                        client.Send (mm);
+                }
 
     }
 }
