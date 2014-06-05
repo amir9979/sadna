@@ -123,11 +123,10 @@ namespace ConsoleApplication1
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                SubForum product = session
-                    .CreateCriteria(typeof(SubForum))
-                    .Add(Restrictions.Eq("SubForumID", p))
-                    .UniqueResult<SubForum>();
-                return product;
+                ICriteria cr = session.CreateCriteria(typeof(SubForum));
+                ICriteria cr2 = cr.Add(Restrictions.Eq("Id", p));
+                    SubForum product = cr2.UniqueResult<SubForum>();
+                    return product;
             }
         }
 

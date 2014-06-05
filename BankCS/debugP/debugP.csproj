@@ -55,6 +55,10 @@
       <Project>{10112452-f788-414b-b574-afd5f4554f04}</Project>
       <Name>ConsoleApplication1</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataTypes\DataTypes.csproj">
+      <Project>{6cb6aeea-bb46-4717-bb28-e2f867476721}</Project>
+      <Name>DataTypes</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

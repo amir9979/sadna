@@ -465,7 +465,7 @@ namespace ConsoleApplication1
 
         private  SubForumInfo SubForumToInfo(SubForum f)
         {
-           return new  SubForumInfo { Name = f.Name, id = f.Id };
+            return new SubForumInfo { Name = f.Name, id = f.Id };
         }
 
          public override List< PostInfo> WatchAllThreads(User u,  SubForumInfo s)
