@@ -334,6 +334,19 @@ namespace BridgeForum
             return ReturnValue;
         } // get list of all forums names
 
+
+        public bool SPlogin(string superusername, string superpass)
+        {
+            return this.OurSystem.SPlogin(superusername, superpass);
+        }
+
+        public void CancelForum(string superusername, string superpass, string forumName)
+        {
+            this.OurSystem.CancelForum(null, new ForumInfo{name = forumName});
+        }
+
+
+
         public static void main()
         {
             bridgeForum system = new real();

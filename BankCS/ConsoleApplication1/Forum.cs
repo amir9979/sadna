@@ -183,7 +183,8 @@ namespace ConsoleApplication1
 
         public virtual void Cancel()
         {
-            ((List<Member>)this.Members).RemoveAll(element => true);
+            
+                this.Members = null;
         }
 
         public virtual int getPolicy()

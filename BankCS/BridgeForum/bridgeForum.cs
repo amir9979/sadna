@@ -43,6 +43,10 @@ namespace BridgeForum
 
         IList<string> forumList();
 
+        bool SPlogin(string superusername, string superpass);  //use case need to implements must call this function first  for make super mannager operations
+
+        void CancelForum(string superusername, string superpass, string forumName);
+
 
     }
 }
