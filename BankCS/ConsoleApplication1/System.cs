@@ -137,7 +137,8 @@ namespace ConsoleApplication1
                 Int64 ans= f.Register(name, pass, mail, fullname);
                 // send txt to logger wrote by f.Register(name,pass,mail,fullname)
                 rep.Update<Forum>(f);
-                sendVerificationEmail(mail, ans);
+                if (ans!=-1)
+                     sendVerificationEmail(mail, ans);
                 return ans;
             }
             return -1;
@@ -354,7 +355,7 @@ namespace ConsoleApplication1
                 acc = acc + System.Convert.ToInt64(((Member)u).username.ElementAt(t));
             }
 
-            if ((u is Member) && (acc == ConfNumber))
+            if ((u is Member) && (acc == ConfNumber)) // maybe delete this condition...
             {
                 ((Member)u).SetNotConfToRegular();
                 OK = true;
