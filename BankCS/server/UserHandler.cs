@@ -265,7 +265,7 @@ namespace server
 
         private bool argCheck<T>(List<object> args, int Index)
         {
-            return args != null && args.Count > Index && args[Index] is T;
+            return args != null && args.Count > Index && (args[Index] == null || args[Index] is T || args==null);
         }
 
     }

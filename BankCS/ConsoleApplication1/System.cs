@@ -607,6 +607,8 @@ namespace ConsoleApplication1
         }
         public Member GetMemberByInfo( MemberInfo m)
         {
+            if (m.id == -1)
+                return null;
             return rep.GetMemberById(Int2Guid(m.id));
         }
         public  MemberInfo MemberToInfo(Member m)

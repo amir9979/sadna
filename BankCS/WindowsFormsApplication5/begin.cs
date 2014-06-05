@@ -155,7 +155,9 @@ namespace WindowsFormsApplication5
                     break;
                 }
             }
-            this.CurrentState.currentSubForumInfo= myConnection.WatchAllSubForum().ElementAt(i);
+
+            List<SubForumInfo> allTreadsTemp = myConnection.WatchAllSubForum();
+            this.CurrentState.currentSubForumInfo = allTreadsTemp.ElementAt(i);
          //   myConnection.currentSubForumInfo = myConnection.WatchAllSubForum().ElementAt(i);
 
             userPreNew userPrenew = new userPreNew(myConnection,CurrentState);
@@ -178,7 +180,7 @@ namespace WindowsFormsApplication5
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            myConnection.AddNewSubForum(textBox1.Text, null);
+            myConnection.AddNewSubForum(textBox1.Text, new MemberInfo {id=-1 });
             this.CurrentState.allSubForum = this.myConnection.WatchAllSubForum();
             textBox1.Clear();     listBox1.Items.Clear();
 
