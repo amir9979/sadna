@@ -10,7 +10,7 @@ namespace DataTypes
     [Serializable()]
     public class SubForumInfo
     {
-        public int id;
+        public Guid id;
         public String Name;
     }
 }

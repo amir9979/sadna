@@ -162,9 +162,6 @@ namespace WindowsFormsApplication5
 
             userPreNew userPrenew = new userPreNew(myConnection,CurrentState);
             userPrenew.Show();
-
-
-
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -180,13 +177,20 @@ namespace WindowsFormsApplication5
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            myConnection.AddNewSubForum(textBox1.Text, new MemberInfo {id=-1 });
+            myConnection.AddNewSubForum(textBox1.Text, new MemberInfo { id = Int2Guid(-1) });
             this.CurrentState.allSubForum = this.myConnection.WatchAllSubForum();
             textBox1.Clear();     listBox1.Items.Clear();
 
             for (int i = 0; i < this.CurrentState.allSubForum.Count; i++)
                 listBox1.Items.Add(this.CurrentState.allSubForum.ElementAt(i).Name);
 
+        }
+
+        private static Guid Int2Guid(int value)
+        {
+            byte[] bytes = new byte[16];
+            BitConverter.GetBytes(value).CopyTo(bytes, 0);
+            return new Guid(bytes);
         }
 
         private void button8_Click(object sender, EventArgs e)

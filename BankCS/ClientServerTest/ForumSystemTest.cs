@@ -128,7 +128,7 @@ namespace ClientServerTests
         public override  ForumInfo GetForumByName(User u, string forum)
         {
             ForumInfo f = new ForumInfo();
-            f.id = 1;
+            f.id = Int2Guid(1);
             f.name = forum;
             return f;
         }
@@ -143,21 +143,28 @@ namespace ClientServerTests
         private static bool testSubForum(SubForumInfo sf, int i)
         {
             string str = "test" + i;
-            return sf.Name == str && sf.id == i;
+            return sf.Name == str && sf.id.Equals(Int2Guid(i));
 
+        }
+
+        public static Guid Int2Guid(int value)
+        {
+            byte[] bytes = new byte[16];
+            BitConverter.GetBytes(value).CopyTo(bytes, 0);
+            return new Guid(bytes);
         }
 
         private static bool testForum(ForumInfo f, int i)
         {
             string str = "test" + i;
-            return f.id == i && f.name == str;
+            return f.id.Equals(Int2Guid(i)) && f.name == str;
 
         }
 
         private static bool testPost(PostInfo p, int i)
         {
             string str = "test" + i;
-            return p.id == i && p.msg == str && testMember(p.owner,i);
+            return p.id.Equals(Int2Guid(i)) && p.msg == str && testMember(p.owner, i);
 
         }
 
@@ -166,7 +173,7 @@ namespace ClientServerTests
         {
             SubForumInfo f1 = new SubForumInfo();
             f1.Name = "test"+ i;
-            f1.id = i;
+            f1.id = Int2Guid(i);
             return f1;
 
         }
@@ -179,14 +186,14 @@ namespace ClientServerTests
             m.rank = "test" + i;
             m.type= "test"+ i;
             m.username = "test"+ i;
-            m.id = i;
+            m.id = Int2Guid(i);
             return m;
 
         }
         private PostInfo makeTestPost(int i)
         {
             PostInfo p = new PostInfo();
-            p.id = i;
+            p.id = Int2Guid(i);
             p.msg = "test"+ i;
             p.owner = makeTestMember(i);
             return p;
@@ -195,7 +202,7 @@ namespace ClientServerTests
         private ForumInfo makeTestForum(int i)
         {
             ForumInfo f = new ForumInfo();
-            f.id = i;
+            f.id = Int2Guid(i);
             f.name = "test" + i;
             return f;
 

@@ -10,7 +10,7 @@ namespace DataTypes
     [Serializable()]
    public class PostInfo
     {
-      public int id;
+        public Guid id;
       public String msg;
       public MemberInfo owner;
 

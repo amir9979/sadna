@@ -464,7 +464,7 @@ namespace ConsoleApplication1
 
         private  SubForumInfo SubForumToInfo(SubForum f)
         {
-           return new  SubForumInfo { Name = f.Name, id = Guid2Int(f.Id) };
+           return new  SubForumInfo { Name = f.Name, id = f.Id };
         }
 
          public override List< PostInfo> WatchAllThreads(User u,  SubForumInfo s)
@@ -593,29 +593,29 @@ namespace ConsoleApplication1
         }
         public Post PostFromInfo( PostInfo f)
         {
-            return rep.GetByPostID(Int2Guid(f.id));
+            return rep.GetByPostID(f.id);
         }
         public SubForum SubForumFromInfo( SubForumInfo s)
         {
-            return rep.GetBySubForumID(Int2Guid(s.id));
+            return rep.GetBySubForumID(s.id);
         }
         public  PostInfo PostToInfo(Post f)
         {
-            return new  PostInfo { msg = f.msg, id = Guid2Int(f.Id), owner = MemberToInfo(f.owner) };
+            return new  PostInfo { msg = f.msg, id = f.Id, owner = MemberToInfo(f.owner) };
         }
         public  ForumInfo ForumToInfo(Forum f)
         {
-            return new  ForumInfo { name = f.name, id = Guid2Int(f.Id) };
+            return new  ForumInfo { name = f.name, id = f.Id };
         }
         public Member GetMemberByInfo( MemberInfo m)
         {
-            if (m.id == -1)
+            if (m.id == Int2Guid(-1))
                 return null;
-            return rep.GetMemberById(Int2Guid(m.id));
+            return rep.GetMemberById(m.id);
         }
         public  MemberInfo MemberToInfo(Member m)
         {
-            return new  MemberInfo { username = m.username, id = Guid2Int(m.Id), fullname = m.fullname, mail = m.mail, type = m.type };
+            return new  MemberInfo { username = m.username, id = m.Id, fullname = m.fullname, mail = m.mail, type = m.type };
         }
 
         public void sendVerificationEmail(string email, Int64 randomNumber)

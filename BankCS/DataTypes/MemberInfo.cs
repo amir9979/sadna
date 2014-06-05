@@ -10,7 +10,7 @@ namespace DataTypes
     [Serializable()]
     public class MemberInfo
     {
-       public int id;
+        public Guid id;
         public String username;
         public String fullname;
         public String mail;

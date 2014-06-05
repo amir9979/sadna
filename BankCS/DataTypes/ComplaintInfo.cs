@@ -10,7 +10,7 @@ namespace DataTypes
     [Serializable()]
     public class ComplaintInfo
     {
-        int id;
+        Guid id;
         public MemberInfo TheComplainer;
         public MemberInfo member;
         public string complaint;
