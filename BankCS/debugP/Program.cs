@@ -24,28 +24,14 @@ namespace debugP
         {
             bridgeForum system = new real();
             system.init("Ferguson", "scottishAccent", "alex@fer", "fergi", "england.manchster");
-            system.SPlogin("Ferguson", "scottishAccent");
-            system.createForum("Ferguson", "scottishAccent", "First Forum", 2);
-            IList<string> listOfForums = system.forumList();
+            // allowed to perform actions after initialization
+            Boolean added = system.createForum("Ferguson", "scottishAccent", "First Forum", 2);
+            //Assert.IsTrue(added);
 
-            system.createForum("Ferguson", "scottishAccent", "Second Forum", 1);
-            listOfForums = system.forumList();
-
-
-            system.createForum("wrongUserName", "scottishAccent", "Third Forum", 2); //wrong user name: should not add forum
-            listOfForums = system.forumList();
+            added = system.createSubForum("First Forum", "First Thread", "SubForumSubject", "", "Ferguson", "scottishAccent");
+            //Assert.IsTrue(added);
 
 
-            // check: super manager member in forumro
-            system.createSubForum("First Forum", "First Thread", "SubForumSubject", "", "Ferguson", "scottishAccent");
-            system.memberConnect("First Forum", "Ferguson", "scottishAccent");
-            Boolean added = system.addPost("First Forum", "First Thread", "Post subject", "Amir!best rommate ever ;)", "Ferguson", "scottishAccent");
-
-            ForumSystemImpl our = ((real)system).OurSystem;
-                        Forum f = our.GetForumByName("First Forum");
-            Member m = f.GetMemberByNameAndPass("Ferguson", "scottishAccent");
-            IList<SubForumInfo> subs = our.WatchAllSubForumInfo(m);
-            our.WatchAllThreads(m, subs.ElementAt(0));
             
 
         }

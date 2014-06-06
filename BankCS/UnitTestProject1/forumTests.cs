@@ -389,7 +389,8 @@ private void Rooney(bridgeForum forum)
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
     i = forum.register("Manchester United", "vida", "15", "Nemanja Vidić", "vidic@manU.com");
     forum.mailConfirm("vida", "15", "Manchester United", i);
-    forum.memberConnect("Manchester United", "Ferguson", "scottishAccent");    forum.promoteMemberToAdmin("Ferguson", "scottishAccent", "Manchester United", "giggsy");
+    forum.memberConnect("Manchester United", "Ferguson", "scottishAccent");  
+    forum.promoteMemberToAdmin("Ferguson", "scottishAccent", "Manchester United", "giggsy");
     forum.memberConnect("Manchester United", "giggsy", "11");
 
     forum.memberConnect("Manchester United", "vida", "15");

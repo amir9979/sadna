@@ -47,6 +47,7 @@ namespace ConsoleApplication1
             cfg.AddFile("Post.hbm.xml");
             cfg.AddFile("SubForum.hbm.xml");
             cfg.AddFile("User.hbm.xml");
+            cfg.AddFile("Password.hbm.xml");
             var export = new SchemaExport(cfg);//.Execute(false, true, false);
             export.Drop(false, true);
             export.Create(true, true);
@@ -309,7 +310,7 @@ namespace ConsoleApplication1
         public bool promoteMemberToAdmin(Member u, User SuperManger)
         {
             bool res = false;
-            if (SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password) && this.SuperManager.username.Equals(((Member)SuperManger).username))
+            if (SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password.pass) && this.SuperManager.username.Equals(((Member)SuperManger).username))
             {
                 res = u.forum.promoteMemberToAdmin(u);
                 rep.Update<User>(u);
@@ -338,7 +339,7 @@ namespace ConsoleApplication1
         public override bool deleteType(User u, string newType)
         {
             bool succ = false;
-            if (u is Member && this.SuperManager.password.Equals(((Member)u).password) && this.SuperManager.username.Equals(((Member)u).username))
+            if (u is Member && this.SuperManager.password.Equals(((Member)u).password.pass) && this.SuperManager.username.Equals(((Member)u).username))
             {
                 succ = (u.forum.AllTypesKind.Remove(newType));
             }
@@ -604,7 +605,7 @@ namespace ConsoleApplication1
         
         public SuperManager isSuper(User u)
         {
-            if (u is Member && this.SuperManager.username.Equals(((Member)u).username) && this.SuperManager.password.Equals(((Member)u).password))
+            if (u is Member && this.SuperManager.username.Equals(((Member)u).username) && this.SuperManager.password.Equals(((Member)u).password.pass))
                 return SuperManager;
             return null;
         }

@@ -65,7 +65,7 @@ namespace ConsoleApplication1
 
             for (int i = 0; i < this.Members.Count(); i++)
             {
-                if ((this.Members.ElementAt(i).username.Equals(user)) && (this.Members.ElementAt(i).password.Equals(pass)))
+                if ((this.Members.ElementAt(i).username.Equals(user)) && (this.Members.ElementAt(i).password.pass.Equals(pass)))
                     return this.Members.ElementAt(i);
             }
             return null;
@@ -131,9 +131,11 @@ namespace ConsoleApplication1
             for (int i = 0; i < this.Members.Count; i++)
             {
                 if (this.Members.ElementAt(i).username.Equals(username))
-                    if (this.Members.ElementAt(i).password.Equals(pass))
+                    if (this.Members.ElementAt(i).password.pass.Equals(pass))
                     {
-                        if (this.Members.ElementAt(i).password.IsValidTime(this.policy.MaxMonth))
+                        Password p = this.Members.ElementAt(i).password;
+                        int max = this.policy.MaxMonth;
+                        if (p.IsValidTime(max))
                         {
                             if (!this.OnlineMember.Contains(Members.ElementAt(i)))
                             {

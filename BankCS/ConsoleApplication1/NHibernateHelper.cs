@@ -22,6 +22,7 @@ namespace ConsoleApplication1
                     configuration.AddFile("Post.hbm.xml");
                     configuration.AddFile("SubForum.hbm.xml");
                     configuration.AddFile("User.hbm.xml");
+                    configuration.AddFile("Password.hbm.xml");
                     _sessionFactory = configuration.BuildSessionFactory();
                 }
                 return _sessionFactory;

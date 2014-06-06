@@ -29,6 +29,7 @@ public class Member : User
     {
         //                                 added by shimon & idan
         this.username = username;
+       // this.password = password;
         this.password = new Password(password,new List<string>(),new List<string>(),DateTime.Now);
         this.fullname = fullname;
         this.mail = mail;
