@@ -100,7 +100,7 @@ namespace ConsoleApplication1
             {
                 Post product = session
                     .CreateCriteria(typeof(Post))
-                    .Add(Restrictions.Eq("PostID", p))
+                    .Add(Restrictions.Eq("Id", p))
                     .UniqueResult<Post>();
                 return product;
             }
@@ -112,7 +112,7 @@ namespace ConsoleApplication1
             {
                 Member product = session
                     .CreateCriteria(typeof(Member))
-                    .Add(Restrictions.Eq("MemberID", id))
+                    .Add(Restrictions.Eq("Id", id))
                     .UniqueResult<Member>();
                 return product;
             }

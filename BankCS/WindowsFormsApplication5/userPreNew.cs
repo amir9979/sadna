@@ -92,8 +92,18 @@ namespace WindowsFormsApplication5
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.myConnection.PublishCommentPost(textBox1.Text, CurrentState.currentPostInfo);
-            listBox3.Items.Add(textBox1.Text);
+            List<PostInfo> AllComments;
+            if (this.myConnection.PublishCommentPost(textBox1.Text, CurrentState.currentPostInfo))
+            {
+                this.listBox3.Items.Clear();
+                AllComments = myConnection.WatchAllComments(this.CurrentState.currentPostInfo);
+                for (int i = 0; i < AllComments.Count; i++)
+                {
+                    listBox3.Items.Add(AllComments.ElementAt(i).msg);
+                }
+            }
+            else
+                MessageBox.Show("לכאורה אינך מחובר");
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -109,6 +119,22 @@ namespace WindowsFormsApplication5
         private void userPreNew_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (this.myConnection.PublishNewThread(textBox1.Text, this.CurrentState.currentSubForumInfo))
+            {
+                listBox2.Items.Clear();
+                this.allThreads = this.myConnection.WatchAllThreads(CurrentState.currentSubForumInfo);
+                for (int i = 0; i < allThreads.Count; i++)
+                {
+                    listBox2.Items.Add(allThreads.ElementAt(i).msg);
+                }
+                textBox1.Clear();
+            }
+            else
+                MessageBox.Show("לכאורה אינך מחובר");
         }
     }
 }

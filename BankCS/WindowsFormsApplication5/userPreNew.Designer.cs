@@ -37,12 +37,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(321, 157);
+            this.listBox3.Location = new System.Drawing.Point(321, 39);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(337, 108);
             this.listBox3.TabIndex = 21;
@@ -60,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(614, 141);
+            this.label2.Location = new System.Drawing.Point(614, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 19;
@@ -87,9 +88,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(123, 277);
+            this.button3.Location = new System.Drawing.Point(102, 277);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 64);
+            this.button3.Size = new System.Drawing.Size(87, 64);
             this.button3.TabIndex = 23;
             this.button3.Text = "התנתק";
             this.button3.UseVisualStyleBackColor = true;
@@ -97,7 +98,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(321, 43);
+            this.textBox1.Location = new System.Drawing.Point(321, 187);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(337, 78);
@@ -107,27 +108,38 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(590, 13);
+            this.label1.Location = new System.Drawing.Point(541, 160);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 25;
-            this.label1.Text = "כתוב תגובה";
+            this.label1.Text = "הוסף תוגבה / שרשור ";
             // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(20, 277);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 64);
+            this.button4.Size = new System.Drawing.Size(76, 64);
             this.button4.TabIndex = 26;
             this.button4.Text = "הקודם";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(195, 277);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 64);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "הוסף שרשור";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // userPreNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 374);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -156,5 +168,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button2;
     }
 }

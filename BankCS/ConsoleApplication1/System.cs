@@ -215,12 +215,14 @@ namespace ConsoleApplication1
 
         public bool PublishNewThread(User u, String msg, SubForum s)
         {
-            if (u is Member && !msg.Equals("") && u.forum.getSubForum().Contains(s) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
+            if (u is Member && !msg.Equals("") && ContainId(s.Id,u.forum) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
+                SubForum sub = ContainId_get(s.Id, u.forum);
                 Post p = new Post(msg, ((Member)u));
                 ((Member)u).AddNewPost(p,null);
-                s.AddNewThread(p);
-                rep.Update<SubForum>(s);
+                sub.AddNewThread(p);
+                rep.Add<Post>(p);
+                rep.Update<SubForum>(sub);
                 rep.Update<User>(u);
                 File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id + "publish new thread id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
@@ -230,6 +232,26 @@ namespace ConsoleApplication1
                 System.Console.Write("cannot add new thread cause the user us not member or empty msg or subforum not found or u is not confirmed");
                 return false;
             }
+        }
+
+        public bool ContainId(Guid Id, Forum f)
+        {
+            for (int i = 0; i < f.SubForum.Count; i++)
+            {
+                if (f.SubForum.ElementAt(i).Id.Equals(Id))
+                    return true;
+            }
+            return false;
+        }
+
+        public SubForum ContainId_get(Guid Id, Forum f)
+        {
+            for (int i = 0; i < f.SubForum.Count; i++)
+            {
+                if (f.SubForum.ElementAt(i).Id.Equals(Id))
+                    return f.SubForum.ElementAt(i);
+            }
+            return null;
         }
 
         public bool PublishCommentPost(User u, String msg, Post p)
@@ -484,7 +506,8 @@ namespace ConsoleApplication1
 
         public override List< PostInfo> WatchAllComments(User u,  PostInfo s)
         {
-            IList<Post> all = PostFromInfo(s).comments;
+            Post p = PostFromInfo(s);
+            IList<Post> all = p.comments;
             List< PostInfo> ans = new List< PostInfo>();
             foreach (Post a in all)
             {
