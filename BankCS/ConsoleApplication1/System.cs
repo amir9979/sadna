@@ -217,6 +217,10 @@ namespace ConsoleApplication1
         {
             if (u is Member && !msg.Equals("") && u.forum.getSubForum().Contains(s) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
+                bool check=s.MyThreads.Count>u.forum.policy.minPostsToCheck() && intersection(s.UsedWords,msg)>u.forum.policy.minWords();
+                check = check || s.MyThreads.Count <= u.forum.policy.minPostsToCheck();
+                if ( check){
+                    s.AddWords(msg);
                 Post p = new Post(msg, ((Member)u));
                 ((Member)u).AddNewPost(p,null);
                 s.AddNewThread(p);
@@ -226,16 +230,38 @@ namespace ConsoleApplication1
                 return true;
             }
             else
+                    return false;
+
+        }
+            else
             {
                 System.Console.Write("cannot add new thread cause the user us not member or empty msg or subforum not found or u is not confirmed");
                 return false;
             }
         }
 
+
+        public int intersection(ICollection<String> words, string msg)
+        {
+            string[] ssize = msg.Split(null);
+            int ans = 0;
+            for (int i = 0; i < ssize.Length; i++)
+            {
+                string s = ssize[i];
+                String a = s.ToString();
+                if (words.Contains(a))
+                    ans++;
+
+            }
+
+            return ans;
+
+        }
         public bool PublishCommentPost(User u, String msg, Post p)
         {
             if (u is Member && !msg.Equals("") && u.forum.IsContain(p) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
+
                 Post comm = new Post(msg, ((Member)u));
                 ((Member)u).AddNewPost(comm,p);
                 rep.Update<User>(u);

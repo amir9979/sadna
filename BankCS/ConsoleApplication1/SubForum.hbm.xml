@@ -23,8 +23,12 @@
 						<index column="threads"/>
             <many-to-many class="Post" column="PostID" />
         </list>
-		
-		
-  </class>
+
+  <set name="UsedWords" table="UsedWords" lazy="false">
+    <key column="SubForumID" />
+    <element column="word" type="string" />
+  </set>
+
+</class>
   
 </hibernate-mapping>

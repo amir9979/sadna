@@ -11,7 +11,10 @@ namespace ConsoleApplication1
         public virtual Guid Id { get; set; }
         public virtual string Name{ get; set; }
         public virtual IList<Member> MyModerators{ get; set; }
-        public virtual IList<Post> MyThreads{ get; set; }
+        public virtual IList<Post> MyThreads { get; set; }
+
+        public virtual ICollection<String> UsedWords { get; set; }
+     
 		public SubForum() : this("")
         {}
         public SubForum(string n)
@@ -19,6 +22,7 @@ namespace ConsoleApplication1
             this.Name = n;
             MyThreads = new List<Post>();
             MyModerators = new List<Member>();
+            UsedWords = new HashSet<String>();
         }
         public virtual string getName()
         {
@@ -27,6 +31,18 @@ namespace ConsoleApplication1
         public virtual void AddNewModerator(Member m)
         {
             MyModerators.Add(m);
+        }
+
+        public virtual void AddWords(string msg)
+        {
+            string[] ssize = msg.Split(null);
+            for (int i = 0; i < ssize.Length; i++)
+            {
+                string s = ssize[i];
+                String ans = s.ToString();
+                UsedWords.Add(ans);
+
+            }
         }
         public virtual void AddNewThread(Post p)
         {

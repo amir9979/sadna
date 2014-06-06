@@ -10,11 +10,15 @@ namespace ConsoleApplication1
     {
 		public virtual  Guid _Id{ get; set; }
         public virtual int MaxModerators{ get; set; }
+        public virtual int words { get; set; }
+        public virtual int posts { get; set; }
 		public Policy() : this(0)
         {}
         public Policy(int max)
         {
             this.MaxModerators = 500;
+            this.posts = 2;
+            this.words = 1;
         }
         public virtual bool CanBeAdmin(Member m)
         {
@@ -51,6 +55,17 @@ namespace ConsoleApplication1
             if (password.Length > 4 && hasUpperCase(password))  // for example minimun 4 charcter , at least 1 capital
                 return true;
             return false;
+        }
+
+
+        public virtual int minPostsToCheck()
+        {
+            return posts;
+        }
+
+        public virtual int minWords()
+        {
+            return words;
         }
 
         bool hasUpperCase(string str)

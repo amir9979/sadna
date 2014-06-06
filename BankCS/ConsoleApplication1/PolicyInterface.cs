@@ -18,6 +18,10 @@ namespace ConsoleApplication1
 
          bool CanDoConfirmedOperations(Member m); // check if user type is confirmed
 
+         int minPostsToCheck();
+
+         int minWords();
+
          int getPolicyNumber();
     }
 }

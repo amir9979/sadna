@@ -47,5 +47,14 @@ namespace ConsoleApplication1
         {
             return 0;
         }
+        public virtual int minPostsToCheck()
+        {
+            return -1;
+        }
+
+        public virtual int minWords()
+        {
+            return -1;
+        }
     }
 }
