@@ -23,5 +23,8 @@ namespace ConsoleApplication1
          int minWords();
 
          int getPolicyNumber();
+
+         int MaxMonth { get; set; }
+
     }
 }

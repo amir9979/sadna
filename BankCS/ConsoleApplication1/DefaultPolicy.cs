@@ -15,6 +15,8 @@ namespace ConsoleApplication1
             return true;
         }
 
+        public virtual int _MaxMonth { get; set; }
+
         public virtual bool CanBeModerate(Member m, SubForum b)
         {
             return true;
@@ -40,6 +42,19 @@ namespace ConsoleApplication1
             set
             {
                 _Id = value;
+            }
+        }
+
+        public virtual int MaxMonth
+        {
+            get
+            {
+                return _MaxMonth;
+            }
+
+            set
+            {
+                _MaxMonth = value;
             }
         }
 

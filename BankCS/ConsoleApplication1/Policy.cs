@@ -9,6 +9,8 @@ namespace ConsoleApplication1
    public class Policy : PolicyInterface
     {
 		public virtual  Guid _Id{ get; set; }
+
+        public virtual int _MaxMonth { get; set; }
         public virtual int MaxModerators{ get; set; }
         public virtual int words { get; set; }
         public virtual int posts { get; set; }
@@ -19,7 +21,18 @@ namespace ConsoleApplication1
             this.MaxModerators = 500;
             this.posts = 2;
             this.words = 1;
+            this._MaxMonth = 12;
         }
+
+        public Policy(int maxmoder, int maxmonth)
+        {
+            this.MaxModerators = maxmoder;
+            this._MaxMonth = maxmonth;
+			this.posts = 2;
+            this.words = 1;
+
+        }
+
         public virtual bool CanBeAdmin(Member m)
         {
             /*
@@ -89,6 +102,19 @@ namespace ConsoleApplication1
             set
             {
                 _Id = value;
+            }
+        }
+
+        public virtual int MaxMonth
+        {
+            get
+            {
+                return _MaxMonth;
+            }
+
+            set
+            {
+                _MaxMonth = value;
             }
         }
 
