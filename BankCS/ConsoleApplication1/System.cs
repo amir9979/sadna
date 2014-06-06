@@ -458,6 +458,21 @@ namespace ConsoleApplication1
             }
         }
 
+        public override  int HowManyForums(User u){
+            if (activeSuper){
+                IList<Forum> all = rep.allForums();
+                List<ForumInfo> ans = new List<ForumInfo>();
+                foreach (Forum a in all)
+                {
+                    ans.Add(ForumToInfo(a));
+                }
+                return ans.Count;
+            }
+
+            return -1;
+                
+        }
+
 
 
 

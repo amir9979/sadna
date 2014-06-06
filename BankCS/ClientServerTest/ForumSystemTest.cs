@@ -216,6 +216,10 @@ namespace ClientServerTests
 
         }
 
+        public override int HowManyForums(User u)
+        {
 
+            return 0;
+        }
     }
 }

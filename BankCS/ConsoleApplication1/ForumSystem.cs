@@ -80,5 +80,7 @@ namespace ConsoleApplication1
         abstract public ForumInfo GetForumByName(User u, string forum);
 
         abstract public List<PostInfo> WatchAllMemberPost(User u, MemberInfo m);
+
+        abstract public int HowManyForums(User u);
     }
 }
