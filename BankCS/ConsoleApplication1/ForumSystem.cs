@@ -78,5 +78,7 @@ namespace ConsoleApplication1
         abstract public void CancelForum(User u, ForumInfo f);
 
         abstract public ForumInfo GetForumByName(User u, string forum);
+
+        abstract public List<PostInfo> WatchAllMemberPost(User u, MemberInfo m);
     }
 }

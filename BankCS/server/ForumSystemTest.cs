@@ -206,6 +206,14 @@ namespace server
 
         }
 
+        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        {
+        
+            List<PostInfo> ans = new List<PostInfo>();
+            return ans;
+
+        }
+
 
     }
 }

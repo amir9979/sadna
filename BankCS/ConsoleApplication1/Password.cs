@@ -12,7 +12,7 @@ namespace ConsoleApplication1
        public List<String> questions;
        public List<String> answers;
        public DateTime Created;
-       public List<string> lastpass;
+       public List<String> lastpass;
         
 
         public Password(string pass, List<String> q, List<String> a, DateTime e)
@@ -20,12 +20,12 @@ namespace ConsoleApplication1
             this.pass = pass;
             this.questions = new List<string>(q);
             this.answers = new List<string>(a);
-            Created = e;
+            this.Created = e;
             this.lastpass = new List<string>();
             this.lastpass.Add(pass);
         }
 
-        public bool ChangePass(string newpass)
+        public virtual bool ChangePass(string newpass)
         {
             for (int i=0; i<this.lastpass.Count; i++){
                 if (pass.Equals(this.lastpass.ElementAt(i)))
@@ -37,7 +37,8 @@ namespace ConsoleApplication1
             return true;
         }
 
-        public bool IsValidTime (int month){
+        public virtual bool IsValidTime(int month)
+        {
             return (DateTime.Now.Month - Created.Month < month && ((DateTime.Now.Year - Created.Year) * 12 + (DateTime.Now.Month - Created.Month)) < month);
         }
 

@@ -519,6 +519,19 @@ namespace ConsoleApplication1
             return ans;
         }
 
+        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        {
+            Member mem = GetMemberByInfo(m);
+            IList<Post> all = mem.MemberPosts;
+            List<PostInfo> ans = new List<PostInfo>();
+            foreach (Post a in all)
+            {
+                ans.Add(PostToInfo(a));
+            }
+            return ans;
+
+        }
+
         public override bool PublishNewThread(User u, string msg,  SubForumInfo s)
         {
             return PublishNewThread(u, msg, SubForumFromInfo(s));
