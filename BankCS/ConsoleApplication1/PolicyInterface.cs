@@ -19,5 +19,8 @@ namespace ConsoleApplication1
          bool CanDoConfirmedOperations(Member m); // check if user type is confirmed
 
          int getPolicyNumber();
+
+         int MaxMonth { get; set; }
+
     }
 }

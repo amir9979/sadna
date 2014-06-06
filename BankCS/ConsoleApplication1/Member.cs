@@ -15,7 +15,7 @@ public class Member : User
     public virtual IList<Member> Friends{ get; set; }
     //                                 added by shimon & idan
     public virtual String username{ get; set; }
-    public virtual String password{ get; set; }
+    public virtual Password password{ get; set; }
     public virtual String fullname{ get; set; }
     public virtual String mail{ get; set; }
     public virtual String type{ get; set; }
@@ -29,7 +29,7 @@ public class Member : User
     {
         //                                 added by shimon & idan
         this.username = username;
-        this.password = password;
+        this.password = new Password(password,new List<string>(),new List<string>(),DateTime.Now);
         this.fullname = fullname;
         this.mail = mail;
         this.type = t;
