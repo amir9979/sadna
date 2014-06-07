@@ -17,7 +17,10 @@
         <key column="MEMBERID"/>
 		<many-to-one cascade="all"  name="state" column="state_id" lazy="false" not-null="false"/>
 
-		<list name="MemberPosts" table="MemberPosts" cascade="all" lazy="false">
+      <many-to-one cascade="all"  name="password" column="password_id" lazy="false" not-null="false"/> 
+
+
+      <list name="MemberPosts" table="MemberPosts" cascade="all" lazy="false">
             <key column ="PostID"  />
 						<index column="poss"/>
             <many-to-many class="Post" column="MEMBERID" />
@@ -30,7 +33,6 @@
         </list>
 
 		<property name="username" />
-		<property name="password" />
 		<property name="fullname" />
 		<property name="mail" />
 		<property name="type" />

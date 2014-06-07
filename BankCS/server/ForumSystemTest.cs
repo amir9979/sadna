@@ -43,33 +43,33 @@ namespace server
             return u;
         }
 
-        public override bool AddNewSubForum(User u, string subject,  MemberInfo moderator)
+        public override bool AddNewSubForum(User u, string subject, MemberInfo moderator)
         {
             return subject == "test1" && testMember(moderator, 1);
         }
 
-        public override IList< SubForumInfo> WatchAllSubForumInfo(User u)
+        public override IList<SubForumInfo> WatchAllSubForumInfo(User u)
         {
 
             return new List<SubForumInfo> { makeTestSubforum(1), makeTestSubforum(2), makeTestSubforum(3) };
         }
 
-        public override List< PostInfo> WatchAllThreads(User u,  SubForumInfo s)
+        public override List<PostInfo> WatchAllThreads(User u, SubForumInfo s)
         {
             return new List<PostInfo> { makeTestPost(1), makeTestPost(2), makeTestPost(3) };
         }
 
-        public override List< PostInfo> WatchAllComments(User u,  PostInfo s)
+        public override List<PostInfo> WatchAllComments(User u, PostInfo s)
         {
             return new List<PostInfo> { makeTestPost(1), makeTestPost(2), makeTestPost(3) };
         }
 
-        public override bool PublishNewThread(User u, string msg,  SubForumInfo s)
+        public override bool PublishNewThread(User u, string msg, SubForumInfo s)
         {
             return msg == "test1" && testSubForum(s, 1);
         }
 
-        public override bool PublishCommentPost(User u, string msg,  PostInfo p)
+        public override bool PublishCommentPost(User u, string msg, PostInfo p)
         {
             return msg == "test1" && testPost(p, 1);
         }
@@ -84,7 +84,7 @@ namespace server
             return newType == "test1";
         }
 
-        public override bool promoteMemberToAdmin(User u,  MemberInfo m)
+        public override bool promoteMemberToAdmin(User u, MemberInfo m)
         {
             return testMember(m, 1);
         }
@@ -99,7 +99,7 @@ namespace server
             return newType == "test1";
         }
 
-        public override bool deletePost(User u,  PostInfo p)
+        public override bool deletePost(User u, PostInfo p)
         {
             return testPost(p, 1);
         }
@@ -109,7 +109,7 @@ namespace server
             return superusername == "test1" && superpass == "test1";
         }
 
-        public override List< ForumInfo> WatchAllForums(User u)
+        public override List<ForumInfo> WatchAllForums(User u)
         {
             return new List<ForumInfo> { makeTestForum(1), makeTestForum(2), makeTestForum(3) };
         }
@@ -119,12 +119,12 @@ namespace server
             return name == "test1";
         }
 
-        public override void CancelForum(User u,  ForumInfo f)
+        public override void CancelForum(User u, ForumInfo f)
         {
             return;
         }
 
-        public override  ForumInfo GetForumByName(User u, string forum)
+        public override ForumInfo GetForumByName(User u, string forum)
         {
             ForumInfo f = new ForumInfo();
             f.id = Int2Guid(1);
@@ -206,6 +206,18 @@ namespace server
 
         }
 
+        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        {
 
+            List<PostInfo> ans = new List<PostInfo>();
+            return ans;
+
+        }
+
+        public override int HowManyForums(User u)
+        {
+
+            return 0;
+        }
     }
 }

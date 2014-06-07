@@ -47,6 +47,7 @@ namespace ConsoleApplication1
             cfg.AddFile("Post.hbm.xml");
             cfg.AddFile("SubForum.hbm.xml");
             cfg.AddFile("User.hbm.xml");
+            cfg.AddFile("Password.hbm.xml");
             var export = new SchemaExport(cfg);//.Execute(false, true, false);
             export.Drop(false, true);
             export.Create(true, true);
@@ -218,6 +219,11 @@ namespace ConsoleApplication1
             if (u is Member && !msg.Equals("") && ContainId(s.Id,u.forum) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
                 SubForum sub = ContainId_get(s.Id, u.forum);
+                bool check=sub.MyThreads.Count>u.forum.policy.minPostsToCheck() && intersection(sub.UsedWords,msg)>u.forum.policy.minWords();
+                check = check || sub.MyThreads.Count <= u.forum.policy.minPostsToCheck();
+                if ( check){
+                    sub.AddWords(msg);
+
                 Post p = new Post(msg, ((Member)u));
                 ((Member)u).AddNewPost(p,null);
                 sub.AddNewThread(p);
@@ -228,11 +234,16 @@ namespace ConsoleApplication1
                 return true;
             }
             else
+                    return false;
+
+        }
+            else
             {
                 System.Console.Write("cannot add new thread cause the user us not member or empty msg or subforum not found or u is not confirmed");
                 return false;
             }
         }
+
 
         public bool ContainId(Guid Id, Forum f)
         {
@@ -254,10 +265,30 @@ namespace ConsoleApplication1
             return null;
         }
 
+
+
+        public int intersection(ICollection<String> words, string msg)
+        {
+            string[] ssize = msg.Split(null);
+            int ans = 0;
+            for (int i = 0; i < ssize.Length; i++)
+            {
+                string s = ssize[i];
+                String a = s.ToString();
+                if (words.Contains(a))
+                    ans++;
+
+            }
+
+            return ans;
+
+        }
+
         public bool PublishCommentPost(User u, String msg, Post p)
         {
             if (u is Member && !msg.Equals("") && u.forum.IsContain(p) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
+
                 Post comm = new Post(msg, ((Member)u));
                 ((Member)u).AddNewPost(comm,p);
                 rep.Update<User>(u);
@@ -305,7 +336,7 @@ namespace ConsoleApplication1
         public bool promoteMemberToAdmin(Member u, User SuperManger)
         {
             bool res = false;
-            if (SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password) && this.SuperManager.username.Equals(((Member)SuperManger).username))
+            if (SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password.pass) && this.SuperManager.username.Equals(((Member)SuperManger).username))
             {
                 res = u.forum.promoteMemberToAdmin(u);
                 rep.Update<User>(u);
@@ -334,7 +365,7 @@ namespace ConsoleApplication1
         public override bool deleteType(User u, string newType)
         {
             bool succ = false;
-            if (u is Member && this.SuperManager.password.Equals(((Member)u).password) && this.SuperManager.username.Equals(((Member)u).username))
+            if (u is Member && this.SuperManager.password.Equals(((Member)u).password.pass) && this.SuperManager.username.Equals(((Member)u).username))
             {
                 succ = (u.forum.AllTypesKind.Remove(newType));
             }
@@ -454,6 +485,21 @@ namespace ConsoleApplication1
             }
         }
 
+        public override  int HowManyForums(User u){
+            if (activeSuper){
+                IList<Forum> all = rep.allForums();
+                List<ForumInfo> ans = new List<ForumInfo>();
+                foreach (Forum a in all)
+                {
+                    ans.Add(ForumToInfo(a));
+                }
+                return ans.Count;
+            }
+
+            return -1;
+                
+        }
+
 
 
 
@@ -516,6 +562,19 @@ namespace ConsoleApplication1
             return ans;
         }
 
+        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        {
+            Member mem = GetMemberByInfo(m);
+            IList<Post> all = mem.MemberPosts;
+            List<PostInfo> ans = new List<PostInfo>();
+            foreach (Post a in all)
+            {
+                ans.Add(PostToInfo(a));
+            }
+            return ans;
+
+        }
+
         public override bool PublishNewThread(User u, string msg,  SubForumInfo s)
         {
             return PublishNewThread(u, msg, SubForumFromInfo(s));
@@ -573,7 +632,7 @@ namespace ConsoleApplication1
         
         public SuperManager isSuper(User u)
         {
-            if (u is Member && this.SuperManager.username.Equals(((Member)u).username) && this.SuperManager.password.Equals(((Member)u).password))
+            if (u is Member && this.SuperManager.username.Equals(((Member)u).username) && this.SuperManager.password.Equals(((Member)u).password.pass))
                 return SuperManager;
             return null;
         }
@@ -664,4 +723,5 @@ namespace ConsoleApplication1
 
 
         
+
 

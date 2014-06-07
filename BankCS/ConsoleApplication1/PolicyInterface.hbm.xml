@@ -21,6 +21,8 @@
 	          <key column="Policy_Id" />
 
     <property name="MaxModerators" />
+      <property name="words" />
+      <property name="posts" />
 	</joined-subclass> 
 	
 	

@@ -10,40 +10,41 @@ namespace ConsoleApplication1
 {
     public class Forum
     {
-		public virtual Guid Id { get; set; }
-        public virtual IList<SubForum> SubForum{ get; set; }
-        public virtual IList<Member> Members{ get; set; }
-        public virtual PolicyInterface policy{ get; set; }
-        public virtual string name{ get; set; }
-        public virtual IList<String> AllTypesKind{ get; set; }
-        public virtual IList<Member> OnlineMember{ get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual IList<SubForum> SubForum { get; set; }
+        public virtual IList<Member> Members { get; set; }
+        public virtual PolicyInterface policy { get; set; }
+        public virtual string name { get; set; }
+        public virtual IList<String> AllTypesKind { get; set; }
+        public virtual IList<Member> OnlineMember { get; set; }
 
-		public Forum() : this("")
-      { 
-	  }
+        public Forum()
+            : this("")
+        {
+        }
         public Forum(string name)
-      {
-          this.OnlineMember = new List<Member>();
-           this.SubForum=new List<SubForum>();
-           this.Members=new List<Member>();
-           this.name=name;
-           this.AllTypesKind = new List<String>();
-           this.AllTypesKind.Add("Gold");
-           this.AllTypesKind.Add("Silver");
-           this.AllTypesKind.Add("Regular");
-           this.policy = new Policy(1);
-      }
+        {
+            this.OnlineMember = new List<Member>();
+            this.SubForum = new List<SubForum>();
+            this.Members = new List<Member>();
+            this.name = name;
+            this.AllTypesKind = new List<String>();
+            this.AllTypesKind.Add("Gold");
+            this.AllTypesKind.Add("Silver");
+            this.AllTypesKind.Add("Regular");
+            this.policy = new Policy(1);
+        }
         public virtual bool promoteMemberToAdmin(Member m)
         {
 
             if (this.Members.Contains(m))
                 if (this.policy.CanBeAdmin(m))
-            {
-                m.ChangeMemberState(new Admin(this));
-                
+                {
+                    m.ChangeMemberState(new Admin(this));
 
-                return true;
-            }
+
+                    return true;
+                }
             return false;
 
         }
@@ -64,7 +65,7 @@ namespace ConsoleApplication1
 
             for (int i = 0; i < this.Members.Count(); i++)
             {
-                if ((this.Members.ElementAt(i).username.Equals(user)) && (this.Members.ElementAt(i).password.Equals(pass)))
+                if ((this.Members.ElementAt(i).username.Equals(user)) && (this.Members.ElementAt(i).password.pass.Equals(pass)))
                     return this.Members.ElementAt(i);
             }
             return null;
@@ -130,15 +131,23 @@ namespace ConsoleApplication1
             for (int i = 0; i < this.Members.Count; i++)
             {
                 if (this.Members.ElementAt(i).username.Equals(username))
-                    if (this.Members.ElementAt(i).password.Equals(pass)){
-                        if (!this.OnlineMember.Contains(Members.ElementAt(i)))
+                    if (this.Members.ElementAt(i).password.pass.Equals(pass))
+                    {
+                        Password p = this.Members.ElementAt(i).password;
+                        int max = this.policy.MaxMonth;
+                        if (p.IsValidTime(max))
                         {
-                            this.OnlineMember.Add(Members.ElementAt(i));
+                            if (!this.OnlineMember.Contains(Members.ElementAt(i)))
+                            {
+                                this.OnlineMember.Add(Members.ElementAt(i));
+                            }
+                            return this.Members.ElementAt(i);
                         }
-                        return this.Members.ElementAt(i);
+                        else
+                            return null; // need to send message about no valid pass expiration!!!!!
                     }
-                    else
-                        return null; // for incorrect pass
+                   else
+                      return null; // for incorrect pass
             }
             return null; // for no username feet
         }
@@ -186,8 +195,8 @@ namespace ConsoleApplication1
 
         public virtual void Cancel()
         {
-            
-                this.Members = null;
+
+            this.Members = null;
         }
 
         public virtual int getPolicy()
