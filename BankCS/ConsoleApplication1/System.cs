@@ -266,6 +266,44 @@ namespace ConsoleApplication1
         }
 
 
+        public Post ContainPostId(Guid Id, Forum f)
+        {
+            Post ans=null;
+            for (int i = 0; i < f.SubForum.Count; i++)
+            {
+                SubForum s = f.SubForum.ElementAt(i);
+                for (int j = 0; j < s.MyThreads.Count; j++)
+                {
+                    ans = PostsIds(Id,s.MyThreads.ElementAt(j));
+                    if (ans != null)
+                    {
+                        return ans;
+                    }
+
+                }
+            }
+            return ans;
+        }
+
+        public Post PostsIds(Guid Id,Post start)
+        {
+            Post ans = null;
+            if (start.Id.Equals(Id))
+            {
+                return start;
+            }
+            for (int i = 0; i < start.comments.Count; i++)
+            {
+                Post p = start.comments.ElementAt(i);
+                ans = PostsIds(Id,p);
+                if (ans != null)
+                {
+                    return ans;
+                }
+
+            }
+            return ans;
+        }
 
         public int intersection(ICollection<String> words, string msg)
         {
@@ -286,13 +324,16 @@ namespace ConsoleApplication1
 
         public bool PublishCommentPost(User u, String msg, Post p)
         {
-            if (u is Member && !msg.Equals("") && u.forum.IsContain(p) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
+            Post ans=ContainPostId(p.Id,u.forum);
+            if (u is Member && !msg.Equals("") && ans!=null && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
 
                 Post comm = new Post(msg, ((Member)u));
-                ((Member)u).AddNewPost(comm,p);
+                //ans.addComment(comm);
+                ((Member)u).AddNewPost(comm,ans);
+                rep.Add<Post>(comm);
                 rep.Update<User>(u);
-                rep.Update<Post>(p);
+                rep.Update<Post>(ans);
                 File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
