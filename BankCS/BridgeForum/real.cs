@@ -124,11 +124,12 @@ namespace BridgeForum
             SubForum subforum = null;
             if (m != null && f.OnlineMember.Contains(m))
             {
-               subforum= f.GetSubForumByName(sub);
+                subforum = f.GetSubForumByName(sub);
+
+
+                return this.OurSystem.PublishNewThread(m, body, subforum);
             }
-
-            return this.OurSystem.PublishNewThread(m, body, subforum);
-
+            return false;
 
         }//uc
         public Boolean reply(string forum, string sub, string parentPost, string subject, string body, string user, string pass) {
