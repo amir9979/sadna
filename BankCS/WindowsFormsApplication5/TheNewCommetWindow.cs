@@ -58,7 +58,7 @@ namespace WindowsFormsApplication5
             List<PostInfo> allPosts =myConnection.WatchAllComments(ChoosenPost);
             for (int i=0; i < allPosts.Count; i++)
             {
-                listBox1.Items.Add(allPosts.ElementAt(i).msg);
+                listBox1.Items.Add(allPosts.ElementAt(i).msg + " ( "+allPosts.ElementAt(i).owner.fullname+" )" );
             }
         }
     }
