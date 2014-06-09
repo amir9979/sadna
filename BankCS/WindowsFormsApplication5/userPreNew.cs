@@ -136,5 +136,21 @@ namespace WindowsFormsApplication5
             else
                 MessageBox.Show("לכאורה אינך מחובר");
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int ind = listBox2.SelectedIndex;
+            if (ind >= 0)
+            {
+                PostInfo p = CurrentState.currentPostInfo;
+                myConnection.deletePost(p);
+                CurrentState.currentPostInfo = null;
+                listBox3.Items.Clear();
+                this.allThreads = myConnection.WatchAllThreads(this.CurrentState.currentSubForumInfo);
+                for (int i = 0; i < this.allThreads.Count; i++)
+                    listBox2.Items.Add(allThreads.ElementAt(i));
+
+            }
+        }
     }
 }
