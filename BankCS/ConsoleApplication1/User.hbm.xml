@@ -8,7 +8,7 @@
     <id name="Id" column="USERID">
         <generator class="guid"/>
     </id>
-<many-to-one cascade="all"  name="forum" column="forum_id"/>
+<many-to-one cascade="all"  name="forum" column="forum_id" lazy="false"/>
 
     <joined-subclass name="Guest">
 	<key column="GUESTID"/>

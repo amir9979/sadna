@@ -141,6 +141,7 @@ public void SubForumListTest()
 {
     bridgeForum forum = new real();
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
@@ -242,6 +243,7 @@ public void MailConfirmTest()
 {
     bridgeForum forum = new real();
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
@@ -275,6 +277,7 @@ public void DeletePostTest()
 {
     bridgeForum forum = new real();
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
@@ -337,6 +340,7 @@ private void ManU(bridgeForum forum)
   */
     //ferguson(forum);
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
@@ -350,6 +354,7 @@ private void ManU(bridgeForum forum)
 private void ferguson(bridgeForum forum)
 {
     forum.init("Ferguson", "scottishAccent","fer@gmsil.com","alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
 }
 private void vidicSubForum(bridgeForum forum)
 {/*
@@ -361,6 +366,7 @@ private void vidicSubForum(bridgeForum forum)
   *     make vida a moderator
   */
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);
@@ -384,6 +390,7 @@ private void Rooney(bridgeForum forum)
   *         create a member called wazza and confirm him and connect
   */
     forum.init("Ferguson", "scottishAccent", "fer@gmsil.com", "alex ferguson", "england.manchster");
+    forum.SPlogin("Ferguson", "scottishAccent");
     forum.createForum("Ferguson", "scottishAccent", "Manchester United", 5);
     Int64 i = forum.register("Manchester United", "giggsy", "11", "ryan giggs", "giggs@manU.com");
     forum.mailConfirm("giggsy", "11", "Manchester United", i);

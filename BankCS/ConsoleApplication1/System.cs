@@ -336,7 +336,9 @@ namespace ConsoleApplication1
         public bool promoteMemberToAdmin(Member u, User SuperManger)
         {
             bool res = false;
-            if (SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password.pass) && this.SuperManager.username.Equals(((Member)SuperManger).username))
+            bool check =  activeSuper;
+            check |= SuperManger is Member && this.SuperManager.password.Equals(((Member)SuperManger).password.pass) && this.SuperManager.username.Equals(((Member)SuperManger).username);
+            if (check)
             {
                 res = u.forum.promoteMemberToAdmin(u);
                 rep.Update<User>(u);
