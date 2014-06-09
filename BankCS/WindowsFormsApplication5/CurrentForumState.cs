@@ -25,5 +25,7 @@ namespace WindowsFormsApplication5
         public List<SubForumInfo> allSubForum { get; set; }
         public List<MemberInfo> allMembers { get; set; }
 
+
+
     }
 }
