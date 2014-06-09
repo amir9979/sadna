@@ -43,10 +43,10 @@ namespace WindowsFormsApplication5
 
           
                     ForumInfo ourforum = this.CurrentState.myForum;
-                    MemberInfo admin= this.CurrentState.allmembers(listBox2.SelectedIndex);
+                    MemberInfo admin= this.CurrentState.allMembers.ElementAt(listBox2.SelectedIndex);
                     myConnection.promoteMemberToAdmin(admin);
-                }
-            }
+                
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
