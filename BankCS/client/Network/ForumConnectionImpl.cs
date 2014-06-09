@@ -46,7 +46,7 @@ namespace client.Network
             _isWaitingMsg = false;
             _isAvailable = true;
             _response = null;
-            
+
         }
 
         public override void connect()
@@ -89,9 +89,9 @@ namespace client.Network
 
         public override bool entry(string ForumName)
         {
-           
-                List<object> lst = new List<object>{ ForumName };
-                return sendFuncMsg<bool>(FuncMsgClient.FuncType.entry, lst);
+
+            List<object> lst = new List<object> { ForumName };
+            return sendFuncMsg<bool>(FuncMsgClient.FuncType.entry, lst);
         }
 
         public override bool SetPolicy(int index, string ForumName)
@@ -108,32 +108,32 @@ namespace client.Network
 
         public override bool login(string username, string pass)
         {
-            List<object> lst = new List<object> { username, pass};
+            List<object> lst = new List<object> { username, pass };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.login, lst);
         }
 
         public override void loggout()
         {
-            List<object> lst = new List<object> {};
+            List<object> lst = new List<object> { };
             sendFuncMsg(FuncMsgClient.FuncType.loggout, lst);
             return;
         }
 
         public override bool AddNewSubForum(string subject, MemberInfo moderator)
         {
-            List<object> lst = new List<object> { subject, moderator};
+            List<object> lst = new List<object> { subject, moderator };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.AddNewSubForum, lst);
         }
 
         public override List<SubForumInfo> WatchAllSubForum()
         {
-            List<object> lst = new List<object> {};
+            List<object> lst = new List<object> { };
             return sendFuncMsg<List<SubForumInfo>>(FuncMsgClient.FuncType.WatchAllSubForum, lst);
         }
 
         public override List<PostInfo> WatchAllThreads(SubForumInfo s)
         {
-            List<object> lst = new List<object> {s };
+            List<object> lst = new List<object> { s };
             return sendFuncMsg<List<PostInfo>>(FuncMsgClient.FuncType.WatchAllThreads, lst);
         }
 
@@ -145,7 +145,7 @@ namespace client.Network
 
         public override bool PublishNewThread(string msg, SubForumInfo s)
         {
-            List<object> lst = new List<object> { msg,s };
+            List<object> lst = new List<object> { msg, s };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.PublishNewThread, lst);
         }
 
@@ -157,13 +157,13 @@ namespace client.Network
 
         public override int checkHowMuchMemberType()
         {
-            List<object> lst = new List<object> {};
+            List<object> lst = new List<object> { };
             return sendFuncMsg<int>(FuncMsgClient.FuncType.checkHowMuchMemberType, lst);
         }
 
         public override bool addNewType(string newType)
         {
-            List<object> lst = new List<object> {newType };
+            List<object> lst = new List<object> { newType };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.addNewType, lst);
         }
 
@@ -173,17 +173,16 @@ namespace client.Network
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
         }
 
-        public override List<MemberInfo> WatchAllMembers(ForumInfo forumInfo)
+        public override bool promoteMemberToModerator(MemberInfo moder, SubForumInfo s)
         {
-            List<object> lst = new List<object> { forumInfo };
-            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
+            List<object> lst = new List<object> { moder, s };
+            return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToModerator, lst);
 
         }
 
-
-        public override bool EmailConfirm(Int64 ConfNumber)
+        public override bool EmailConfirm(Int64 ConfNumber, string userName)
         {
-            List<object> lst = new List<object> { ConfNumber };
+            List<object> lst = new List<object> { ConfNumber, userName };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.EmailConfirm, lst);
         }
 
@@ -207,19 +206,27 @@ namespace client.Network
 
         public override List<ForumInfo> WatchAllForums()
         {
-            List<object> lst = new List<object> {};
+            List<object> lst = new List<object> { };
             return sendFuncMsg<List<ForumInfo>>(FuncMsgClient.FuncType.WatchAllForums, lst);
+        }
+
+
+        public override List<MemberInfo> WatchAllMembers(ForumInfo forumInfo)
+        {
+            List<object> lst = new List<object> { forumInfo };
+            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.WatchAllMembers, lst);
+
         }
 
         public override bool BuildForum(string name)
         {
-            List<object> lst = new List<object> {name };
+            List<object> lst = new List<object> { name };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.BuildForum, lst);
         }
 
         public override void CancelForum(ForumInfo f)
         {
-            List<object> lst = new List<object> { f};
+            List<object> lst = new List<object> { f };
             sendFuncMsg(FuncMsgClient.FuncType.CancelForum, lst);
             return;
         }
@@ -246,8 +253,8 @@ namespace client.Network
         {
             lock (_monitorLock)
             {
-                    while(!_isAvailable)
-                        Monitor.Wait(_monitorLock);
+                while (!_isAvailable)
+                    Monitor.Wait(_monitorLock);
             }
         }
 
@@ -255,9 +262,9 @@ namespace client.Network
         {
             lock (_monitorLock)
             {
-                    while (!_isWaitingMsg)
-                        Monitor.Wait(_monitorLock);
-                    _isWaitingMsg = false;
+                while (!_isWaitingMsg)
+                    Monitor.Wait(_monitorLock);
+                _isWaitingMsg = false;
             }
         }
 
@@ -265,9 +272,9 @@ namespace client.Network
         {
             lock (_monitorLock)
             {
-                    _response = msg;
-                    _isWaitingMsg = true;
-                    Monitor.PulseAll(_monitorLock);
+                _response = msg;
+                _isWaitingMsg = true;
+                Monitor.PulseAll(_monitorLock);
             }
         }
 
@@ -275,8 +282,8 @@ namespace client.Network
         {
             lock (_monitorLock)
             {
-                    _isAvailable = true;
-                    Monitor.PulseAll(_monitorLock);
+                _isAvailable = true;
+                Monitor.PulseAll(_monitorLock);
             }
         }
 
@@ -287,7 +294,7 @@ namespace client.Network
                 waitMyTurn();
                 sendMsg(type, args);
                 waitResponse();
-                if (!argCheck<T>(_response.args, 0) || _response.type==FuncMsgServer.FuncType.ErrorReplay)
+                if (!argCheck<T>(_response.args, 0) || _response.type == FuncMsgServer.FuncType.ErrorReplay)
                     throw new BadResponseException();
 
 
@@ -319,7 +326,7 @@ namespace client.Network
 
         private bool argCheck<T>(List<object> args, int Index)
         {
-            return args!=null&&args.Count>Index&&args[Index] is T;
+            return args != null && args.Count > Index && args[Index] is T;
         }
 
 
@@ -328,17 +335,17 @@ namespace client.Network
             BinaryFormatter bformatter = new BinaryFormatter();
             while (true)
             {
-                    FuncMsgServer msg = (FuncMsgServer)bformatter.Deserialize(_server.GetStream());
-                    if (msg.type == FuncMsgServer.FuncType.Replay || msg.type == FuncMsgServer.FuncType.ErrorReplay)
-                        setResponse(msg);
-                    else
-                        _orders.Add(msg);
-                    /*
-                catch
-                {
-                    return;
-                }
-                     * */
+                FuncMsgServer msg = (FuncMsgServer)bformatter.Deserialize(_server.GetStream());
+                if (msg.type == FuncMsgServer.FuncType.Replay || msg.type == FuncMsgServer.FuncType.ErrorReplay)
+                    setResponse(msg);
+                else
+                    _orders.Add(msg);
+                /*
+            catch
+            {
+                return;
+            }
+                 * */
             }
         }
     }

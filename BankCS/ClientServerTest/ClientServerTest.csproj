@@ -56,10 +56,6 @@
     <Compile Include="test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\client\client.csproj">
-      <Project>{1e61f15c-8830-4ace-8e29-d0b316d851e2}</Project>
-      <Name>client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ConsoleApplication1\ConsoleApplication1.csproj">
       <Project>{10112452-f788-414b-b574-afd5f4554f04}</Project>
       <Name>ConsoleApplication1</Name>
@@ -71,6 +67,10 @@
     <ProjectReference Include="..\server\server.csproj">
       <Project>{59f31582-6e3c-441f-b4df-d1cb7dfa7294}</Project>
       <Name>server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsFormsApplication5\WindowsFormsApplication5.csproj">
+      <Project>{55fbda14-fe1c-402b-8a94-75a553e9c44a}</Project>
+      <Name>WindowsFormsApplication5</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

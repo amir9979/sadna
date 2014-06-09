@@ -200,8 +200,8 @@ namespace ClientServerTests
         [TestMethod]
         public void TestEmailConfirm() //need to return true only to values
         {
-            Assert.IsTrue(forum.EmailConfirm(1));
-            Assert.IsFalse(forum.EmailConfirm(2));
+            Assert.IsTrue(forum.EmailConfirm(1,""));
+            Assert.IsFalse(forum.EmailConfirm(2,""));
         }
 
 

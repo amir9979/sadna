@@ -8,7 +8,7 @@ using DataTypes;
 
 namespace client.Network
 {
-    public abstract  class ForumConnection : Observable
+    public abstract class ForumConnection : Observable
     {
 
         //connection funcs
@@ -21,7 +21,7 @@ namespace client.Network
 
         abstract public bool isConnected();
 
-        
+
 
 
         //usecases
@@ -37,7 +37,7 @@ namespace client.Network
 
 
         abstract public bool login(string username, string pass);
- 
+
 
         abstract public void loggout();
 
@@ -65,8 +65,9 @@ namespace client.Network
 
         abstract public bool promoteMemberToAdmin(MemberInfo u);
 
+        abstract public bool promoteMemberToModerator(MemberInfo moder, SubForumInfo s);
 
-        abstract public bool EmailConfirm(Int64 ConfNumber);
+        abstract public bool EmailConfirm(Int64 ConfNumber, string username);
 
 
 
@@ -74,7 +75,7 @@ namespace client.Network
 
         //abstract public void ComplaintAboutModerator(Complaint c, MemberInfo moderator); //need to ask
 
-        
+
 
         abstract public bool deletePost(PostInfo p);
 
