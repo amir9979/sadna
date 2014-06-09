@@ -21,10 +21,12 @@ namespace WindowsFormsApplication5
             myConnection = myConnectionP;
             CurrentState = State;
             InitializeComponent();
-            try{
+            try
+            {
                 myConnection.connect();
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 MessageBox.Show(e.Message);
             }
 
@@ -33,13 +35,14 @@ namespace WindowsFormsApplication5
         private void button1_Click(object sender, EventArgs e)
         {
             int i;
-            string myText="";
-            for (i=0; i<listBox2.Items.Count;i++){
-                 if (listBox2.GetSelected(i))
+            string myText = "";
+            for (i = 0; i < listBox2.Items.Count; i++)
+            {
+                if (listBox2.GetSelected(i))
                 {
                     myText = (string)listBox2.Items[i];
-                     break;
-                 }
+                    break;
+                }
             }
             if (myConnection.entry(myText))
             {
@@ -67,13 +70,19 @@ namespace WindowsFormsApplication5
         {
             this.CurrentState.allSubForum = myConnection.WatchAllSubForum();
             listBox1.Items.Clear();
-         //   List<SubForumInfo> SubForumList = myConnection.WatchAllSubForum();
+            //   List<SubForumInfo> SubForumList = myConnection.WatchAllSubForum();
             for (int i = 0; i < this.CurrentState.allSubForum.Count; i++)
                 listBox1.Items.Add(this.CurrentState.allSubForum.ElementAt(i).Name);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int Temp = listBox1.SelectedIndex;
+            this.CurrentState.currentSubForumInfo = this.CurrentState.allSubForum.ElementAt(Temp);
+            this.CurrentState.allMembers = myConnection.WatchAllMembers(this.CurrentState.myForum);
+            this.listBox3.Items.Clear();
+            for (int i = 0; i < CurrentState.allMembers.Count; i++)
+                listBox3.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
 
         }
 
@@ -107,12 +116,12 @@ namespace WindowsFormsApplication5
             loginWindow loginForm = new loginWindow(myConnection, CurrentState);
             ///this.Close();
             loginForm.Show();
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button7_Click_1(object sender, EventArgs e)
@@ -127,7 +136,7 @@ namespace WindowsFormsApplication5
                     break;
                 }
             }
-            reg regWindows = new reg(myConnection,CurrentState,myText);
+            reg regWindows = new reg(myConnection, CurrentState, myText);
             regWindows.Show();
         }
 
@@ -168,15 +177,15 @@ namespace WindowsFormsApplication5
 
             List<SubForumInfo> allTreadsTemp = myConnection.WatchAllSubForum();
             this.CurrentState.currentSubForumInfo = allTreadsTemp.ElementAt(i);
-         //   myConnection.currentSubForumInfo = myConnection.WatchAllSubForum().ElementAt(i);
+            //   myConnection.currentSubForumInfo = myConnection.WatchAllSubForum().ElementAt(i);
 
-            userPreNew userPrenew = new userPreNew(myConnection,CurrentState);
+            userPreNew userPrenew = new userPreNew(myConnection, CurrentState);
             userPrenew.Show();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            ManagerLogin Managerlogin = new ManagerLogin(this.myConnection,CurrentState);
+            ManagerLogin Managerlogin = new ManagerLogin(this.myConnection, CurrentState);
             Managerlogin.Show();
         }
 
@@ -189,7 +198,7 @@ namespace WindowsFormsApplication5
         {
             myConnection.AddNewSubForum(textBox1.Text, new MemberInfo { id = Int2Guid(-1) });
             this.CurrentState.allSubForum = this.myConnection.WatchAllSubForum();
-            textBox1.Clear();     listBox1.Items.Clear();
+            textBox1.Clear(); listBox1.Items.Clear();
 
             for (int i = 0; i < this.CurrentState.allSubForum.Count; i++)
                 listBox1.Items.Add(this.CurrentState.allSubForum.ElementAt(i).Name);
@@ -215,8 +224,17 @@ namespace WindowsFormsApplication5
             MessageBox.Show("logout succ");
         }
 
-
-
-
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (listBox3.SelectedIndex >= 0)
+            {
+                if (myConnection.promoteMemberToModerator(this.CurrentState.allMembers.ElementAt(listBox3.SelectedIndex), this.CurrentState.currentSubForumInfo))
+                    MessageBox.Show("promoteMemberToModerator succ");
+                else
+                    MessageBox.Show("promoteMemberToModerator fail");
+            }
+            else
+                MessageBox.Show("אנא בחר תת-פורום");
+        }
     }
 }

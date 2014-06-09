@@ -151,6 +151,7 @@
             this.Controls.Add(this.button1);
             this.Name = "ManagerPresentation";
             this.Text = "ManagerPresentation";
+            this.Load += new System.EventHandler(this.ManagerPresentation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

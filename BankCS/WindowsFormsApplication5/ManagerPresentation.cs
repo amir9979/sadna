@@ -21,6 +21,11 @@ namespace WindowsFormsApplication5
             CurrentState = State;
             this.myConnection = myConnectionP;
             InitializeComponent();
+            listBox1.Items.Clear();
+            this.CurrentState.allForum = myConnection.WatchAllForums();
+            for (int i = 0; i < this.CurrentState.allForum.Count; i++)
+                listBox1.Items.Add(this.CurrentState.allForum.ElementAt(i).name);
+                
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -43,7 +48,10 @@ namespace WindowsFormsApplication5
           
                     ForumInfo ourforum = this.CurrentState.myForum;
                     MemberInfo admin= this.CurrentState.allMembers.ElementAt(listBox2.SelectedIndex);
-                    myConnection.promoteMemberToAdmin(admin);
+                    if (myConnection.promoteMemberToAdmin(admin))
+                        MessageBox.Show("promoteMemberToAdmin succ");
+                    else
+                        MessageBox.Show("promoteMemberToAdmin fail");
                 
             
         }
@@ -107,6 +115,11 @@ namespace WindowsFormsApplication5
                     listBox2.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
                 }
             }
+        }
+
+        private void ManagerPresentation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

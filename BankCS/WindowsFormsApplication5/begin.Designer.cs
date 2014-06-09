@@ -46,6 +46,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +73,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.listBox3);
+            this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.button5);
@@ -100,9 +104,9 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(173, 154);
+            this.button8.Location = new System.Drawing.Point(32, 154);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(114, 54);
+            this.button8.Size = new System.Drawing.Size(99, 54);
             this.button8.TabIndex = 12;
             this.button8.Text = "התחבר";
             this.button8.UseVisualStyleBackColor = true;
@@ -130,7 +134,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(338, 22);
+            this.listBox1.Location = new System.Drawing.Point(320, 28);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(230, 264);
             this.listBox1.TabIndex = 3;
@@ -156,7 +160,7 @@
             // 
             // הבא
             // 
-            this.הבא.Location = new System.Drawing.Point(598, 140);
+            this.הבא.Location = new System.Drawing.Point(587, 230);
             this.הבא.Name = "הבא";
             this.הבא.Size = new System.Drawing.Size(139, 52);
             this.הבא.TabIndex = 1;
@@ -166,9 +170,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(598, 230);
+            this.button2.Location = new System.Drawing.Point(173, 155);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 53);
+            this.button2.Size = new System.Drawing.Size(114, 53);
             this.button2.TabIndex = 0;
             this.button2.Text = "הצג תתי פורומים";
             this.button2.UseVisualStyleBackColor = true;
@@ -212,6 +216,24 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(627, 170);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(99, 54);
+            this.button10.TabIndex = 13;
+            this.button10.Text = "מנה כמנחה";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(604, 22);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(122, 134);
+            this.listBox3.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +276,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button button10;
     }
 }
 
