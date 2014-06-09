@@ -23,6 +23,7 @@ namespace WindowsFormsApplication5
         public PostInfo currentPostInfo { get; set; }
 		public List<ForumInfo> allForum { get; set; }
         public List<SubForumInfo> allSubForum { get; set; }
+        public List<MemberInfo> allMembers { get; set; }
 
     }
 }
