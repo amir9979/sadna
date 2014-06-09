@@ -40,6 +40,13 @@ namespace WindowsFormsApplication5
         {
            // myConnection.promoteMemberToAdmin(listBox1.Text);
             listBox1.Items.Clear();
+
+          
+                    ForumInfo ourforum = this.CurrentState.myForum;
+                    MemberInfo admin= this.CurrentState.allmembers(listBox2.SelectedIndex);
+                    myConnection.promoteMemberToAdmin(admin);
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
