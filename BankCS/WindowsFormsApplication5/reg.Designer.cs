@@ -149,6 +149,7 @@
             this.forum.Name = "forum";
             this.forum.Size = new System.Drawing.Size(144, 39);
             this.forum.TabIndex = 24;
+            this.forum.TextChanged += new System.EventHandler(this.forum_TextChanged);
             // 
             // reg
             // 

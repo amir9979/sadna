@@ -15,11 +15,12 @@ namespace WindowsFormsApplication5
     {
         ForumConnection myConnection;
         CurrentForumState CurrentState;
-        public reg(ForumConnection ForumConnectionImp, CurrentForumState State)
+        public reg(ForumConnection ForumConnectionImp, CurrentForumState State,string forum_name)
         {
             CurrentState = State;
             myConnection = ForumConnectionImp;
             InitializeComponent();
+            this.forum.Text = forum_name;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -61,6 +62,11 @@ namespace WindowsFormsApplication5
         }
 
         private void mail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void forum_TextChanged(object sender, EventArgs e)
         {
 
         }

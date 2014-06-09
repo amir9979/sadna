@@ -21,7 +21,7 @@ namespace server
         static void Main(string[] args)
         {
             IPAddress aa = LocalIPAddress();
-            TcpListener _listener = new TcpListener(aa, 12345);
+            TcpListener _listener = new TcpListener(IPAddress.Any, 12345);
             _listener.Start();
 
 
