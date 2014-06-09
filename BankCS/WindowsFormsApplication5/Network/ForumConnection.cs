@@ -77,6 +77,9 @@ namespace client.Network
         
 
         abstract public bool deletePost(PostInfo p);
+		
+		abstract public List<MemberInfo> WatchAllMembers(ForumInfo forumInfo);
+
 
 
 

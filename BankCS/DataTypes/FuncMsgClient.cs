@@ -36,7 +36,8 @@ namespace DataTypes
             WatchAllForums,
             BuildForum,
             CancelForum,
-            GetForumByName
+            GetForumByName,
+            WatchAllMembers
         };
 
         public FuncType type;

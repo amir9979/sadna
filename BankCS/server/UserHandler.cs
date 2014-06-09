@@ -49,10 +49,8 @@ namespace server
             _actions[(int)FuncMsgClient.FuncType.BuildForum]                = BuildForum;
             _actions[(int)FuncMsgClient.FuncType.CancelForum]               = CancelForum;
             _actions[(int)FuncMsgClient.FuncType.GetForumByName]            = GetForumByName;
-           
-
-
-            
+            _actions[(int)FuncMsgClient.FuncType.WatchAllMembers]           = WatchAllMembers;
+                       
         }
 
         public FuncMsgServer processMsg(FuncMsgClient msg)
@@ -137,6 +135,13 @@ namespace server
         private object WatchAllSubForum(List<object> args)
         {
             return _sys.WatchAllSubForumInfo(_usr);
+        }
+
+        private object WatchAllMembers(List<object> args)
+        {
+            if (!argCheck<ForumInfo>(args, 0))
+                throw new Exception();
+            return _sys.WatchAllMembers(_usr, getArgument<ForumInfo>(args, 0));
         }
 
         private object WatchAllThreads(List<object> args) //use case need to implements

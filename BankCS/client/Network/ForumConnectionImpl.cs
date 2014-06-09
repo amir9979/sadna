@@ -173,6 +173,14 @@ namespace client.Network
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
         }
 
+        public override List<MemberInfo> WatchAllMembers(ForumInfo forumInfo)
+        {
+            List<object> lst = new List<object> { forumInfo };
+            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
+
+        }
+
+
         public override bool EmailConfirm(long ConfNumber)
         {
             List<object> lst = new List<object> { ConfNumber };

@@ -221,5 +221,11 @@ namespace ClientServerTests
 
             return 0;
         }
+
+        public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+        {
+            return null;
+        }
+
     }
 }

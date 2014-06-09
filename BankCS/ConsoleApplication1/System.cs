@@ -621,6 +621,18 @@ namespace ConsoleApplication1
             return PublishNewThread(u, msg, SubForumFromInfo(s));
         }
 
+                public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+        {
+            Forum f = ForumFromInfo(forumInfo);
+            IList<Member> all = f.Members;
+            List<MemberInfo> ans = new List<MemberInfo>();
+            foreach (Member a in all)
+            {
+                ans.Add(MemberToInfo(a));
+            }
+            return ans;
+        }
+
         
         public override bool PublishCommentPost(User u, string msg,  PostInfo p)
         {
@@ -757,6 +769,7 @@ namespace ConsoleApplication1
                         mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                         client.Send (mm);
                 }
+
 
     }
 }

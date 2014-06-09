@@ -203,6 +203,14 @@ namespace client.Network
             return sendFuncMsg<List<ForumInfo>>(FuncMsgClient.FuncType.WatchAllForums, lst);
         }
 
+		
+		public override List<MemberInfo> WatchAllMembers(ForumInfo forumInfo)
+        {
+            List<object> lst = new List<object> { forumInfo };
+            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
+
+        }
+
         public override bool BuildForum(string name)
         {
             List<object> lst = new List<object> {name };

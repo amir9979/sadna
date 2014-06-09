@@ -82,5 +82,8 @@ namespace ConsoleApplication1
         abstract public List<PostInfo> WatchAllMemberPost(User u, MemberInfo m);
 
         abstract public int HowManyForums(User u);
+
+        abstract public List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo);
+
     }
 }
