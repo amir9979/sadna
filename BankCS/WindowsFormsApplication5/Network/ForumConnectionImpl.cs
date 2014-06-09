@@ -100,10 +100,10 @@ namespace client.Network
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.SetPolicy, lst);
         }
 
-        public override long Registration(string ForumName, string name, string pass, string mail, string fullname)
+        public override Int64 Registration(string ForumName, string name, string pass, string mail, string fullname)
         {
             List<object> lst = new List<object> { ForumName, name, pass, mail, fullname };
-            return sendFuncMsg<long>(FuncMsgClient.FuncType.Registration, lst);
+            return sendFuncMsg<Int64>(FuncMsgClient.FuncType.Registration, lst);
         }
 
         public override bool login(string username, string pass)
@@ -173,9 +173,9 @@ namespace client.Network
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
         }
 
-        public override bool EmailConfirm(long ConfNumber)
+        public override bool EmailConfirm(Int64 ConfNumber,string userName)
         {
-            List<object> lst = new List<object> { ConfNumber };
+            List<object> lst = new List<object> { ConfNumber, userName };
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.EmailConfirm, lst);
         }
 

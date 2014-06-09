@@ -196,7 +196,7 @@ namespace server
         {
             if (!argCheck<Int64>(args, 0))
                 throw new Exception();
-            return _sys.EmailConfirm( getArgument<Int64>(args, 0),_usr);
+            return _sys.EmailConfirm(getArgument<Int64>(args, 0), _usr, getArgument<string>(args, 1));
         }
 
 

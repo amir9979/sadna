@@ -117,7 +117,17 @@ namespace WindowsFormsApplication5
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            reg regWindows = new reg(myConnection,CurrentState);
+            int i;
+            string myText = "";
+            for (i = 0; i < listBox2.Items.Count; i++)
+            {
+                if (listBox2.GetSelected(i))
+                {
+                    myText = (string)listBox2.Items[i];
+                    break;
+                }
+            }
+            reg regWindows = new reg(myConnection,CurrentState,myText);
             regWindows.Show();
         }
 

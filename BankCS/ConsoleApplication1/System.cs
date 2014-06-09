@@ -399,19 +399,25 @@ namespace ConsoleApplication1
          
         }
 
-        public override bool EmailConfirm(Int64 ConfNumber, User u)
+        public override bool EmailConfirm(Int64 ConfNumber, User u, string username)
         {
             bool OK = false;
-            Int64 acc=0;
-            for (int t = 0; t < ((Member)u).username.Length; t++)
+            Int64 acc = 0;
+            for (int t = 0; t < username.Length; t++)
             {
-                acc = acc + System.Convert.ToInt64(((Member)u).username.ElementAt(t));
+                acc = acc + System.Convert.ToInt64(username.ElementAt(t));
             }
 
-            if ((u is Member) && (acc == ConfNumber)) // maybe delete this condition...
+            if ((acc == ConfNumber)) // maybe delete this condition...
             {
-                ((Member)u).SetNotConfToRegular();
-                OK = true;
+                for (int i = 0; i < u.forum.Members.Count; i++)
+                {
+                    if (u.forum.Members.ElementAt(i).username.Equals(username))
+                    {
+                        u.forum.Members.ElementAt(i).SetNotConfToRegular();
+                        OK = true;
+                    }
+                }
             }
             return OK;
         }

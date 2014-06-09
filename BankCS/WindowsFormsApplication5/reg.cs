@@ -15,11 +15,12 @@ namespace WindowsFormsApplication5
     {
         ForumConnection myConnection;
         CurrentForumState CurrentState;
-        public reg(ForumConnection ForumConnectionImp, CurrentForumState State)
+        public reg(ForumConnection ForumConnectionImp, CurrentForumState State,string forum_name)
         {
             CurrentState = State;
             myConnection = ForumConnectionImp;
             InitializeComponent();
+            this.forum.Text = forum_name;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -65,11 +66,13 @@ namespace WindowsFormsApplication5
 
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
+            myConnection.entry(this.forum.Text);
             string Temp = textBox1.Text;
             Int64 IntTemp = Convert.ToInt64(Temp);
-            if (myConnection.EmailConfirm(IntTemp))
+            if (myConnection.EmailConfirm(IntTemp,this.userName.Text))
             {
                 MessageBox.Show("ברכותי הינך חבר רשום ומאושר");
                 panel1.Visible = false;
@@ -78,7 +81,10 @@ namespace WindowsFormsApplication5
                 MessageBox.Show("הקוד שגוי אנא נסה בשנית");
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e){}
+
+        private void forum_TextChanged(object sender, EventArgs e)
+
         {
 
         }

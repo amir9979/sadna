@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +87,16 @@
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(32, 230);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(99, 53);
+            this.button9.TabIndex = 9;
+            this.button9.Text = "התנתק";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -201,16 +211,6 @@
             this.button3.Text = "כניסה כמנהל על";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(32, 230);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(99, 53);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "התנתק";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // Form1
             // 
