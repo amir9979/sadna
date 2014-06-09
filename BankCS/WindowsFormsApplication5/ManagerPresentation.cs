@@ -39,7 +39,6 @@ namespace WindowsFormsApplication5
         private void button1_Click(object sender, EventArgs e)
         {
            // myConnection.promoteMemberToAdmin(listBox1.Text);
-            listBox1.Items.Clear();
 
           
                     ForumInfo ourforum = this.CurrentState.myForum;
@@ -99,11 +98,14 @@ namespace WindowsFormsApplication5
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox2.ClearSelected();
-            this.CurrentState.myForum = this.CurrentState.allForum.ElementAt(this.listBox1.SelectedIndex);
-            this.CurrentState.allMembers = myConnection.WatchAllMembers(this.CurrentState.myForum);
-            for (int i = 0; i < this.CurrentState.allMembers.Count; i++)
+            if (listBox1.SelectedIndex >= 0)
             {
-                listBox2.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
+                this.CurrentState.myForum = this.CurrentState.allForum.ElementAt(this.listBox1.SelectedIndex);
+                this.CurrentState.allMembers = myConnection.WatchAllMembers(this.CurrentState.myForum);
+                for (int i = 0; i < this.CurrentState.allMembers.Count; i++)
+                {
+                    listBox2.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
+                }
             }
         }
     }
