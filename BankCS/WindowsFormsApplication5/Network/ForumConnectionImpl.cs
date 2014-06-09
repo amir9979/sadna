@@ -173,6 +173,13 @@ namespace client.Network
             return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
         }
 
+        public override bool promoteMemberToModerator(MemberInfo moder, SubForumInfo s)
+        {
+            List<object> lst = new List<object> { moder,s };
+            return sendFuncMsg<bool>(FuncMsgClient.FuncType.promoteMemberToModerator, lst);
+
+        }
+
         public override bool EmailConfirm(Int64 ConfNumber,string userName)
         {
             List<object> lst = new List<object> { ConfNumber, userName };
@@ -207,7 +214,7 @@ namespace client.Network
 		public override List<MemberInfo> WatchAllMembers(ForumInfo forumInfo)
         {
             List<object> lst = new List<object> { forumInfo };
-            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.promoteMemberToAdmin, lst);
+            return sendFuncMsg<List<MemberInfo>>(FuncMsgClient.FuncType.WatchAllMembers, lst);
 
         }
 

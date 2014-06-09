@@ -29,6 +29,7 @@ namespace DataTypes
             checkHowMuchMemberType,
             addNewType,
             promoteMemberToAdmin,
+            promoteMemberToModerator,
             EmailConfirm,
             deleteType,
             deletePost,

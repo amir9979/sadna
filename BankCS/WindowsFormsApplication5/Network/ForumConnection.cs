@@ -65,6 +65,7 @@ namespace client.Network
 
         abstract public bool promoteMemberToAdmin(MemberInfo u);
 
+        abstract public bool promoteMemberToModerator(MemberInfo moder, SubForumInfo s);
 
         abstract public bool EmailConfirm(Int64 ConfNumber,string username);
 

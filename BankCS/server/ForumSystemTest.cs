@@ -206,6 +206,11 @@ namespace server
 
         }
 
+
+        public override bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s)
+        {
+            return false;
+        }
         public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
         {
 

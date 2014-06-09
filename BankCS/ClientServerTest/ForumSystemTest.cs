@@ -70,6 +70,12 @@ namespace ClientServerTests
             return msg == "test1" && testSubForum(s, 1);
         }
 
+        public override bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s)
+        {
+            return false;
+        }
+
+
         public override bool PublishCommentPost(User u, string msg,  PostInfo p)
         {
             return msg == "test1" && testPost(p, 1);

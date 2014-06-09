@@ -609,6 +609,11 @@ namespace ConsoleApplication1
             return promoteMemberToAdmin( GetMemberByInfo(m),u);
         }
 
+        public override bool promoteMemberToModerator(User u,MemberInfo moder, SubForumInfo s)
+        {
+            return promoteMemberToModerator(u, GetMemberByInfo(moder), SubForumFromInfo(s));
+        }
+
         public override bool deletePost(User u,  PostInfo p)
         {
             return deletePost(u, PostFromInfo(p));

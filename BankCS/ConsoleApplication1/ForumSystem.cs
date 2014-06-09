@@ -52,6 +52,8 @@ namespace ConsoleApplication1
 
         abstract public bool promoteMemberToAdmin(User u, MemberInfo m);
 
+        abstract public bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s);
+
 
         abstract public bool EmailConfirm(Int64 ConfNumber, User u, string username);
 

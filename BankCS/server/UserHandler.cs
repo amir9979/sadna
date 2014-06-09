@@ -41,6 +41,7 @@ namespace server
             _actions[(int)FuncMsgClient.FuncType.checkHowMuchMemberType]    = checkHowMuchMemberType;
             _actions[(int)FuncMsgClient.FuncType.addNewType]                = addNewType;
             _actions[(int)FuncMsgClient.FuncType.promoteMemberToAdmin]      = promoteMemberToAdmin;
+            _actions[(int)FuncMsgClient.FuncType.promoteMemberToModerator]  = promoteMemberToModerator;
             _actions[(int)FuncMsgClient.FuncType.EmailConfirm]              = EmailConfirm;
             _actions[(int)FuncMsgClient.FuncType.deleteType]                = deleteType;
             _actions[(int)FuncMsgClient.FuncType.deletePost]                = deletePost;
@@ -197,6 +198,12 @@ namespace server
         }
 
 
+        private object promoteMemberToModerator(List<object> args)
+        {
+            if (!argCheck<MemberInfo>(args, 0) && !argCheck<SubForumInfo>(args, 0))
+                throw new Exception();
+            return _sys.promoteMemberToModerator(_usr, getArgument<MemberInfo>(args, 0) , getArgument<SubForumInfo>(args, 1));
+        }
         private object EmailConfirm(List<object> args)
         {
             if (!argCheck<Int64>(args, 0))
