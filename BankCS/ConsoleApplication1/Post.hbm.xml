@@ -15,7 +15,7 @@
 						<index column="comms"/>
             <many-to-many class="Post" column="CommentID" />
         </list>
-<many-to-one cascade="all"  name="owner" column="owner_id" lazy="false"/>
+<many-to-one cascade="none"  name="owner" column="owner_id" lazy="false"/>
   </class> 
   
 </hibernate-mapping>

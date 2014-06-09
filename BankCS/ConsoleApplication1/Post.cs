@@ -59,6 +59,20 @@ namespace ConsoleApplication1
             owner.delPost(this);
         }
 
+
+        public virtual bool kill()
+        {
+           bool ans= owner.delPost(this);
+           if (!ans)
+               return false;
+           foreach (Post p in comments)
+           {
+               ans &= p.kill();
+               if (!ans)
+                   return false;
+           }
+           return ans;
+        }
         public virtual void notifyAll()
         {
 

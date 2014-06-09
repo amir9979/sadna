@@ -479,14 +479,19 @@ namespace ConsoleApplication1
 
         public bool deletePost(User u, Post p)
         {
-            IList<SubForum> subs=u.forum.getSubForum();
+            IList<SubForum> subs=u.forum.SubForum;
             SubForum s=null;
+            Post toDel = null;
             for (int i = 0; i < subs.Count; i++)
             {
-                if (subs[i].GetMyThreads().Contains(p))
+
+                foreach (Post thread in subs.ElementAt(i).MyThreads)
                 {
-                    s = subs[i];
-                    break;
+                    toDel = IsCommentof(p.Id, thread);
+                    if (toDel !=null) {
+                        s = subs.ElementAt(i);
+                        break;
+                    }
                 }
             }
             bool isAdmin = false;
@@ -495,17 +500,17 @@ namespace ConsoleApplication1
                 Member mem = (Member)u;
                 isAdmin = mem.Getstate() is Admin;
             }
-                if ((u is Member) && (((Member)u).MemberPosts.Contains(p)) || isAdmin) 
+            if ((u is Member) && (((Member)u).MemberPosts.Contains(toDel)) || isAdmin) 
                 {
-
-                    bool b = ((Member)u).delPost(p) && s.removeThread(p);
+                    bool b = s.removeThread(toDel);
+                    b |= toDel.kill();
                     if (s != null)
                     {
                         rep.Update<SubForum>(s);
                     }
-                    rep.Update<User>(p.owner);
+                    rep.Update<User>(toDel.owner);
                     rep.Update<Forum>(u.forum);
-                    //                rep.Remove<Post>(p);
+                    rep.Remove<Post>(toDel);
                     return b;
                 }
                 else
