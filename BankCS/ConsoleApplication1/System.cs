@@ -520,9 +520,6 @@ namespace ConsoleApplication1
 
 
 
-
-
-
          public override bool AddNewSubForum(User u, string subject,  MemberInfo moderator)
         {
             return AddNewSubForum(u, Convert.ToString(subject), GetMemberByInfo(moderator));
