@@ -308,7 +308,7 @@ namespace BridgeForum
         {
             Forum f = this.OurSystem.GetForumByName(forum);
             Member m = f.GetMemberByNameAndPass(user, pass);
-            return this.OurSystem.EmailConfirm(code,m);
+            return this.OurSystem.EmailConfirm(code,m,m.username);
         }//uc
         public Boolean deletePost(string user, string pass, string forum, string sub, string subject, string body) {
             Forum f = this.OurSystem.GetForumByName(forum);

@@ -266,44 +266,6 @@ namespace ConsoleApplication1
         }
 
 
-        public Post ContainPostId(Guid Id, Forum f)
-        {
-            Post ans=null;
-            for (int i = 0; i < f.SubForum.Count; i++)
-            {
-                SubForum s = f.SubForum.ElementAt(i);
-                for (int j = 0; j < s.MyThreads.Count; j++)
-                {
-                    ans = PostsIds(Id,s.MyThreads.ElementAt(j));
-                    if (ans != null)
-                    {
-                        return ans;
-                    }
-
-                }
-            }
-            return ans;
-        }
-
-        public Post PostsIds(Guid Id,Post start)
-        {
-            Post ans = null;
-            if (start.Id.Equals(Id))
-            {
-                return start;
-            }
-            for (int i = 0; i < start.comments.Count; i++)
-            {
-                Post p = start.comments.ElementAt(i);
-                ans = PostsIds(Id,p);
-                if (ans != null)
-                {
-                    return ans;
-                }
-
-            }
-            return ans;
-        }
 
         public int intersection(ICollection<String> words, string msg)
         {
@@ -324,16 +286,13 @@ namespace ConsoleApplication1
 
         public bool PublishCommentPost(User u, String msg, Post p)
         {
-            Post ans=ContainPostId(p.Id,u.forum);
-            if (u is Member && !msg.Equals("") && ans!=null && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
+            if (u is Member && !msg.Equals("") && u.forum.IsContain(p) && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
 
                 Post comm = new Post(msg, ((Member)u));
-                //ans.addComment(comm);
-                ((Member)u).AddNewPost(comm,ans);
-                rep.Add<Post>(comm);
+                ((Member)u).AddNewPost(comm,p);
                 rep.Update<User>(u);
-                rep.Update<Post>(ans);
+                rep.Update<Post>(p);
                 File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
@@ -440,19 +399,25 @@ namespace ConsoleApplication1
          
         }
 
-        public override bool EmailConfirm(Int64 ConfNumber, User u)
+        public override bool EmailConfirm(Int64 ConfNumber, User u, string username)
         {
             bool OK = false;
-            Int64 acc=0;
-            for (int t = 0; t < ((Member)u).username.Length; t++)
+            Int64 acc = 0;
+            for (int t = 0; t < username.Length; t++)
             {
-                acc = acc + System.Convert.ToInt64(((Member)u).username.ElementAt(t));
+                acc = acc + System.Convert.ToInt64(username.ElementAt(t));
             }
 
-            if ((u is Member) && (acc == ConfNumber)) // maybe delete this condition...
+            if ((acc == ConfNumber)) // maybe delete this condition...
             {
-                ((Member)u).SetNotConfToRegular();
-                OK = true;
+                for (int i = 0; i < u.forum.Members.Count; i++)
+                {
+                    if (u.forum.Members.ElementAt(i).username.Equals(username))
+                    {
+                        u.forum.Members.ElementAt(i).SetNotConfToRegular();
+                        OK = true;
+                    }
+                }
             }
             return OK;
         }

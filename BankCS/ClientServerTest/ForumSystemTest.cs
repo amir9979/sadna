@@ -25,7 +25,7 @@ namespace ClientServerTests
             return false;
         }
 
-        public override long Registration(string ForumName, string name, string pass, string mail, string fullname)
+        public override Int64 Registration(string ForumName, string name, string pass, string mail, string fullname)
         {
             if (ForumName == "test1" && name == "test1" && pass == "test1" && mail == "test1" && fullname == "test1")
                 return 555;
@@ -90,7 +90,7 @@ namespace ClientServerTests
             return testMember(m,1);
         }
 
-        public override bool EmailConfirm(long ConfNumber, User u)
+        public override bool EmailConfirm(Int64 ConfNumber, User u, string username)
         {
             return ConfNumber == 1;
         }

@@ -66,7 +66,7 @@ namespace client.Network
         abstract public bool promoteMemberToAdmin(MemberInfo u);
 
 
-        abstract public bool EmailConfirm(Int64 ConfNumber);
+        abstract public bool EmailConfirm(Int64 ConfNumber,string username);
 
 
 

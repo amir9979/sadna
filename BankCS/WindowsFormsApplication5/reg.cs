@@ -45,7 +45,7 @@ namespace WindowsFormsApplication5
             if (regConf != -1)
             {
                 MessageBox.Show("the Registration succ");
-                this.Close();
+                this.panel1.Visible = true;
             }
             else
                 MessageBox.Show("the Registration fail");
@@ -66,7 +66,25 @@ namespace WindowsFormsApplication5
 
         }
 
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            myConnection.entry(this.forum.Text);
+            string Temp = textBox1.Text;
+            Int64 IntTemp = Convert.ToInt64(Temp);
+            if (myConnection.EmailConfirm(IntTemp,this.userName.Text))
+            {
+                MessageBox.Show("ברכותי הינך חבר רשום ומאושר");
+                panel1.Visible = false;
+            }
+            else
+                MessageBox.Show("הקוד שגוי אנא נסה בשנית");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e){}
+
         private void forum_TextChanged(object sender, EventArgs e)
+
         {
 
         }
