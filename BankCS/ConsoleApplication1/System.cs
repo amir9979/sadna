@@ -348,16 +348,29 @@ namespace ConsoleApplication1
         }
 
 
+        private Member ContainId_Member(Guid Id, Forum f)
+        {
+            for (int i = 0; i < f.Members.Count; i++)
+            {
+                if (f.Members.ElementAt(i).Id.Equals(Id))
+                    return f.Members.ElementAt(i);
+            }
+            return null;
+        }
+
         public bool promoteMemberToModerator(User u,Member moder, SubForum s)
         {
             bool res = false;
-            if (u is Member && ((Member)u).state is Admin && u.forum.SubForumList().Contains(s) && u.forum.Members.Contains(moder))
+            Member mod = ContainId_Member(moder.Id,u.forum);
+            if (u is Member && ((Member)u).state is Admin && ContainId(s.Id,u.forum) && mod!=null)
             {
-                res = u.forum.promoteMemberToModerate(moder, s);
+                SubForum sub = ContainId_get(s.Id, u.forum);
+
+                res = u.forum.promoteMemberToModerate(mod, sub);
                 File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "premote to Moderate at SubForum :" + s.Id.ToString() + DateTime.Now.ToString() + "\n");
-                rep.Update<User>(moder);
+                rep.Update<User>(mod);
                 rep.Update<Forum>(u.forum);
-                rep.Update<SubForum>(s);
+                rep.Update<SubForum>(sub);
 
             }
             return res;
