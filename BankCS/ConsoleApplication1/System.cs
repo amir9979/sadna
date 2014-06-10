@@ -502,8 +502,8 @@ namespace ConsoleApplication1
             }
             if ((u is Member) && (((Member)u).MemberPosts.Contains(toDel)) || isAdmin) 
                 {
-                    bool b = s.removeThread(toDel);
-                    b |= toDel.kill();
+                    bool b = s.removePost(toDel) ;
+                    //b |= toDel.kill();
                     if (s != null)
                     {
                         rep.Update<SubForum>(s);
@@ -520,6 +520,11 @@ namespace ConsoleApplication1
                 }
         }
 
+
+        private bool removePostAndChilds(Post p)
+        {
+            return false;
+        }
         public void CancelForum(SuperManager superManager, Forum f)
         {
             if ((superManager == this.SuperManager))

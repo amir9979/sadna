@@ -307,6 +307,22 @@ public void DeletePostTest()
     forum.memberDisConnect("Manchester United", "Ferguson", "scottishAccent");
 }
 
+
+
+[TestMethod]
+public void DeleteCommentPostTest()
+{
+    bridgeForum forum = new real();
+    Rooney(forum);
+    forum.addPost("Manchester United", "Champ19ns", "assists", "i am with 19 asissts", "wazza", "10");
+    forum.reply("Manchester United", "Champ19ns", "i am with 19 asissts","a", "and 20 goals", "wazza", "10");
+    IList<string> lst= forum.AllPostreplies("Manchester United", "Champ19ns", "i am with 19 asissts", "wazza", "10");
+    Assert.AreEqual(1,lst.Count,"there is one comment");
+    forum.deletePost("wazza", "10", "Manchester United", "Champ19ns", "a", "and 20 goals");
+    IList<string> lst1 = forum.AllPostreplies("Manchester United", "Champ19ns", "i am with 19 asissts", "wazza", "10");
+    Assert.AreEqual(0, lst1.Count, "there is no comments");
+    RooneyDis(forum);
+}
 [TestMethod]
 public void DeleteSubForumTest()
 {

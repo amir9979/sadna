@@ -69,11 +69,35 @@ namespace ConsoleApplication1
         {
             for (int i = 0; i < this.MyThreads.Count; i++)
             {
-                if (MyThreads.ElementAt(i).getMsg().Equals(body))
-                    return MyThreads.ElementAt(i);
+                Post p = IsCommentof(body, MyThreads.ElementAt(i));
+                if (p!=null)
+                    return p;
             }
             return null;
         }
+
+
+        private Post IsCommentof(string msg, Post thread)
+        {
+            if (msg.Equals(thread.msg))
+            {
+                return thread;
+            }
+            else
+            {
+                Post p = null;
+                foreach (Post comm in thread.comments)
+                {
+                    p = IsCommentof(msg, comm);
+                    if (p != null)
+                    {
+                        return p;
+                    }
+                }
+            }
+            return null;
+        }
+
         public virtual IList<Member> GetMyModerators()
         {
             return MyModerators;
@@ -84,5 +108,49 @@ namespace ConsoleApplication1
             return MyThreads.Remove(p);
         }
 
+
+        public virtual bool removePost(Post p)
+        {
+            bool b = false;
+            if (MyThreads.Contains(p))
+            {
+                b = MyThreads.Remove(p);
+            }
+            else
+            {
+                Post par=null;
+                foreach(Post thread in MyThreads){
+                    par = IsParentOf(p, thread);
+                    if (par != null)
+                    {
+                        b = par.comments.Remove(p);
+                        break;
+                    }
+                }
+            }
+            return b && p.kill();
+        }
+
+
+        private Post IsParentOf(Post son,Post par)
+        {
+            if (par.comments.Contains(son))
+            {
+                return par;
+            }
+            else
+            {
+                Post p = null;
+                foreach (Post comm in par.comments)
+                {
+                    p = IsParentOf(son, comm);
+                    if (p != null)
+                    {
+                        return p;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
