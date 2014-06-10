@@ -78,11 +78,14 @@ namespace WindowsFormsApplication5
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int Temp = listBox1.SelectedIndex;
-            this.CurrentState.currentSubForumInfo = this.CurrentState.allSubForum.ElementAt(Temp);
-            this.CurrentState.allMembers = myConnection.WatchAllMembers(this.CurrentState.myForum);
-            this.listBox3.Items.Clear();
-            for (int i = 0; i < CurrentState.allMembers.Count; i++)
-                listBox3.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
+            if (Temp >= 0)
+            {
+                this.CurrentState.currentSubForumInfo = this.CurrentState.allSubForum.ElementAt(Temp);
+                this.CurrentState.allMembers = myConnection.WatchAllMembers(this.CurrentState.myForum);
+                this.listBox3.Items.Clear();
+                for (int i = 0; i < CurrentState.allMembers.Count; i++)
+                    listBox3.Items.Add(this.CurrentState.allMembers.ElementAt(i).fullname);
+            }
 
         }
 

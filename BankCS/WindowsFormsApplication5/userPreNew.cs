@@ -95,6 +95,7 @@ namespace WindowsFormsApplication5
             List<PostInfo> AllComments;
             if (this.myConnection.PublishCommentPost(textBox1.Text, CurrentState.currentPostInfo))
             {
+                textBox1.Clear();
                 this.listBox3.Items.Clear();
                 AllComments = myConnection.WatchAllComments(this.CurrentState.currentPostInfo);
                 for (int i = 0; i < AllComments.Count; i++)
@@ -145,12 +146,16 @@ namespace WindowsFormsApplication5
                 PostInfo p = CurrentState.currentPostInfo;
                 myConnection.deletePost(p);
                 CurrentState.currentPostInfo = null;
-                listBox3.Items.Clear();
+                listBox3.Items.Clear(); listBox2.Items.Clear();
                 this.allThreads = myConnection.WatchAllThreads(this.CurrentState.currentSubForumInfo);
                 for (int i = 0; i < this.allThreads.Count; i++)
-                    listBox2.Items.Add(allThreads.ElementAt(i));
-
-            }
+                    listBox2.Items.Add(allThreads.ElementAt(i).msg);
         }
     }
+
+        private void listBox3_SelectedIndexChanged(object sender, MouseEventArgs e)
+        {
+
+        }
+}
 }

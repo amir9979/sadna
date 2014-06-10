@@ -49,6 +49,7 @@
             this.listBox3.Size = new System.Drawing.Size(337, 108);
             this.listBox3.TabIndex = 21;
             this.listBox3.SelectedIndexChanged += new System.EventHandler(this.listBox3_SelectedIndexChanged);
+            this.listBox3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox3_SelectedIndexChanged);
             // 
             // listBox2
             // 
@@ -137,9 +138,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(321, 277);
+            this.button5.Location = new System.Drawing.Point(440, 277);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(86, 64);
+            this.button5.Size = new System.Drawing.Size(98, 64);
             this.button5.TabIndex = 28;
             this.button5.Text = "מחק שרשור";
             this.button5.UseVisualStyleBackColor = true;
@@ -164,6 +165,7 @@
             this.Name = "userPreNew";
             this.Text = "userPreNew";
             this.Load += new System.EventHandler(this.userPreNew_Load);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox3_SelectedIndexChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

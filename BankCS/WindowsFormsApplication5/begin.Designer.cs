@@ -32,6 +32,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -46,8 +48,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.listBox3);
             this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button9);
@@ -91,6 +93,24 @@
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(604, 40);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(122, 134);
+            this.listBox3.TabIndex = 14;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(627, 180);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(99, 54);
+            this.button10.TabIndex = 13;
+            this.button10.Text = "מנה כמנחה";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button9
             // 
@@ -160,7 +180,7 @@
             // 
             // הבא
             // 
-            this.הבא.Location = new System.Drawing.Point(587, 230);
+            this.הבא.Location = new System.Drawing.Point(587, 240);
             this.הבא.Name = "הבא";
             this.הבא.Size = new System.Drawing.Size(139, 52);
             this.הבא.TabIndex = 1;
@@ -216,23 +236,14 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // button10
+            // label3
             // 
-            this.button10.Location = new System.Drawing.Point(627, 170);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(99, 54);
-            this.button10.TabIndex = 13;
-            this.button10.Text = "מנה כמנחה";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(604, 22);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(122, 134);
-            this.listBox3.TabIndex = 14;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(617, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "רשימת חברי הפורום";
             // 
             // Form1
             // 
@@ -278,6 +289,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label3;
     }
 }
 
