@@ -7,6 +7,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ConsoleApplication1;
 
 namespace MvcApplication1
 {
@@ -34,15 +35,23 @@ namespace MvcApplication1
 
         protected void Application_Start()
         {
-            //Thread conThread = new Thread(server.Program.run);
-            //conThread.Start();
-            AreaRegistration.RegisterAllAreas();
+            GlobalData.system = new ForumSystemImpl("amir", "1234", "amir@gmail.com", "amir m", "db");
+            GlobalData.defaultHandler = new UserHandler(GlobalData.system);
+            Thread conThread = new Thread(wrap);
+            conThread.Start();
+            //server.Program.Main();
+            //AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default
-            Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
+            //Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            //RegisterGlobalFilters(GlobalFilters.Filters);
+            //RegisterRoutes(RouteTable.Routes);
+        }
+
+        private void wrap()
+        {
+            server.Program.Run(GlobalData.system);
         }
     }
 }

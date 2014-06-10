@@ -14,11 +14,11 @@ using System.Threading;
 
 namespace server
 {
-    class Program
+    public class Program
     {
 
 
-        static void Main(string[] args)
+        public static void Main()
         {
             IPAddress aa = LocalIPAddress();
             TcpListener _listener = new TcpListener(IPAddress.Any, 12345);
@@ -44,6 +44,39 @@ namespace server
                 }
 
                 ConnectionHandler con = new ConnectionHandler(Client, testSystem);
+                Thread conThread = new Thread(con.run);
+                conThread.Start();
+
+            }
+        }
+
+        public static void Run(ForumSystem sys)
+        {
+
+            IPAddress aa = LocalIPAddress();
+            TcpListener _listener = new TcpListener(IPAddress.Any, 12345);
+            _listener.Start();
+
+
+            //ForumSystemImpl testSystem = new ForumSystemImpl("amir", "1234", "amir@gmail.com", "amir m", "db");
+            while (true)
+            {
+                TcpClient Client = null;
+                try
+                {
+                    Console.WriteLine("listening...");
+
+                    Client = _listener.AcceptTcpClient();
+
+                    Console.WriteLine("got client");
+                }
+                catch
+                {
+                    Console.WriteLine("Error");
+                    return;
+                }
+
+                ConnectionHandler con = new ConnectionHandler(Client, sys);
                 Thread conThread = new Thread(con.run);
                 conThread.Start();
 

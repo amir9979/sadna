@@ -119,7 +119,7 @@ namespace MvcApplication1
 
         public override bool EmailConfirm(long ConfNumber)
         {
-            return _sys.EmailConfirm(ConfNumber,_usr);
+            return _sys.EmailConfirm(ConfNumber,_usr,"");//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         }
 
         public override bool deleteType(string newType)

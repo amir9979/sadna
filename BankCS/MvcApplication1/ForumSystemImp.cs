@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ConsoleApplication1;
 using DataTypes;
-using MvcApplication1;
 
-namespace ConsoleApplication1
+namespace fff
 {
     public class ForumSystemImp : ForumSystem
     {
@@ -34,7 +34,7 @@ namespace ConsoleApplication1
         public override User entry(string ForumName)
         {
             forum = ForumName;
-            return new User();
+            return new Guest();
         }
 
         public override bool SetPolicy(int index, string ForumName)
@@ -57,13 +57,13 @@ namespace ConsoleApplication1
         public override User login(string username, string pass, User u)
         {
             if ((username == ("login1" + forum) || username == ("login2" + forum)) && pass == "test")
-                return new User();
+                return new Guest();
             return null;
         }
 
         public override User loggout(User u)
         {
-            return new User();
+            return new Guest();
         }
 
         public override bool AddNewSubForum(User u, string subject, MemberInfo moderator)
@@ -89,9 +89,9 @@ namespace ConsoleApplication1
 
         }
 
-        public override IList<PostInfo> WatchAllThreads(User u, SubForumInfo s)
+        public override List<PostInfo> WatchAllThreads(User u, SubForumInfo s)
         {
-            IList<PostInfo> result = new List<PostInfo>();
+            List<PostInfo> result = new List<PostInfo>();
             for (int i = 0; i < tree.childsCount(); i++)
             {
                 result.Add(tree.getChild(i).getData());
@@ -99,7 +99,7 @@ namespace ConsoleApplication1
             return result;
         }
 
-        public override IList<PostInfo> WatchAllComments(User u, PostInfo s)
+        public override List<PostInfo> WatchAllComments(User u, PostInfo s)
         {
             NTree<PostInfo> node = null;
             List<PostInfo> result = new List<PostInfo>();
@@ -152,10 +152,10 @@ namespace ConsoleApplication1
             throw new NotImplementedException();
         }
 
-        public override bool EmailConfirm(long ConfNumber, User u)
+        /*public override bool EmailConfirm(long ConfNumber, User u)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         public override bool deleteType(User u, string newType)
         {
@@ -172,7 +172,7 @@ namespace ConsoleApplication1
             throw new NotImplementedException();
         }
 
-        public override IList<ForumInfo> WatchAllForums(User u)
+        public override List<ForumInfo> WatchAllForums(User u)
         {
             return new List<ForumInfo> { new ForumInfo{id = Int2Guid(1),name = "testforum1"}
                                         ,  new ForumInfo{id = Int2Guid(1),name = "testforum2"}
@@ -233,6 +233,31 @@ namespace ConsoleApplication1
                 foreach (NTree<T> kid in this.children)
                     kid.traverse(visitor);
             }
+        }
+
+        public override bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool EmailConfirm(long ConfNumber, User u, string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int HowManyForums(User u)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleApplication1;
 using DataTypes;
 using MvcApplication1;
 
 
-namespace ConsoleApplication1
+namespace dd
 {
     public abstract  class ForumSystem
     {

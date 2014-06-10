@@ -183,7 +183,6 @@
     <Compile Include="test2.aspx.designer.cs">
       <DependentUpon>test2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
     <Compile Include="UserHandler.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +295,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleApplication1\ConsoleApplication1.csproj">
+      <Project>{10112452-f788-414b-b574-afd5f4554f04}</Project>
+      <Name>ConsoleApplication1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTypes\DataTypes.csproj">
       <Project>{6cb6aeea-bb46-4717-bb28-e2f867476721}</Project>
       <Name>DataTypes</Name>
