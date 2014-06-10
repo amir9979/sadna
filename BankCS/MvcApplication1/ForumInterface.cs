@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataTypes;
+
+namespace MvcApplication1
+{
+    public abstract  class ForumInterface
+    {
+
+
+
+        
+
+
+        //usecases
+        abstract public bool entry(string ForumName); //changed from void to bool  must call this function first to do other usecases!!!!!!
+
+
+        abstract public bool SetPolicy(int index, string ForumName);
+
+
+
+
+        abstract public Int64 Registration(string ForumName, string name, string pass, string mail, string fullname);  // need to fix with no forumname
+
+
+        abstract public bool login(string username, string pass);
+ 
+
+        abstract public void loggout();
+
+
+        abstract public bool AddNewSubForum(string subject, MemberInfo moderator);
+
+
+        abstract public IList<SubForumInfo> WatchAllSubForum();
+
+        abstract public IList<PostInfo> WatchAllThreads(SubForumInfo s); //use case need to implements
+
+        abstract public IList<PostInfo> WatchAllComments(PostInfo s); //use case need to implements
+
+
+        abstract public bool PublishNewThread(string msg, SubForumInfo s);
+
+        abstract public bool PublishCommentPost(string msg, PostInfo p);
+
+
+
+
+        abstract public int checkHowMuchMemberType();
+
+        abstract public bool addNewType(string newType);
+
+        abstract public bool promoteMemberToAdmin(MemberInfo u);
+
+
+        abstract public bool EmailConfirm(Int64 ConfNumber);
+
+
+
+        abstract public bool deleteType(string newType);
+
+        //abstract public void ComplaintAboutModerator(Complaint c, MemberInfo moderator); //need to ask
+
+        
+
+        abstract public bool deletePost(PostInfo p);
+
+
+
+        //super mannager actions
+
+        abstract public bool SPlogin(string superusername, string superpass);  //use case need to implements must call this function first  for make super mannager operations
+
+        abstract public IList<ForumInfo> WatchAllForums();
+
+        abstract public bool BuildForum(string name);  //made changes
+
+        abstract public void CancelForum(ForumInfo f);
+
+        abstract public ForumInfo GetForumByName(string forum);
+    }
+}
