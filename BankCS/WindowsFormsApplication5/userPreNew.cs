@@ -100,7 +100,7 @@ namespace WindowsFormsApplication5
                 AllComments = myConnection.WatchAllComments(this.CurrentState.currentPostInfo);
                 for (int i = 0; i < AllComments.Count; i++)
                 {
-                    listBox3.Items.Add(AllComments.ElementAt(i).msg);
+                    listBox3.Items.Add(AllComments.ElementAt(i).msg + " ( " + AllComments.ElementAt(i).owner.fullname + " )");
                 }
             }
             else
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication5
                 this.allThreads = this.myConnection.WatchAllThreads(CurrentState.currentSubForumInfo);
                 for (int i = 0; i < allThreads.Count; i++)
                 {
-                    listBox2.Items.Add(allThreads.ElementAt(i).msg);
+                    listBox2.Items.Add(allThreads.ElementAt(i).msg + " ( " + allThreads.ElementAt(i).owner.fullname + " )");
                 }
                 textBox1.Clear();
             }
