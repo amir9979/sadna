@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DataTypes;
 
 namespace MvcApplication1
 {
@@ -52,6 +54,25 @@ namespace MvcApplication1
         {
             return Request.QueryString["forumname"];
         }
+
+        public string getSubForumName(string id)
+        {
+            UserHandler handler = null;
+            if ((handler = getHandler()) == null)
+            {
+                return null;
+            }
+            IList<SubForumInfo> list = handler.WatchAllSubForum();
+            foreach (SubForumInfo sb in list)
+            {
+                if (guidTostring(sb.id) == id)
+                    return sb.Name;
+
+            }
+            return null;
+        }
+
+
 
 
         private string generateID()

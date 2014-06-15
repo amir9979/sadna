@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ConsoleApplication1;
+using test;
 
 namespace MvcApplication1
 {
@@ -35,10 +36,16 @@ namespace MvcApplication1
 
         protected void Application_Start()
         {
+            //GlobalData.system = new ForumSystemImp();
+            //GlobalData.defaultHandler = new UserHandler(GlobalData.system);
             GlobalData.system = new ForumSystemImpl("amir", "1234", "amir@gmail.com", "amir m", "db");
             GlobalData.defaultHandler = new UserHandler(GlobalData.system);
             Thread conThread = new Thread(wrap);
             conThread.Start();
+
+
+
+
             //server.Program.Main();
             //AreaRegistration.RegisterAllAreas();
 
