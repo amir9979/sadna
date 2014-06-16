@@ -104,7 +104,7 @@ namespace WindowsFormsApplication5
                 }
             }
             else
-                MessageBox.Show("לכאורה אינך מחובר");
+                MessageBox.Show("לכאורה הפעולה אינו חוקית");
         }
 
         private void button3_Click_1(object sender, EventArgs e)
