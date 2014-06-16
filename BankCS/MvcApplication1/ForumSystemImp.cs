@@ -31,10 +31,10 @@ namespace fff
             }
         }
 
-        public override User entry(string ForumName)
+        public override UserInfo entry(string ForumName)
         {
             forum = ForumName;
-            return new Guest();
+            return new UserInfo { id = (new Guest()).Id };
         }
 
         public override bool SetPolicy(int index, string ForumName)
@@ -54,24 +54,24 @@ namespace fff
             throw new NotImplementedException();
         }
 
-        public override User login(string username, string pass, User u)
+        public override UserInfo login(string username, string pass, UserInfo u)
         {
             if ((username == ("login1" + forum) || username == ("login2" + forum)) && pass == "test")
-                return new Guest();
+                return new UserInfo { id = (new Guest()).Id };
             return null;
         }
 
-        public override User loggout(User u)
+        public override UserInfo loggout(UserInfo u)
         {
-            return new Guest();
+            return new UserInfo { id = (new Guest()).Id };
         }
 
-        public override bool AddNewSubForum(User u, string subject, MemberInfo moderator)
+        public override bool AddNewSubForum(UserInfo u, string subject, MemberInfo moderator)
         {
             throw new NotImplementedException();
         }
 
-        public override IList<SubForumInfo> WatchAllSubForumInfo(User u)
+        public override IList<SubForumInfo> WatchAllSubForumInfo(UserInfo u)
         {
             if (forum == "testforum1")
             {
@@ -89,7 +89,7 @@ namespace fff
 
         }
 
-        public override List<PostInfo> WatchAllThreads(User u, SubForumInfo s)
+        public override List<PostInfo> WatchAllThreads(UserInfo u, SubForumInfo s)
         {
             List<PostInfo> result = new List<PostInfo>();
             for (int i = 0; i < tree.childsCount(); i++)
@@ -99,7 +99,7 @@ namespace fff
             return result;
         }
 
-        public override List<PostInfo> WatchAllComments(User u, PostInfo s)
+        public override List<PostInfo> WatchAllComments(UserInfo u, PostInfo s)
         {
             NTree<PostInfo> node = null;
             List<PostInfo> result = new List<PostInfo>();
@@ -115,7 +115,7 @@ namespace fff
             return result;
         }
 
-        public override bool PublishNewThread(User u, string msg, SubForumInfo s)
+        public override bool PublishNewThread(UserInfo u, string msg, SubForumInfo s)
 
         {
             if (msg == "") return false;
@@ -123,7 +123,7 @@ namespace fff
             return true;
         }
 
-        public override bool PublishCommentPost(User u, string msg, PostInfo p)
+        public override bool PublishCommentPost(UserInfo u, string msg, PostInfo p)
         {
             NTree<PostInfo> node = null;
             List<PostInfo> result = new List<PostInfo>();
@@ -137,32 +137,32 @@ namespace fff
             return true;
         }
 
-        public override int checkHowMuchMemberType(User u)
+        public override int checkHowMuchMemberType(UserInfo u)
         {
             throw new NotImplementedException();
         }
 
-        public override bool addNewType(User u, string newType)
+        public override bool addNewType(UserInfo u, string newType)
         {
             throw new NotImplementedException();
         }
 
-        public override bool promoteMemberToAdmin(User u, MemberInfo m)
+        public override bool promoteMemberToAdmin(UserInfo u, MemberInfo m)
         {
             throw new NotImplementedException();
         }
 
-        /*public override bool EmailConfirm(long ConfNumber, User u)
+        /*public override bool EmailConfirm(long ConfNumber, UserInfo u)
         {
             throw new NotImplementedException();
         }*/
 
-        public override bool deleteType(User u, string newType)
+        public override bool deleteType(UserInfo u, string newType)
         {
             throw new NotImplementedException();
         }
 
-        public override bool deletePost(User u, PostInfo p)
+        public override bool deletePost(UserInfo u, PostInfo p)
         {
             throw new NotImplementedException();
         }
@@ -172,24 +172,24 @@ namespace fff
             throw new NotImplementedException();
         }
 
-        public override List<ForumInfo> WatchAllForums(User u)
+        public override List<ForumInfo> WatchAllForums(UserInfo u)
         {
             return new List<ForumInfo> { new ForumInfo{id = Int2Guid(1),name = "testforum1"}
                                         ,  new ForumInfo{id = Int2Guid(1),name = "testforum2"}
                                         };
         }
 
-        public override bool BuildForum(User u, string name)
+        public override bool BuildForum(UserInfo u, string name)
         {
             throw new NotImplementedException();
         }
 
-        public override void CancelForum(User u, ForumInfo f)
+        public override void CancelForum(UserInfo u, ForumInfo f)
         {
             throw new NotImplementedException();
         }
 
-        public override ForumInfo GetForumByName(User u, string forum)
+        public override ForumInfo GetForumByName(UserInfo u, string forum)
         {
             throw new NotImplementedException();
         }
@@ -235,27 +235,27 @@ namespace fff
             }
         }
 
-        public override bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s)
+        public override bool promoteMemberToModerator(UserInfo u, MemberInfo moder, SubForumInfo s)
         {
             throw new NotImplementedException();
         }
 
-        public override bool EmailConfirm(long ConfNumber, User u, string username)
+        public override bool EmailConfirm(long ConfNumber, UserInfo u, string username)
         {
             throw new NotImplementedException();
         }
 
-        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        public override List<PostInfo> WatchAllMemberPost(UserInfo u, MemberInfo m)
         {
             throw new NotImplementedException();
         }
 
-        public override int HowManyForums(User u)
+        public override int HowManyForums(UserInfo u)
         {
             throw new NotImplementedException();
         }
 
-        public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+        public override List<MemberInfo> WatchAllMembers(UserInfo _usr, ForumInfo forumInfo)
         {
             throw new NotImplementedException();
         }

@@ -34,8 +34,9 @@ namespace BridgeForum
         public IList<string> anonymousConnect(string forum)
         {
             IList<string> WatchList = new List<string>();
-            IList<SubForum> SubForumList = new List<SubForum>();
-            SubForumList = this.OurSystem.WatchAllSubForum(this.OurSystem.entry(forum));
+            IList<SubForumInfo> SubForumList = new List<SubForumInfo>();
+            UserInfo us = this.OurSystem.entry(forum);
+            SubForumList = this.OurSystem.WatchAllSubForumInfo(us);
             if (SubForumList != null)
             {
                 for (int i = 0; i < SubForumList.Count(); i++)
@@ -50,15 +51,15 @@ namespace BridgeForum
         }//uc
         public Boolean memberConnect(string forum, string user, string pass)
         {
-            User TestUser=this.OurSystem.entry(forum);
+            UserInfo TestUser=this.OurSystem.entry(forum);
             TestUser = this.OurSystem.login(user, pass, TestUser);
-            return (TestUser is Member);
+            return (OurSystem.UserFromInfo(TestUser) is Member);
         }//uc
         public Boolean memberDisConnect(string forum, string user, string pass)
         {
             Forum f = OurSystem.GetForumByName(forum);
             Member m = f.GetMemberByNameAndPass(user, pass);
-            OurSystem.loggout(m);
+            OurSystem.loggout(OurSystem.UserToInfo(m));
             return true;
 
         }//uc
@@ -100,7 +101,7 @@ namespace BridgeForum
         {
             IList<string> ReturnValue= new List<string>();         
             SubForum TempSubForum=null;
-            User u = this.OurSystem.entry(forum);
+            User u = OurSystem.UserFromInfo(this.OurSystem.entry(forum));
             IList<SubForum> SubForumList = u.SubForumList(u.forum);
             for (int i = 0; i < SubForumList.Count(); i++)
             {
@@ -177,7 +178,7 @@ namespace BridgeForum
             Member u=f.GetMemberByNameAndPass(user, pass);
             if (!res && f!=null && u!=null &&u.forum.OnlineMember.Contains(u))
             {
-               res= this.OurSystem.addNewType(u, type);
+               res= this.OurSystem.addNewType(OurSystem.UserToInfo(u), type);
             }
             return res;   
         }//uc
@@ -188,7 +189,7 @@ namespace BridgeForum
             Member u = f.GetMemberByNameAndPass(user, pass);
             if (f != null && u != null && u.forum.OnlineMember.Contains(u))
             {
-                res = this.OurSystem.deleteType(u, type);
+                res = this.OurSystem.deleteType(OurSystem.UserToInfo(u), type);
             }
             return res;
         }//uc
@@ -199,7 +200,7 @@ namespace BridgeForum
             Member u = f.GetMemberByNameAndPass(user, pass);
             if (f != null && u != null && u.forum.OnlineMember.Contains(u))
             {
-                res = this.OurSystem.checkHowMuchMemberType(u);
+                res = this.OurSystem.checkHowMuchMemberType(OurSystem.UserToInfo(u));
             }
             return res;
         }//uc//uc
@@ -308,7 +309,7 @@ namespace BridgeForum
         {
             Forum f = this.OurSystem.GetForumByName(forum);
             Member m = f.GetMemberByNameAndPass(user, pass);
-            return this.OurSystem.EmailConfirm(code,m,m.username);
+            return this.OurSystem.EmailConfirm(code,OurSystem.UserToInfo(m),m.username);
         }//uc
         public Boolean deletePost(string user, string pass, string forum, string sub, string subject, string body) {
             Forum f = this.OurSystem.GetForumByName(forum);

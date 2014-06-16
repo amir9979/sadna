@@ -11,7 +11,7 @@ namespace server
 {
     public class UserHandler
     {
-        User _usr;
+        UserInfo _usr;
         ForumSystem _sys;
         List<ActionHandler> _actions;
 
@@ -76,7 +76,7 @@ namespace server
         {
             if (!argCheck<string>(args, 0))
                 throw new Exception();
-            User u = _sys.entry(getArgument<string>(args, 0));
+            UserInfo u = _sys.entry(getArgument<string>(args, 0));
             if (u == null)
                 return false;
             _usr = u;
@@ -109,7 +109,7 @@ namespace server
         {
             if (!argCheck<string>(args, 1) || !argCheck<string>(args, 0))
                 throw new Exception();
-            User u;
+            UserInfo u;
             if ((u = _sys.login(getArgument<string>(args, 0), getArgument<string>(args, 1), _usr)) == null)
                 return false;
             _usr = u;

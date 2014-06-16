@@ -130,5 +130,17 @@ namespace ConsoleApplication1
             }
         }
 
+
+        public User GetByUserID(Guid p)
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                ICriteria cr = session.CreateCriteria(typeof(User));
+                ICriteria cr2 = cr.Add(Restrictions.Eq("Id", p));
+                User product = cr2.UniqueResult<User>();
+                return product;
+            }
+        }
+
     }
 }

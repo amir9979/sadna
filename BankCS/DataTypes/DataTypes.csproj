@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserInfo.cs" />
     <Compile Include="ComplaintInfo.cs" />
     <Compile Include="ForumInfo.cs" />
     <Compile Include="MemberInfo.cs" />
