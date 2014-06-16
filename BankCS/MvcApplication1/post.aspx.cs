@@ -37,7 +37,10 @@ namespace MvcApplication1
                 HyperLink1.NavigateUrl = "~/login.aspx?forumname=" + getForumName();
             }
 
-
+            if (msg != null && !handler.PublishCommentPost(msg, new PostInfo { id = stringToGuid(postid) }))
+            {
+                Label4.Visible = true;
+            }
 
             IList<PostInfo> posts = handler.WatchAllComments(new PostInfo { id = stringToGuid(postid) });
             foreach (PostInfo cur in posts)
@@ -54,11 +57,7 @@ namespace MvcApplication1
 
 
             }
-            if (msg != null && !handler.PublishCommentPost(msg, new PostInfo { id = stringToGuid(postid) }))
-            {
-                Label4.Visible = true;
-                return;
-            }
+
         }
 
         public string getPostMsg()

@@ -38,6 +38,11 @@ namespace MvcApplication1
             Label2.Text = "Wellcome to " + getSubForumName(subForumId);
 
 
+            if (msg != null && !handler.PublishNewThread(msg, new SubForumInfo { id = stringToGuid(subForumId) }))
+            {
+                Label4.Visible = true;
+            }
+
             IList<PostInfo> posts = handler.WatchAllThreads(new SubForumInfo { id = stringToGuid(subForumId) });
             foreach (PostInfo cur in posts)
             {
@@ -50,11 +55,7 @@ namespace MvcApplication1
                 PlaceHolder1.Controls.Add(label);
                 PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
             }
-            if (msg != null && !handler.PublishNewThread(msg, new SubForumInfo { id = stringToGuid(subForumId) }))
-            {
-                Label4.Visible = true;
-                return;
-            }
+
         }
 
 
