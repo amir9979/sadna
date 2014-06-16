@@ -97,5 +97,7 @@ namespace client.Network
         abstract public ForumInfo GetForumByName(string forum);
 
         abstract public bool UpdatePolicyParams(ForumInfo f, int min, int maxmon, List<String> leg);
+
+        abstract public PolicyInfo GetPolicyParam(ForumInfo f);
     }
 }

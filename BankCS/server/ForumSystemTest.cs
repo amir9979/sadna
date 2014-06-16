@@ -234,5 +234,10 @@ namespace server
         {
             return true ;
         }
+
+        public override PolicyInfo GetPolicyParam(User u, ForumInfo f)
+        {
+            return null;
+        }
     }
 }

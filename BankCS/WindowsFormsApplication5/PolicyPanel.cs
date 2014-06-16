@@ -20,12 +20,14 @@ namespace WindowsFormsApplication5
             CurrentState = State;
             this.myConnection = myConnectionP;
             InitializeComponent();
+            CurrentState.currentPolicyInfo = myConnection.GetPolicyParam(CurrentState.myForum);
 
-            for (int i = 0; i < this.CurrentState.allPolicy.Count; i++)
+            for (int i = 0; i < CurrentState.currentPolicyInfo.ileg.Count; i++)
             {
-                listBox2.Items.Add(this.CurrentState.allPolicy.ElementAt(i));
+                listBox2.Items.Add(this.CurrentState.currentPolicyInfo.ileg.ElementAt(i));
             }
-            this.textBox3.Text = Convert.ToString(this.CurrentState.vaildPass);
+            this.textBox3.Text = Convert.ToString(this.CurrentState.currentPolicyInfo.maxmoth);
+            this.textBox2.Text = Convert.ToString(this.CurrentState.currentPolicyInfo.minword);
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -40,24 +42,26 @@ namespace WindowsFormsApplication5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.CurrentState.allPolicy.Contains(textBox1.Text))
-            {
-                this.CurrentState.allPolicy.Add(textBox1.Text);
-                listBox2.Items.Add(textBox1.Text);
-            }
-            else
-                MessageBox.Show("המילה המוזנת קיימת כבר");
+            if (!(this.CurrentState.currentPolicyInfo.ileg.Contains(textBox1.Text))) {
+                this.CurrentState.currentPolicyInfo.ileg.Add(textBox1.Text);
+               // this.myConnection.UpdatePolicyParams(this.CurrentState.myForum, this.CurrentState.currentPolicyInfo.minword, this.CurrentState.currentPolicyInfo.maxmoth, this.CurrentState.currentPolicyInfo.ileg);
+                List<String> ans = CurrentState.currentPolicyInfo.ileg.ToList<String>();
+                myConnection.UpdatePolicyParams(CurrentState.myForum, CurrentState.currentPolicyInfo.minword, CurrentState.currentPolicyInfo.maxmoth, CurrentState.currentPolicyInfo.ileg.ToList<String>());
+                this.CurrentState.currentPolicyInfo = myConnection.GetPolicyParam(this.CurrentState.myForum);
+                for (int i = 0; i < this.CurrentState.currentPolicyInfo.ileg.Count; i++)
+                    listBox2.Items.Add(this.CurrentState.currentPolicyInfo.ileg.ElementAt(i));
+                }
+                else
+                   MessageBox.Show("המילה המוזנת קיימת כבר");          
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.CurrentState.vaildPass = Convert.ToInt16(this.textBox3.Text);
+            this.CurrentState.currentPolicyInfo.maxmoth = Convert.ToInt16(this.textBox3.Text);
+            myConnection.UpdatePolicyParams(this.CurrentState.myForum, this.CurrentState.currentPolicyInfo.minword, this.CurrentState.currentPolicyInfo.maxmoth, CurrentState.currentPolicyInfo.ileg.ToList<String>());
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           // this.myConnection.upDatePolicy(this.CurrentState.myForum, CurrentState.hituch, CurrentState.vaildPass, CurrentState.allPolicy);
-        }
 
         private void הקודם_Click(object sender, EventArgs e)
         {
@@ -66,14 +70,18 @@ namespace WindowsFormsApplication5
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.CurrentState.hituch =Convert.ToInt16(this.textBox2.Text);
+            this.CurrentState.currentPolicyInfo.maxmoth = Convert.ToInt16(this.textBox2.Text);
+            myConnection.UpdatePolicyParams(this.CurrentState.myForum, this.CurrentState.currentPolicyInfo.minword, this.CurrentState.currentPolicyInfo.maxmoth, CurrentState.currentPolicyInfo.ileg.ToList<String>());
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             if (listBox2.SelectedIndex > -1)
             {
-                this.CurrentState.allPolicy.RemoveAt(listBox2.SelectedIndex);
+                this.CurrentState.currentPolicyInfo.ileg.RemoveAt(listBox2.SelectedIndex);
+                myConnection.UpdatePolicyParams(this.CurrentState.myForum, this.CurrentState.currentPolicyInfo.minword, this.CurrentState.currentPolicyInfo.maxmoth, CurrentState.currentPolicyInfo.ileg.ToList<String>());
+                for (int i = 0; i < this.CurrentState.currentPolicyInfo.ileg.Count; i++)
+                    listBox2.Items.Add(this.CurrentState.currentPolicyInfo.ileg.ElementAt(i));
             }
             else
                 MessageBox.Show("לא נבחרה מדיניות");

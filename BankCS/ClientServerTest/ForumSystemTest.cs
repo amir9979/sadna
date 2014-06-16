@@ -239,5 +239,9 @@ namespace ClientServerTests
             return true;
         }
 
+        public override PolicyInfo GetPolicyParam(User u, ForumInfo f)
+        {
+            return null;
+        }
     }
 }

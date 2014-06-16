@@ -43,6 +43,10 @@ namespace test
             return true;
         }
 
+        public override PolicyInfo GetPolicyParam(User u, ForumInfo f)
+        {
+            return null;
+        }
         public override bool SetPolicy(int index, string ForumName)
         {
             throw new NotImplementedException();

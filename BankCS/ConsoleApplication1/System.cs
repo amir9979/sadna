@@ -592,9 +592,27 @@ namespace ConsoleApplication1
             if (activeSuper)
             {
                 Forum forum = ForumFromInfo(f);
-              return   forum.policy.UpdtaePolicyParams(minword, maxmont, legg);
+              bool b=   forum.policy.UpdtaePolicyParams(minword, maxmont, legg);
+              rep.Update<PolicyInterface>(forum.policy);
+              rep.Update<Forum>(forum);
+              return b;
             }
             return false;
+        }
+
+        public override PolicyInfo GetPolicyParam(User u,ForumInfo f)
+        {
+            Forum forum = ForumFromInfo(f);
+            PolicyInterface p = forum.policy;
+
+            return PolicyToInfo((Policy)p);
+
+        }
+
+
+        public PolicyInfo PolicyToInfo(Policy f)
+        {
+            return new PolicyInfo {id = f.Id, maxmoth = f.MaxMonth, minword = f.words, ileg =f.NotLeggalWords};
         }
 
         public override  int HowManyForums(User u){

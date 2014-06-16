@@ -88,6 +88,8 @@ namespace ConsoleApplication1
         abstract public List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo);
 
         abstract public bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg);
+
+        abstract public PolicyInfo GetPolicyParam(User u, ForumInfo f);
         
     }
 }

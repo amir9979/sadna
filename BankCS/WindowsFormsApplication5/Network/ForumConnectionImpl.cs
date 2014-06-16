@@ -243,7 +243,12 @@ namespace client.Network
             return sendFuncMsg<ForumInfo>(FuncMsgClient.FuncType.GetForumByName, lst);
         }
 
+        public override PolicyInfo GetPolicyParam(ForumInfo f)
+        {
+            List<object> lst = new List<object> { f };
+            return sendFuncMsg<PolicyInfo>(FuncMsgClient.FuncType.GetPolicyParam, lst);
 
+        }
 
 
         private void sendMsg(FuncMsgClient.FuncType type, List<object> args)
@@ -334,6 +339,8 @@ namespace client.Network
         {
             return args!=null&&args.Count>Index&&args[Index] is T;
         }
+
+
 
 
         private void reader()

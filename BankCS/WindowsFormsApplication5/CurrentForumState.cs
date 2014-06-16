@@ -9,12 +9,13 @@ namespace WindowsFormsApplication5
 {
     public class CurrentForumState
     {
-        public CurrentForumState(){}
+        public CurrentForumState() { currentPolicyInfo = new PolicyInfo(); }
         public CurrentForumState(ForumInfo myForum, SubForumInfo currentSubForumInfo, PostInfo currentPostInfo)
         {
             this.myForum = myForum;
             this.currentSubForumInfo = currentSubForumInfo;
             this.currentPostInfo = currentPostInfo;
+            
         }
 
 
@@ -24,9 +25,7 @@ namespace WindowsFormsApplication5
 		public List<ForumInfo> allForum { get; set; }
         public List<SubForumInfo> allSubForum { get; set; }
         public List<MemberInfo> allMembers { get; set; }
-        public List<String> allPolicy { get; set; }
-        public int vaildPass { get; set; }
-        public int hituch { get; set; }
+        public PolicyInfo currentPolicyInfo { get; set; }
 
 
     }

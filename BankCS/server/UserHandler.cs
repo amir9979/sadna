@@ -51,7 +51,8 @@ namespace server
             _actions[(int)FuncMsgClient.FuncType.CancelForum]               = CancelForum;
             _actions[(int)FuncMsgClient.FuncType.GetForumByName]            = GetForumByName;
             _actions[(int)FuncMsgClient.FuncType.WatchAllMembers]           = WatchAllMembers;
-            _actions[(int)FuncMsgClient.FuncType.UpdatePolicyParams]        = UpdatePolicyParams;     
+            _actions[(int)FuncMsgClient.FuncType.UpdatePolicyParams]        = UpdatePolicyParams;
+            _actions[(int)FuncMsgClient.FuncType.GetPolicyParam]            =  GetPolicyParam;
         }
 
         public FuncMsgServer processMsg(FuncMsgClient msg)
@@ -97,6 +98,14 @@ namespace server
                 throw new Exception();
 
             return _sys.UpdatePolicyParams(_usr, getArgument<ForumInfo>(args, 0), getArgument<int>(args, 1), getArgument<int>(args, 2), getArgument<List<String>>(args, 3));
+        }
+
+        private object GetPolicyParam(List<object> args)
+        {
+            if (!argCheck<ForumInfo>(args, 0))
+                throw new Exception();
+
+            return _sys.GetPolicyParam(_usr, getArgument<ForumInfo>(args, 0));
         }
 
 

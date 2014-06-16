@@ -22,6 +22,8 @@ namespace ConsoleApplication1
             return true;
         }
 
+      public virtual   List<String> NotLeggalWords { get; set; }
+
         public virtual bool IsLegalPass(string password)
         {
             return true;
