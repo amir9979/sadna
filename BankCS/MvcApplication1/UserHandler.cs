@@ -11,7 +11,7 @@ namespace MvcApplication1
 {
     public class UserHandler :ForumInterface
     {
-        public User _usr { get; private set; }
+        public UserInfo _usr { get; private set; }
         ForumSystem _sys;
         public string _id{ get; private set; }
         public string _forum{ get; private set; }
@@ -58,7 +58,7 @@ namespace MvcApplication1
         public override bool login(string username, string pass)
         {
 
-            User temp = _sys.login(username, pass,_usr);
+            UserInfo temp = _sys.login(username, pass,_usr);
             if(temp==null)
                 return false;
             _usr= temp;

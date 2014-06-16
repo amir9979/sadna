@@ -83,7 +83,7 @@ namespace ConsoleApplication1
         }
 
 
-        public override bool BuildForum(User u, string name)
+        public override bool BuildForum(UserInfo u, string name)
         {
             if(activeSuper){
                 return BuildForum(name, SuperManager.username, SuperManager.password);
@@ -116,7 +116,7 @@ namespace ConsoleApplication1
             return new Guid(bytes);
         }
 
-        public override User entry(string ForumName)
+        public override UserInfo entry(string ForumName)
         {
 
             Forum f = rep.GetByForumName(ForumName);
@@ -124,7 +124,7 @@ namespace ConsoleApplication1
             {
                 Guest g= new Guest(f);
                 rep.Update<Forum>(f);
-                return g;
+                return UserToInfo(g);
             } 
             return null;
 
@@ -139,7 +139,7 @@ namespace ConsoleApplication1
                 // send txt to logger wrote by f.Register(name,pass,mail,fullname)
                 rep.Update<Forum>(f);
                 if (ans!=-1)
-                     sendVerificationEmail(mail, ans);
+                   //  sendVerificationEmail(mail, ans);
                 return ans;
             }
             return -1;
@@ -147,8 +147,9 @@ namespace ConsoleApplication1
             
         }
 
-        public override User login(String username, String pass, User u)
+        public override UserInfo login(String username, String pass, UserInfo u1)
         {
+            User u = UserFromInfo(u1);
 
             if (u is Guest)
             {
@@ -158,7 +159,7 @@ namespace ConsoleApplication1
                    // rep.Add<User>(tmp);
                     rep.Update<Forum>(u.forum);
                     File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + tmp.Id.ToString() + "loggin at " + DateTime.Now.ToString() + "\n");
-                    return tmp;
+                    return UserToInfo(tmp);
                 }
                 else
                 {
@@ -175,8 +176,9 @@ namespace ConsoleApplication1
 
         }
 
-        public override User loggout(User u)
+        public override UserInfo loggout(UserInfo u1)
         {
+            User u = UserFromInfo(u1);
             if ((u is Member) && ((Member)u).loggOut())
             {
                 u.forum.OnlineMember.Remove(((Member)u));
@@ -184,10 +186,10 @@ namespace ConsoleApplication1
                 rep.Update<Forum>(u.forum);
               //  rep.Remove<User>(u);
                 File.AppendAllText(@"Logger"+u.Id.ToString()+".txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
-                return new Guest(u.forum);
+                return UserToInfo(new Guest(u.forum));
             }
             System.Console.Write("cannot loggout to forum :" + u.forum.getname() + "cause its not  logged in");
-            return u;
+            return UserToInfo(u);
         }
 
         public  bool AddNewSubForum(User u, String subject, Member moderator)
@@ -378,8 +380,9 @@ namespace ConsoleApplication1
             return null;
         }
 
-        public override int checkHowMuchMemberType(User u)
+        public override int checkHowMuchMemberType(UserInfo u1)
         {
+            User u = UserFromInfo(u1);
             if (u is Member && this.SuperManager.password.Equals(((Member)u).password) && this.SuperManager.username.Equals(((Member)u).username))
             {
                 return u.forum.AllTypesKind.Count();
@@ -391,8 +394,9 @@ namespace ConsoleApplication1
             }
         }
 
-        public override bool addNewType(User u, string newType)
+        public override bool addNewType(UserInfo u1, string newType)
         {
+            User u = UserFromInfo(u1);
             bool succ = false;
             if (u is Member && this.SuperManager.password.Equals(((Member)u).password) && this.SuperManager.username.Equals(((Member)u).username) && (!u.forum.AllTypesKind.Contains(newType)))
             {
@@ -448,8 +452,9 @@ namespace ConsoleApplication1
         }
 
 
-        public override bool deleteType(User u, string newType)
+        public override bool deleteType(UserInfo u1, string newType)
         {
+            User u = UserFromInfo(u1);
             bool succ = false;
             if (u is Member && this.SuperManager.password.Equals(((Member)u).password.pass) && this.SuperManager.username.Equals(((Member)u).username))
             {
@@ -485,8 +490,9 @@ namespace ConsoleApplication1
          
         }
 
-        public override bool EmailConfirm(Int64 ConfNumber, User u, string username)
+        public override bool EmailConfirm(Int64 ConfNumber, UserInfo u1, string username)
         {
+            User u = UserFromInfo(u1);
             bool OK = false;
             Int64 acc = 0;
             for (int t = 0; t < username.Length; t++)
@@ -579,16 +585,16 @@ namespace ConsoleApplication1
   //      }
 
 
-        public override void CancelForum(User u,  ForumInfo f)
+        public override void CancelForum(UserInfo u,  ForumInfo f)
         {
             if (activeSuper)
             {
                 CancelForum(SuperManager, ForumFromInfo(f));
             }
         }
-
-        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        public override bool UpdatePolicyParams(UserInfo u1, ForumInfo f, int minword, int maxmont, List<String> legg)
         {
+            User u = UserFromInfo(u1);
             if (activeSuper)
             {
                 Forum forum = ForumFromInfo(f);
@@ -600,7 +606,8 @@ namespace ConsoleApplication1
             return false;
         }
 
-        public override PolicyInfo GetPolicyParam(User u,ForumInfo f)
+
+        public override PolicyInfo GetPolicyParam(UserInfo u,ForumInfo f)
         {
             Forum forum = ForumFromInfo(f);
             PolicyInterface p = forum.policy;
@@ -614,8 +621,7 @@ namespace ConsoleApplication1
         {
             return new PolicyInfo {id = f.Id, maxmoth = f.MaxMonth, minword = f.words, ileg =f.NotLeggalWords};
         }
-
-        public override  int HowManyForums(User u){
+        public override  int HowManyForums(UserInfo u){
             if (activeSuper){
                 IList<Forum> all = rep.allForums();
                 List<ForumInfo> ans = new List<ForumInfo>();
@@ -642,14 +648,14 @@ namespace ConsoleApplication1
 
 
 
-         public override bool AddNewSubForum(User u, string subject,  MemberInfo moderator)
+         public override bool AddNewSubForum(UserInfo u, string subject,  MemberInfo moderator)
         {
-            return AddNewSubForum(u, Convert.ToString(subject), GetMemberByInfo(moderator));
+            return AddNewSubForum(UserFromInfo(u), Convert.ToString(subject), GetMemberByInfo(moderator));
         }
 
-         public override IList< SubForumInfo> WatchAllSubForumInfo(User u)
+         public override IList< SubForumInfo> WatchAllSubForumInfo(UserInfo u)
         {
-            IList<SubForum> all = WatchAllSubForum(u);
+            IList<SubForum> all = WatchAllSubForum(UserFromInfo(u));
             IList< SubForumInfo> ans = new List< SubForumInfo>();
             foreach (SubForum a in all)
             {
@@ -663,7 +669,7 @@ namespace ConsoleApplication1
             return new SubForumInfo { Name = f.Name, id = f.Id };
         }
 
-         public override List< PostInfo> WatchAllThreads(User u,  SubForumInfo s)
+         public override List< PostInfo> WatchAllThreads(UserInfo u,  SubForumInfo s)
         {
             IList<Post> all = SubForumFromInfo(s).MyThreads;
             List< PostInfo> ans = new List< PostInfo>();
@@ -677,7 +683,7 @@ namespace ConsoleApplication1
 
 
 
-        public override List< PostInfo> WatchAllComments(User u,  PostInfo s)
+        public override List< PostInfo> WatchAllComments(UserInfo u,  PostInfo s)
         {
             Post p = PostFromInfo(s);
             IList<Post> all = p.comments;
@@ -689,7 +695,7 @@ namespace ConsoleApplication1
             return ans;
         }
 
-        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        public override List<PostInfo> WatchAllMemberPost(UserInfo u, MemberInfo m)
         {
             Member mem = GetMemberByInfo(m);
             IList<Post> all = mem.MemberPosts;
@@ -702,12 +708,12 @@ namespace ConsoleApplication1
 
         }
 
-        public override bool PublishNewThread(User u, string msg,  SubForumInfo s)
+        public override bool PublishNewThread(UserInfo u, string msg,  SubForumInfo s)
         {
-            return PublishNewThread(u, msg, SubForumFromInfo(s));
+            return PublishNewThread(UserFromInfo(u), msg, SubForumFromInfo(s));
         }
 
-                public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+                public override List<MemberInfo> WatchAllMembers(UserInfo _usr, ForumInfo forumInfo)
         {
             Forum f = ForumFromInfo(forumInfo);
             IList<Member> all = f.Members;
@@ -720,24 +726,24 @@ namespace ConsoleApplication1
         }
 
         
-        public override bool PublishCommentPost(User u, string msg,  PostInfo p)
+        public override bool PublishCommentPost(UserInfo u, string msg,  PostInfo p)
         {
-            return PublishCommentPost(u,msg, PostFromInfo(p));
+            return PublishCommentPost(UserFromInfo(u), msg, PostFromInfo(p));
         }
 
-        public override bool promoteMemberToAdmin(User u,  MemberInfo m)
+        public override bool promoteMemberToAdmin(UserInfo u,  MemberInfo m)
         {
-            return promoteMemberToAdmin( GetMemberByInfo(m),u);
+            return promoteMemberToAdmin(GetMemberByInfo(m), UserFromInfo(u));
         }
 
-        public override bool promoteMemberToModerator(User u,MemberInfo moder, SubForumInfo s)
+        public override bool promoteMemberToModerator(UserInfo u,MemberInfo moder, SubForumInfo s)
         {
-            return promoteMemberToModerator(u, GetMemberByInfo(moder), SubForumFromInfo(s));
+            return promoteMemberToModerator(UserFromInfo(u), GetMemberByInfo(moder), SubForumFromInfo(s));
         }
 
-        public override bool deletePost(User u,  PostInfo p)
+        public override bool deletePost(UserInfo u,  PostInfo p)
         {
-            return deletePost(u, PostFromInfo(p));
+            return deletePost(UserFromInfo(u), PostFromInfo(p));
         }
 
         public bool deleteSubForum(User u, Forum f, SubForum s)
@@ -756,7 +762,7 @@ namespace ConsoleApplication1
             return false;
         }
 
-        public override List< ForumInfo> WatchAllForums(User u)
+        public override List< ForumInfo> WatchAllForums(UserInfo u)
         {
             IList<Forum> all = rep.allForums();
             List< ForumInfo> ans = new List< ForumInfo>();
@@ -767,7 +773,7 @@ namespace ConsoleApplication1
         }
 
 
-        public override  ForumInfo GetForumByName(User u, string forum)
+        public override  ForumInfo GetForumByName(UserInfo u, string forum)
         {
             return ForumToInfo(GetForumByName(forum));  
         }
@@ -810,9 +816,20 @@ namespace ConsoleApplication1
 
 
 
+        public User UserFromInfo(UserInfo f)
+        {
+            if(f.isGuest)
+                return new Guest(rep.GetByForumName(f.forumName));
+            return rep.GetByUserID(f.id);
+        }
 
-
-
+        public UserInfo UserToInfo(User f)
+        {
+            bool Gue=false;
+            if (f is Guest)
+                Gue = true;
+            return new UserInfo {  id = f.Id , isGuest=Gue ,forumName=f.forum.name};
+        }
 
         public Forum ForumFromInfo( ForumInfo f)
         {

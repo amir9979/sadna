@@ -12,7 +12,7 @@ namespace ConsoleApplication1
     {
 
         //usecases
-        abstract public User entry(string ForumName); //changed from void to bool  must call this function first to do other usecases!!!!!!
+        abstract public UserInfo entry(string ForumName); //changed from void to bool  must call this function first to do other usecases!!!!!!
 
 
         abstract public bool SetPolicy(int index, string ForumName);
@@ -23,49 +23,49 @@ namespace ConsoleApplication1
         abstract public Int64 Registration(string ForumName, string name, string pass, string mail, string fullname);  // need to fix with no forumname
 
 
-        abstract public User login(string username, string pass, User u);
+        abstract public UserInfo login(string username, string pass, UserInfo u);
 
 
-        abstract public User loggout(User u);
+        abstract public UserInfo loggout(UserInfo u);
 
 
-        abstract public bool AddNewSubForum(User u, string subject, MemberInfo moderator);
+        abstract public bool AddNewSubForum(UserInfo u, string subject, MemberInfo moderator);
 
 
-        abstract public IList<SubForumInfo> WatchAllSubForumInfo(User u);
+        abstract public IList<SubForumInfo> WatchAllSubForumInfo(UserInfo u);
 
-        abstract public List<PostInfo> WatchAllThreads(User u, SubForumInfo s); //use case need to implements
+        abstract public List<PostInfo> WatchAllThreads(UserInfo u, SubForumInfo s); //use case need to implements
 
-        abstract public List<PostInfo> WatchAllComments(User u, PostInfo s); //use case need to implements
-
-
-        abstract public bool PublishNewThread(User u, string msg, SubForumInfo s);
-
-        abstract public bool PublishCommentPost(User u, string msg, PostInfo p);
+        abstract public List<PostInfo> WatchAllComments(UserInfo u, PostInfo s); //use case need to implements
 
 
+        abstract public bool PublishNewThread(UserInfo u, string msg, SubForumInfo s);
 
-
-        abstract public int checkHowMuchMemberType(User u);
-
-        abstract public bool addNewType(User u, string newType);
-
-        abstract public bool promoteMemberToAdmin(User u, MemberInfo m);
-
-        abstract public bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s);
-
-
-        abstract public bool EmailConfirm(Int64 ConfNumber, User u, string username);
+        abstract public bool PublishCommentPost(UserInfo u, string msg, PostInfo p);
 
 
 
-        abstract public bool deleteType(User u, string newType);
+
+        abstract public int checkHowMuchMemberType(UserInfo u);
+
+        abstract public bool addNewType(UserInfo u, string newType);
+
+        abstract public bool promoteMemberToAdmin(UserInfo u, MemberInfo m);
+
+        abstract public bool promoteMemberToModerator(UserInfo u, MemberInfo moder, SubForumInfo s);
+
+
+        abstract public bool EmailConfirm(Int64 ConfNumber, UserInfo u, string username);
+
+
+
+        abstract public bool deleteType(UserInfo u, string newType);
 
         //abstract public void ComplaintAboutModerator(Complaint c, MemberInfo moderator); //need to ask
 
 
 
-        abstract public bool deletePost(User u, PostInfo p);
+        abstract public bool deletePost(UserInfo u, PostInfo p);
 
 
 
@@ -73,23 +73,27 @@ namespace ConsoleApplication1
 
         abstract public bool SPlogin(string superusername, string superpass);  //use case need to implements must call this function first  for make super mannager operations
 
-        abstract public List<ForumInfo> WatchAllForums(User u);
+        abstract public List<ForumInfo> WatchAllForums(UserInfo u);
 
-        abstract public bool BuildForum(User u, string name);  //made changes
+        abstract public bool BuildForum(UserInfo u, string name);  //made changes
 
-        abstract public void CancelForum(User u, ForumInfo f);
+        abstract public void CancelForum(UserInfo u, ForumInfo f);
 
-        abstract public ForumInfo GetForumByName(User u, string forum);
+        abstract public ForumInfo GetForumByName(UserInfo u, string forum);
 
-        abstract public List<PostInfo> WatchAllMemberPost(User u, MemberInfo m);
+        abstract public List<PostInfo> WatchAllMemberPost(UserInfo u, MemberInfo m);
 
-        abstract public int HowManyForums(User u);
+        abstract public int HowManyForums(UserInfo u);
 
-        abstract public List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo);
+        abstract public List<MemberInfo> WatchAllMembers(UserInfo _usr, ForumInfo forumInfo);
 
-        abstract public bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg);
 
-        abstract public PolicyInfo GetPolicyParam(User u, ForumInfo f);
+       
+
+        abstract public PolicyInfo GetPolicyParam(UserInfo u, ForumInfo f);
+
+        abstract public bool UpdatePolicyParams(UserInfo u, ForumInfo f, int minword, int maxmont, List<String> legg);
+
         
     }
 }

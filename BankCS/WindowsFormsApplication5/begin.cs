@@ -30,6 +30,17 @@ namespace WindowsFormsApplication5
                 MessageBox.Show(e.Message);
             }
 
+            //testing
+/**
+            myConnection.SPlogin("amir", "1234");
+            myConnection.BuildForum("united");
+            myConnection.Registration("united", "shim", "shim", "shim@fdf.cc", "shim");
+       //     myConnection.EmailConfirm(433, "shim");
+            myConnection.entry("united");
+            myConnection.login("amir", "1234");
+            myConnection.AddNewSubForum("Giggs!!", new MemberInfo { id = Int2Guid(-1) });
+            myConnection.loggout();
+   **/         
         }
 
         private void button1_Click(object sender, EventArgs e)

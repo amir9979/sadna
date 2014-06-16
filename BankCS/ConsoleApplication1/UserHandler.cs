@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,13 @@ namespace ConsoleApplication1
 
     {
        private ForumSystemImpl system;
-       private User user;
+       private UserInfo user;
        
 
        public static UserHandler CreatUserHandler(ForumSystemImpl s, String forumname)  // represent the entry use case
        {
            
-           User g=null;
+           UserInfo g=null;
             g = s.entry(forumname);
             if (g != null)
             {
@@ -26,7 +27,7 @@ namespace ConsoleApplication1
           
        }
 
-       private UserHandler(ForumSystemImpl s, User u)
+       private UserHandler(ForumSystemImpl s, UserInfo u)
        {
            this.system=s;
            this.user=u;

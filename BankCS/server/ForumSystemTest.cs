@@ -10,10 +10,10 @@ namespace server
 {
     public class ForumSystemTest : ForumSystem
     {
-        public override User entry(string ForumName)
+        public override UserInfo entry(string ForumName)
         {
             if (ForumName == "test1")
-                return new Guest();
+                return new UserInfo{id= (new Guest()).Id};
             return null;
         }
 
@@ -31,75 +31,75 @@ namespace server
             return 3;
         }
 
-        public override User login(string username, string pass, User u)
+        public override UserInfo login(string username, string pass, UserInfo u)
         {
             if (username == "test1" && pass == "test1")
-                return new Guest();
+                return new UserInfo { id = (new Guest()).Id };
             return null;
         }
 
-        public override User loggout(User u)
+        public override UserInfo loggout(UserInfo u)
         {
             return u;
         }
 
-        public override bool AddNewSubForum(User u, string subject, MemberInfo moderator)
+        public override bool AddNewSubForum(UserInfo u, string subject, MemberInfo moderator)
         {
             return subject == "test1" && testMember(moderator, 1);
         }
 
-        public override IList<SubForumInfo> WatchAllSubForumInfo(User u)
+        public override IList<SubForumInfo> WatchAllSubForumInfo(UserInfo u)
         {
 
             return new List<SubForumInfo> { makeTestSubforum(1), makeTestSubforum(2), makeTestSubforum(3) };
         }
 
-        public override List<PostInfo> WatchAllThreads(User u, SubForumInfo s)
+        public override List<PostInfo> WatchAllThreads(UserInfo u, SubForumInfo s)
         {
             return new List<PostInfo> { makeTestPost(1), makeTestPost(2), makeTestPost(3) };
         }
 
-        public override List<PostInfo> WatchAllComments(User u, PostInfo s)
+        public override List<PostInfo> WatchAllComments(UserInfo u, PostInfo s)
         {
             return new List<PostInfo> { makeTestPost(1), makeTestPost(2), makeTestPost(3) };
         }
 
-        public override bool PublishNewThread(User u, string msg, SubForumInfo s)
+        public override bool PublishNewThread(UserInfo u, string msg, SubForumInfo s)
         {
             return msg == "test1" && testSubForum(s, 1);
         }
 
-        public override bool PublishCommentPost(User u, string msg, PostInfo p)
+        public override bool PublishCommentPost(UserInfo u, string msg, PostInfo p)
         {
             return msg == "test1" && testPost(p, 1);
         }
 
-        public override int checkHowMuchMemberType(User u)
+        public override int checkHowMuchMemberType(UserInfo u)
         {
             return 1;
         }
 
-        public override bool addNewType(User u, string newType)
+        public override bool addNewType(UserInfo u, string newType)
         {
             return newType == "test1";
         }
 
-        public override bool promoteMemberToAdmin(User u, MemberInfo m)
+        public override bool promoteMemberToAdmin(UserInfo u, MemberInfo m)
         {
             return testMember(m, 1);
         }
 
-        public override bool EmailConfirm(Int64 ConfNumber, User u, string username)
+        public override bool EmailConfirm(Int64 ConfNumber, UserInfo u, string username)
         {
             return ConfNumber == 1;
         }
 
-        public override bool deleteType(User u, string newType)
+        public override bool deleteType(UserInfo u, string newType)
         {
             return newType == "test1";
         }
 
-        public override bool deletePost(User u, PostInfo p)
+        public override bool deletePost(UserInfo u, PostInfo p)
         {
             return testPost(p, 1);
         }
@@ -109,22 +109,22 @@ namespace server
             return superusername == "test1" && superpass == "test1";
         }
 
-        public override List<ForumInfo> WatchAllForums(User u)
+        public override List<ForumInfo> WatchAllForums(UserInfo u)
         {
             return new List<ForumInfo> { makeTestForum(1), makeTestForum(2), makeTestForum(3) };
         }
 
-        public override bool BuildForum(User u, string name)
+        public override bool BuildForum(UserInfo u, string name)
         {
             return name == "test1";
         }
 
-        public override void CancelForum(User u, ForumInfo f)
+        public override void CancelForum(UserInfo u, ForumInfo f)
         {
             return;
         }
 
-        public override ForumInfo GetForumByName(User u, string forum)
+        public override ForumInfo GetForumByName(UserInfo u, string forum)
         {
             ForumInfo f = new ForumInfo();
             f.id = Int2Guid(1);
@@ -207,11 +207,11 @@ namespace server
         }
 
 
-        public override bool promoteMemberToModerator(User u, MemberInfo moder, SubForumInfo s)
+        public override bool promoteMemberToModerator(UserInfo u, MemberInfo moder, SubForumInfo s)
         {
             return false;
         }
-        public override List<PostInfo> WatchAllMemberPost(User u, MemberInfo m)
+        public override List<PostInfo> WatchAllMemberPost(UserInfo u, MemberInfo m)
         {
 
             List<PostInfo> ans = new List<PostInfo>();
@@ -219,23 +219,23 @@ namespace server
 
         }
 
-        public override int HowManyForums(User u)
+        public override int HowManyForums(UserInfo u)
         {
 
             return 0;
         }
 
-        public override List<MemberInfo> WatchAllMembers(User _usr, ForumInfo forumInfo)
+        public override List<MemberInfo> WatchAllMembers(UserInfo _usr, ForumInfo forumInfo)
         {
             return null;
         }
 
-        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        public override bool UpdatePolicyParams(UserInfo u, ForumInfo f, int minword, int maxmont, List<String> legg)
         {
             return true ;
         }
 
-        public override PolicyInfo GetPolicyParam(User u, ForumInfo f)
+        public override PolicyInfo GetPolicyParam(UserInfo u, ForumInfo f)
         {
             return null;
         }
