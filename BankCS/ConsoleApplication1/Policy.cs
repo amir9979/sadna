@@ -23,7 +23,7 @@ namespace ConsoleApplication1
         public Policy(int max)
         {
             this.MaxModerators = 500;
-            this.posts = 2;
+            this.posts = 120;
             this.words = 1;
             this._MaxMonth = 12;
             this.NotLeggalWords = new List<String>();
