@@ -592,8 +592,9 @@ namespace ConsoleApplication1
                 CancelForum(SuperManager, ForumFromInfo(f));
             }
         }
-        public override bool UpdatePolicyParams(UserInfo u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        public override bool UpdatePolicyParams(UserInfo u1, ForumInfo f, int minword, int maxmont, List<String> legg)
         {
+            User u = UserFromInfo(u1);
             if (activeSuper)
             {
                 Forum forum = ForumFromInfo(f);

@@ -233,7 +233,7 @@ namespace ClientServerTests
             return null;
         }
 
-        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        public override bool UpdatePolicyParams(UserInfo u, ForumInfo f, int minword, int maxmont, List<String> legg)
         {
            
             return true;
