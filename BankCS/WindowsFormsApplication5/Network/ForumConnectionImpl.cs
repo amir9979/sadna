@@ -143,6 +143,12 @@ namespace client.Network
             return sendFuncMsg<List<PostInfo>>(FuncMsgClient.FuncType.WatchAllComments, lst);
         }
 
+        public override bool UpdatePolicyParams(ForumInfo f, int min, int maxmon, List<String> leg)
+        {
+            List<object> lst = new List<object> { f, min, maxmon, leg };
+            return sendFuncMsg<bool>(FuncMsgClient.FuncType.UpdatePolicyParams, lst);
+        }
+
         public override bool PublishNewThread(string msg, SubForumInfo s)
         {
             List<object> lst = new List<object> { msg,s };

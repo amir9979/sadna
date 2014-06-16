@@ -37,6 +37,12 @@ namespace test
             return new Guest();
         }
 
+        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        {
+            
+            return true;
+        }
+
         public override bool SetPolicy(int index, string ForumName)
         {
             throw new NotImplementedException();

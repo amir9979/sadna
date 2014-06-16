@@ -229,5 +229,10 @@ namespace server
         {
             return null;
         }
+
+        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        {
+            return true ;
+        }
     }
 }
