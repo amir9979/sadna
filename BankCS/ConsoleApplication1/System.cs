@@ -619,7 +619,11 @@ namespace ConsoleApplication1
 
         public PolicyInfo PolicyToInfo(Policy f)
         {
-            return new PolicyInfo {id = f.Id, maxmoth = f.MaxMonth, minword = f.words, ileg =f.NotLeggalWords};
+            List<string> lst = new List<string>();
+            foreach(String s in f.NotLeggalWords){
+                lst.Add(s.ToString());
+            }
+            return new PolicyInfo {id = f.Id, maxmoth = f.MaxMonth, minword = f.words, ileg =lst};
         }
         public override  int HowManyForums(UserInfo u){
             if (activeSuper){

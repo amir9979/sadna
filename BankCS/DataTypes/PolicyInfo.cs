@@ -12,6 +12,6 @@ namespace DataTypes
         public Guid id;
         public int  maxmoth;
         public int  minword;
-        public IList<String> ileg;
+        public List<string> ileg;
     }
 }

@@ -23,6 +23,14 @@
     <property name="MaxModerators" />
       <property name="words" />
       <property name="posts" />
+    
+      	   <list name="NotLeggalWords" table="NotLeggalWords" lazy="false">
+       <key column="Policy_Id" />
+	   			<index column="word"/>
+       <element column="wor" type="string" />
+   </list>
+
+
 	</joined-subclass> 
 	
 	

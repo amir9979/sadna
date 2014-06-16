@@ -15,7 +15,7 @@ namespace ConsoleApplication1
         public virtual int words { get; set; }
         public virtual int posts { get; set; }
 
-        public virtual List<String> NotLeggalWords { get; set; }
+        public virtual IList<String> NotLeggalWords { get; set; }
 		public Policy() : this(0)
         { 
            

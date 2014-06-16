@@ -36,7 +36,7 @@ namespace server
                     bformatter.Serialize(_con.GetStream(), response);
                 }
             }
-            catch
+            catch (Exception e)
             {
                 return;
             }
