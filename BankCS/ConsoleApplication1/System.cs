@@ -594,7 +594,7 @@ namespace ConsoleApplication1
         }
         public override bool UpdatePolicyParams(UserInfo u1, ForumInfo f, int minword, int maxmont, List<String> legg)
         {
-            User u = UserFromInfo(u1);
+           // User u = UserFromInfo(u1);
             if (activeSuper)
             {
                 Forum forum = ForumFromInfo(f);
