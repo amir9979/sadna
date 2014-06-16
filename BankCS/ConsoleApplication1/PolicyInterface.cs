@@ -26,5 +26,8 @@ namespace ConsoleApplication1
 
          int MaxMonth { get; set; }
 
+         bool isLegalMsg(String msg);
+         bool UpdtaePolicyParams(int minwords, int maxmonth, List<String> NotLegalWords);
+
     }
 }

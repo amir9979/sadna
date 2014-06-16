@@ -14,14 +14,19 @@ namespace ConsoleApplication1
         public virtual int MaxModerators{ get; set; }
         public virtual int words { get; set; }
         public virtual int posts { get; set; }
+
+        public virtual List<String> NotLeggalWords { get; set; }
 		public Policy() : this(0)
-        {}
+        { 
+           
+        }
         public Policy(int max)
         {
             this.MaxModerators = 500;
             this.posts = 2;
             this.words = 1;
             this._MaxMonth = 12;
+            this.NotLeggalWords = new List<String>();
         }
 
         public Policy(int maxmoder, int maxmonth)
@@ -122,5 +127,26 @@ namespace ConsoleApplication1
         {
             return MaxModerators;
         }
+
+     public virtual bool  isLegalMsg(String msg){
+         string[] words = msg.Split(' ');
+         for (int i = 0; i < words.Length; i++)
+         {
+             for (int j=0; j<this.NotLeggalWords.Count; j++){
+                 if (words[i].Equals(this.NotLeggalWords.ElementAt(j)))
+                     return false;
+             }
+             
+         }
+         return true;
+
+     }
+
+       public virtual bool UpdtaePolicyParams(int minwords, int maxmonth, List<String> NotLegalWords){
+           this.MaxMonth = maxmonth;
+           this.words = minwords;
+           this.NotLeggalWords = new List<String>(NotLegalWords);
+           return true;
+       }
     }
 }

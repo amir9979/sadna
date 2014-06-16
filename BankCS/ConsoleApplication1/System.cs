@@ -220,8 +220,9 @@ namespace ConsoleApplication1
             {
                 SubForum sub = ContainId_get(s.Id, u.forum);
                 bool check=sub.MyThreads.Count>u.forum.policy.minPostsToCheck() && intersection(sub.UsedWords,msg)>u.forum.policy.minWords();
+                bool leggal = u.forum.policy.isLegalMsg(msg);
                 check = check || sub.MyThreads.Count <= u.forum.policy.minPostsToCheck();
-                if ( check){
+                if ( check && leggal){
                     sub.AddWords(msg);
 
                 Post p = new Post(msg, ((Member)u));
@@ -233,8 +234,19 @@ namespace ConsoleApplication1
                 File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id + "publish new thread id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
                 return true;
             }
-            else
-                    return false;
+
+                else {
+                    if (!leggal)
+                    {
+                        try
+                        {
+                            sendMailToAdmin(this.SuperManager.mail, "the user " + u.Id + " try to publish NOT LEGGAL THREAD :" + msg);
+                        }
+                        catch { }
+                    }
+                   return false;
+                }
+                    
 
         }
             else
@@ -284,18 +296,37 @@ namespace ConsoleApplication1
 
         }
 
+       
+
         public bool PublishCommentPost(User u, String msg, Post p)
         {
             Post parent = IsContain_Post(p.Id, u.forum);
             if (u is Member && !msg.Equals("") && parent!=null && u.forum.policy.CanDoConfirmedOperations(((Member)u)))
             {
 
-                Post comm = new Post(msg, ((Member)u));
-                ((Member)u).AddNewPost(comm, parent);
-                rep.Update<User>(u);
-                rep.Update<Post>(parent);
-                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
-                return true;
+             
+                bool leggal = u.forum.policy.isLegalMsg(msg);
+                if (leggal)
+                {
+
+
+                    Post comm = new Post(msg, ((Member)u));
+                    ((Member)u).AddNewPost(comm, parent);
+                    rep.Update<User>(u);
+                    rep.Update<Post>(parent);
+                    File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
+                    return true;
+                }
+
+                else
+                {
+                    try
+                    {
+                        sendMailToAdmin(this.SuperManager.mail, "the user " + u.Id + " try to publish NOT LEGGAL THREAD :" + msg);
+                    }
+                    catch { }
+                    return false;
+                }
             }
             else
             {
@@ -556,6 +587,16 @@ namespace ConsoleApplication1
             }
         }
 
+        public bool UpdatePolicy(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        {
+            if (activeSuper)
+            {
+                Forum forum = ForumFromInfo(f);
+              return   forum.policy.UpdtaePolicyParams(minword, maxmont, legg);
+            }
+            return false;
+        }
+
         public override  int HowManyForums(User u){
             if (activeSuper){
                 IList<Forum> all = rep.allForums();
@@ -801,6 +842,22 @@ namespace ConsoleApplication1
                         mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
                         client.Send (mm);
                 }
+
+        public void sendMailToAdmin(string email, string msg)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential("workshopforumsystem@gmail.com", "azzam1234");
+            MailMessage mm = new MailMessage("workshopforumsystem@gmail.com", email, "NotLeggalPost", msg.ToString());
+            mm.BodyEncoding = UTF8Encoding.UTF8;
+            mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            client.Send(mm);
+        }
 
 
     }

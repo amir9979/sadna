@@ -47,5 +47,10 @@ namespace WindowsFormsApplication5
         {
 
         }
+
+        private void ManagerLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

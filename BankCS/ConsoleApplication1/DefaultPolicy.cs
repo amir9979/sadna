@@ -71,5 +71,16 @@ namespace ConsoleApplication1
         {
             return -1;
         }
+
+        public virtual bool isLegalMsg(String msg)
+        {
+           return true;
+       }
+
+        public virtual bool UpdtaePolicyParams(int minwords, int maxmonth, List<String> NotLegalWords)
+        {
+            
+            return true;
+        }
     }
 }
