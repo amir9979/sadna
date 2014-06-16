@@ -20,26 +20,40 @@ namespace MvcApplication1
 
             if (handler == null || subForumId == null)
             {
-                Label1.Text = "error";
+                Response.Redirect("~/Default.aspx");
                 return;
             }
-            if (msg != null && !handler.PublishNewThread(msg, new SubForumInfo { id = stringToGuid(subForumId) }))
+            if (handler.username != null)
             {
-                Label1.Text = "cannot post msg";
-                return;
+                Label1.Text = "you are login as " + handler.username + "   ";
+                HyperLink1.Text = "logout";
+                HyperLink1.NavigateUrl = "~/logout.aspx?forumname=" + getForumName();
             }
+            else
+            {
+                Label1.Text = "hello guest please :" + handler.username + "   ";
+                HyperLink1.Text = "login";
+                HyperLink1.NavigateUrl = "~/login.aspx?forumname=" + getForumName();
+            }
+            Label2.Text = "Wellcome to " + getSubForumName(subForumId);
+
 
             IList<PostInfo> posts = handler.WatchAllThreads(new SubForumInfo { id = stringToGuid(subForumId) });
             foreach (PostInfo cur in posts)
             {
-                TableRow row = new TableRow();
-                TableCell cell = new TableCell();
                 HyperLink link = new HyperLink();
                 link.NavigateUrl = "~/post.aspx?forumname=" + getForumName() + "&pid=" + cur.id;
                 link.Text = cur.msg;
-                cell.Controls.Add(link);
-                row.Cells.Add(cell);
-                Table1.Rows.Add(row);
+                Label label = new Label();
+                label.Text = ":" + cur.owner.username;
+                PlaceHolder1.Controls.Add(link);
+                PlaceHolder1.Controls.Add(label);
+                PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
+            }
+            if (msg != null && !handler.PublishNewThread(msg, new SubForumInfo { id = stringToGuid(subForumId) }))
+            {
+                Label4.Visible = true;
+                return;
             }
         }
 

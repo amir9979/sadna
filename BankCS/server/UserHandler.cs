@@ -51,7 +51,7 @@ namespace server
             _actions[(int)FuncMsgClient.FuncType.CancelForum]               = CancelForum;
             _actions[(int)FuncMsgClient.FuncType.GetForumByName]            = GetForumByName;
             _actions[(int)FuncMsgClient.FuncType.WatchAllMembers]           = WatchAllMembers;
-                       
+            _actions[(int)FuncMsgClient.FuncType.UpdatePolicyParams]        = UpdatePolicyParams;     
         }
 
         public FuncMsgServer processMsg(FuncMsgClient msg)
@@ -91,7 +91,13 @@ namespace server
             return _sys.SetPolicy(getArgument<int>(args, 0), getArgument<string>(args, 1));  ////need to check
         }
 
+        private object UpdatePolicyParams(List<object> args)
+        {
+            if (!argCheck<ForumInfo>(args,0) || !argCheck<int>(args,1) || !argCheck<int>(args,2) || !argCheck<List<String>>(args,3))
+                throw new Exception();
 
+            return _sys.UpdatePolicyParams(_usr, getArgument<ForumInfo>(args, 0), getArgument<int>(args, 1), getArgument<int>(args, 2), getArgument<List<String>>(args, 3));
+        }
 
 
         private object Registration(List<object> args)  // need to fix with no forumname
@@ -137,6 +143,8 @@ namespace server
         {
             return _sys.WatchAllSubForumInfo(_usr);
         }
+
+        
 
         private object WatchAllMembers(List<object> args)
         {

@@ -95,5 +95,7 @@ namespace client.Network
         abstract public void CancelForum(ForumInfo f);
 
         abstract public ForumInfo GetForumByName(string forum);
+
+        abstract public bool UpdatePolicyParams(ForumInfo f, int min, int maxmon, List<String> leg);
     }
 }

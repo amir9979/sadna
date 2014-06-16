@@ -51,6 +51,12 @@
       <DependentUpon>begin.cs</DependentUpon>
     </Compile>
     <Compile Include="CurrentForumState.cs" />
+    <Compile Include="PolicyPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolicyPanel.Designer.cs">
+      <DependentUpon>PolicyPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagerPresentation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="begin.resx">
       <DependentUpon>begin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolicyPanel.resx">
+      <DependentUpon>PolicyPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerPresentation.resx">
       <DependentUpon>ManagerPresentation.cs</DependentUpon>

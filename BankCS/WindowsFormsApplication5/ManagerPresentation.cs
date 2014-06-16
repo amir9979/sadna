@@ -121,5 +121,10 @@ namespace WindowsFormsApplication5
         {
 
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            new PolicyPanel(myConnection, this.CurrentState).Show();
+        }
     }
 }

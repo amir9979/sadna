@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using DataTypes;
 
@@ -18,9 +19,10 @@ namespace MvcApplication1
             UserHandler handler=null;
             if ((handler = getHandler()) == null)
             {
-                Label1.Text = "error";
+                Response.Redirect("~/Default.aspx");
                 return;
             }
+            Label2.Text = "Wellcome to " + getForumName();
             if (handler.username != null)
             {
                 Label1.Text = "you are login as " + handler.username + "   ";
@@ -37,14 +39,13 @@ namespace MvcApplication1
             IList<SubForumInfo> sf = handler.WatchAllSubForum();
             foreach (SubForumInfo cur in sf)
             {
-                TableRow row = new TableRow();
-                TableCell cell = new TableCell();
+
                 HyperLink link = new HyperLink();
                 link.NavigateUrl = "~/subforum.aspx?forumname=" + getForumName() + "&sbid="+cur.id;
                 link.Text = cur.Name;
-                cell.Controls.Add(link);
-                row.Cells.Add(cell);
-                Table1.Rows.Add(row);
+                PlaceHolder1.Controls.Add(link);
+                PlaceHolder1.Controls.Add(new LiteralControl("<br />"));
+
             }
         }
     }

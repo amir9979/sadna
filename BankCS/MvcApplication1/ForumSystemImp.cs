@@ -5,7 +5,7 @@ using System.Web;
 using ConsoleApplication1;
 using DataTypes;
 
-namespace fff
+namespace test
 {
     public class ForumSystemImp : ForumSystem
     {
@@ -18,7 +18,7 @@ namespace fff
         public ForumSystemImp()
         {
             tree = new NTree<PostInfo>(null);
-            memb = new MemberInfo{id = Int2Guid(2)};
+            memb = new MemberInfo{id = Int2Guid(2),username = "yaniv"};
             postnum = 0;
             
             for (int i = 0; i < 10; i++)
@@ -35,6 +35,12 @@ namespace fff
         {
             forum = ForumName;
             return new UserInfo { id = (new Guest()).Id };
+        }
+
+        public override bool UpdatePolicyParams(User u, ForumInfo f, int minword, int maxmont, List<String> legg)
+        {
+            
+            return true;
         }
 
         public override bool SetPolicy(int index, string ForumName)

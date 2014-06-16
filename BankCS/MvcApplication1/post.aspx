@@ -1,40 +1,51 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="post.aspx.cs" Inherits="MvcApplication1.post" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        #Text1
-        {
-            height: 52px;
-            width: 268px;
-        }
-        #msg
-        {
-            height: 76px;
-            width: 211px;
-        }
-    </style>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Forum System</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <form id="form1">
-    <div>
-    
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    
-    </div>
-        <asp:Table ID="Table1" runat="server">
-        </asp:Table>
-    </form>
-    <form id="form2" method="post">
-        <p><asp:Label ID="Label2" runat="server" Text="Submin new Comment Post"></asp:Label></p>
-        <input id="msg" name="msg" type="text" />
+	<div class="page">
+		<div id="header">
 
-        <p>
-        <input id="Submit1" type="submit" value="submit" /></p>
-    </form>
-    
+			<div>
+				<a href="/" class="logo"><img src="resources/images/logo.png" alt=""></a>
+                <ul>
+					
+						<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:HyperLink ID="HyperLink1" runat="server">[HyperLink1]</asp:HyperLink>
+					
+				</ul>
+
+			</div>
+		</div>
+		<div id="content">
+			<div>
+				<h3>Comments</h3>
+                <p>
+					<asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+					<form id="form2" method="post">
+						<asp:Label ID="Label3" runat="server" Text="Submin new Comment Post"></asp:Label>
+						<br /><input id="msg" name="msg" type="text" />
+
+						
+						<br /><input id="Submit1" type="submit" value="submit" />
+					</form>
+                    <asp:Label ID="Label4" runat="server" Text="Cannot Post Massage" ForeColor="#FF6666" Visible="False"></asp:Label>
+                </p>
+			</div>
+		</div>
+		<div id="footer">
+			<div>
+				<span>Follow us :</span>
+				<a href="https://www.facebook.com/ProactGroup/" class="facebook" target="_blank">facebook</a>
+				<a href="https://twitter.com/proacteu/" class="twitter" target="_blank">twitter</a>
+				<a href="https://plus.google.com/" class="googleplus" target="_blank">googleplus</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
