@@ -38,7 +38,7 @@ namespace MvcApplication1
         {
             //GlobalData.system = new ForumSystemImp();
             //GlobalData.defaultHandler = new UserHandler(GlobalData.system);
-            GlobalData.system = new ForumSystemImpl("amir", "1234", "amir@gmail.com", "amir m", "db");
+            GlobalData.system = new ForumSystemImpl("amir", "1234", "amir9979@gmail.com", "amir m", "db");
             GlobalData.defaultHandler = new UserHandler(GlobalData.system);
             Thread conThread = new Thread(wrap);
             conThread.Start();
