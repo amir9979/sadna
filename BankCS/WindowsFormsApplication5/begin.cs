@@ -40,7 +40,7 @@ namespace WindowsFormsApplication5
             myConnection.login("amir", "1234");
             myConnection.AddNewSubForum("Giggs!!", new MemberInfo { id = Int2Guid(-1) });
             myConnection.loggout();
-   **/         
+            **/
         }
 
         private void button1_Click(object sender, EventArgs e)
