@@ -158,7 +158,6 @@ namespace ConsoleApplication1
                 {
                    // rep.Add<User>(tmp);
                     rep.Update<Forum>(u.forum);
-               //     File.AppendAllText(@"C:\\Logger" + u.Id.ToString() + ".txt", "the user " + tmp.Id.ToString() + "loggin at " + DateTime.Now.ToString() + "\n");
                     return UserToInfo(tmp);
                 }
                 else
@@ -185,7 +184,11 @@ namespace ConsoleApplication1
                 //u.forum.
                 rep.Update<Forum>(u.forum);
               //  rep.Remove<User>(u);
+<<<<<<< HEAD
              //   File.AppendAllText(@"C:\\Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
+=======
+                File.AppendAllText(@"Logger"+u.Id.ToString()+".txt", "the user " + u.Id.ToString() + "logged out at " + DateTime.Now.ToString() + "\n");
+>>>>>>> parent of 633317f... disable logger for the web interface
                 return UserToInfo(new Guest(u.forum));
             }
             System.Console.Write("cannot loggout to forum :" + u.forum.getname() + "cause its not  logged in");
@@ -233,7 +236,11 @@ namespace ConsoleApplication1
                 rep.Add<Post>(p);
                 rep.Update<SubForum>(sub);
                 rep.Update<User>(u);
+<<<<<<< HEAD
               //  File.AppendAllText(@"C:\\Logger" + u.Id.ToString() + ".txt", "the user " + u.Id + "publish new thread id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
+=======
+                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id + "publish new thread id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
+>>>>>>> parent of 633317f... disable logger for the web interface
                 return true;
             }
 
@@ -316,7 +323,11 @@ namespace ConsoleApplication1
                     ((Member)u).AddNewPost(comm, parent);
                     rep.Update<User>(u);
                     rep.Update<Post>(parent);
+<<<<<<< HEAD
                  //   File.AppendAllText(@"C:\\Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
+=======
+                    File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "publish new comment id : " + comm.Id.ToString() + " to thread/comment id: " + p.Id.ToString() + DateTime.Now.ToString() + "\n");
+>>>>>>> parent of 633317f... disable logger for the web interface
                     return true;
                 }
 
@@ -442,7 +453,11 @@ namespace ConsoleApplication1
                 SubForum sub = ContainId_get(s.Id, u.forum);
 
                 res = u.forum.promoteMemberToModerate(mod, sub);
+<<<<<<< HEAD
              //   File.AppendAllText(@"C:\\Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "premote to Moderate at SubForum :" + s.Id.ToString() + DateTime.Now.ToString() + "\n");
+=======
+                File.AppendAllText(@"Logger" + u.Id.ToString() + ".txt", "the user " + u.Id.ToString() + "premote to Moderate at SubForum :" + s.Id.ToString() + DateTime.Now.ToString() + "\n");
+>>>>>>> parent of 633317f... disable logger for the web interface
                 rep.Update<User>(mod);
                 rep.Update<Forum>(u.forum);
                 rep.Update<SubForum>(sub);

@@ -97,7 +97,6 @@ namespace ConsoleApplication1
 
             Member tmp = new Member(username, pass, mail, fullname, this, "Confirmed");
             Members.Add(tmp);
-            File.AppendAllText(@"C:\\Logger" + tmp.Id.ToString() + ".txt", "the user " + tmp.Id.ToString() + "want to register to forum Id: " + this.Id.ToString() + " at " + DateTime.Now.ToString() + "\n");
             return acc;
         }
 
