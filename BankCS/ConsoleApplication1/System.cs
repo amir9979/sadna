@@ -139,7 +139,7 @@ namespace ConsoleApplication1
                 // send txt to logger wrote by f.Register(name,pass,mail,fullname)
                 rep.Update<Forum>(f);
                 if (ans!=-1)
-                   //  sendVerificationEmail(mail, ans);
+                     sendVerificationEmail(mail, ans);
                 return ans;
             }
             return -1;

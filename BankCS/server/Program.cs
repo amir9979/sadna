@@ -25,7 +25,7 @@ namespace server
             _listener.Start();
 
 
-            ForumSystemImpl testSystem = new ForumSystemImpl("amir","1234","amir@gmail.com","amir m","db");
+            ForumSystemImpl testSystem = new ForumSystemImpl("amir","1234","amir9979@gmail.com","amir m","db");
             while (true)
             {
                 TcpClient Client = null;
