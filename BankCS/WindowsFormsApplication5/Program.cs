@@ -24,7 +24,7 @@ namespace WindowsFormsApplication5
         static void Main()
         {
             string ip = LocalIPAddress().ToString();
-            ForumConnection myConnection = new ForumConnectionImpl(ip, 12345);
+            ForumConnection myConnection = new ForumConnectionImpl("132.73.197.165", 12345);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(myConnection,new CurrentForumState()));
